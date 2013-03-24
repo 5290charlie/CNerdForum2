@@ -37,6 +37,11 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		
 			<?php // Begin HTML header tag ?>	
 			<header id="header">
+				<div id="userdata">
+					<button>Register</button> 
+					or 
+					<button>Sign In</button>
+				</div>
 				<hgroup>
 					<h1>CNerdForum</h1>
 					<h2>[a place for nerds]</h2>
