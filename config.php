@@ -16,8 +16,6 @@ define( 'CN_STATUS', CN_ST_LIVE );
 // Global Messages
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
 
-echo $_SESSION['DOCUMENT_ROOT'];
-
 // Local Paths
 define( 'CN_ROOTPAGE', $_SESSION['DOCUMENT_ROOT'] );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
@@ -94,6 +92,7 @@ define( 'CN_MSG_SUCCESS', 1 );
 
 // Define the class and interface autoloader function
 function __autoload( $class_name ) {
+	echo $_SESSION['DOCUMENT_ROOT'];
 	echo 'autoload: ' . $class_name . ' ** ';
 	// Process class name
 	if ( $class_name !== 'CN' ) {
