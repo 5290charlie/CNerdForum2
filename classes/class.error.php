@@ -34,6 +34,21 @@ class CN_Error {
 			}
 		}
 	}
+	
+	// Validates various types of input
+	public static function handleException( $e ) {
+		
+		// Should log exceptions if site is live and if errors are not being displayed
+		if ( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) ) {
+			echo 'Exception Type: ' . $e->getCode(); . '<br />';
+			echo $e->getMessage() . '<br />';
+			echo 'File: ' . $e->getFile() . '<br />';
+			echo 'Line: ' . $e->getLine() . '<br />';
+		} else {
+			error_log( 'Exception: "' . $e->getMessage() . '" on line ' . $e->getLine() . ' in ' . $e->getFile );
+			die( CN_GLOBAL_ERROR );
+		}
+	}
 }
 
 ?>
