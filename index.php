@@ -1,6 +1,6 @@
 <?php
 // Include configuration file
-require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
+//require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
