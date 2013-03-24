@@ -130,8 +130,8 @@ if ( !isset( $_SESSION['sessionID'] ) )
 
 // Register Custom Error & Exception Handlers
 require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
-set_error_handler( 'CN_Error::handleError' );
-set_exception_handler( 'CN_Error::handleException' );
+//set_error_handler( 'CN_Error::handleError' );
+//set_exception_handler( 'CN_Error::handleException' );
 
 $cn =& CN::getInstance();
 $dbo =& CN::getDBO();
