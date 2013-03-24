@@ -11,7 +11,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 				<form id="login" method="post" action="<?php echo CN_WEBDIR_SCRIPTS; ?>authenticate.php">
 					<table>
 						<tr>
-							<td>
+							<td class="right">
 								<label for="username">Username:</label>
 							</td>
 							<td>
@@ -19,7 +19,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td class="right">
 								<label for="password">Password:</label>
 							</td>
 							<td>
