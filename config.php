@@ -112,17 +112,11 @@ function __autoload( $class_name ) {
 		//throw new Exception( 'Could not find the required file!' );
 	}
 }
-echo 'test1';
-// Register Custom Error & Exception Handlers
-require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
-set_error_handler( 'CN_Error::handleError' );
-set_exception_handler( 'CN_Error::handleException' );
-echo 'test2';
+
 // Set the default timezone to GMT-7
 date_default_timezone_set( 'America/Denver' );
 
 $cn = $dbo = $user = null;
-echo 'test3';
 /*
 
 // Begin Session
