@@ -35,7 +35,6 @@ class CN_User {
 	
 	// Initializes a new user object with the specified user's data
 	public function __construct( $criteria ) {
-		echo 'begin user::__construct ** ';
 		$dbo =& CN::getDBO();
 		
 		// Build query depending on criteria
@@ -52,24 +51,16 @@ class CN_User {
 			';
 				
 		}
-		
-		echo 'query built ** ';
-		
+				
 		$response = $dbo->query( $query );
-		
-		echo 'response given ** ';
-		
+				
 		if ( $dbo->hasError( $response ) ) {
-			echo 'SQL ERROR ** ';
 			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
 		}
 		if ( $dbo->num_rows( $response ) != 1 ) {
-			echo 'User doesnt exist ** ';
 			// User doesn't exist!
 		}
-		
-		echo 'ready to load userdata ** ';
-		
+				
 		$row = $dbo->getResultObject( $response )->fetch_object();
 		$this->id			= $row->user_id;
 		$this->username		= $row->username;
@@ -78,8 +69,6 @@ class CN_User {
 		$this->fullname		= $this->firstname . ' ' . $this->lastname;
 		$this->email		= $row->email;
 		$this->permission	= $row->permission;
-		
-		echo 'userdata loaded ** ';
 	}
 	
 	// Gets (creates if non-existent) a reference to a logged-in user object that holds that user's information
