@@ -117,6 +117,8 @@ function __autoload( $class_name ) {
 	}
 }
 
+/*
+
 // Begin Session
 session_name( CN_SESSION_NAME );
 session_start();
@@ -127,9 +129,9 @@ session_regenerate_id();
 // Generate CNerdForum session ID
 if ( !isset( $_SESSION['sessionID'] ) )
 	$_SESSION['sessionID'] = CN::generateKey( CN_SESSION_KEYLENGTH_SESSID );
-
+*/
 // Register Custom Error & Exception Handlers
-require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
+//require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
 //set_error_handler( 'CN_Error::handleError' );
 //set_exception_handler( 'CN_Error::handleException' );
 /*
