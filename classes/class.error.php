@@ -17,7 +17,7 @@ class CN_Error {
 				
 			// Should log errors if the site is live and if errors are not being displayed
 			if( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) && $user->permission > CN_PERM_FACULTY ) {
-				$mc->enqueueMessage( 
+				$cn->enqueueMessage( 
 					'Type: ' . $err_type . '<br />' . $err_str . '<br />' . 'File: ' . $err_file . '<br />' . 'Line: ' . $err_line,
 					CN_MSG_WARNING,
 					$_SESSION['sessionID']
