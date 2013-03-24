@@ -7,10 +7,6 @@ $cn->init();
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
-
-$user = new CN_User( 1 );
-
-print_r( $user );
 ?>
 
 					<ul>
