@@ -15,7 +15,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 								<label for="username">Username:</label>
 							</td>
 							<td>
-								<input type="text" id="username" name="username" />
+								<input type="text" id="username" name="username" autocomplete="off" />
 							</td>
 						</tr>
 						<tr>
@@ -23,7 +23,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 								<label for="password">Password:</label>
 							</td>
 							<td>
-								<input type="password" id="password" name="password" />
+								<input type="password" id="password" name="password" autocomplete="off" />
 							</td>
 						</tr>
 						<tr>
