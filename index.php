@@ -2,8 +2,12 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+echo 'pre-init -- ';
+
 $cn =& CN::getInstance();
 $cn->init();
+
+echo 'post-init -- ';
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
