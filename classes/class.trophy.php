@@ -3,6 +3,15 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
+/***************************************
+		 Trophy Table Structure
+****************************************
+	trophy_id, int(255), PrimaryKey, AI
+	mana, int(255)
+	rank, varchar(255)
+	icon, varchar(255)
+***************************************/
+
 // Define Trophy Class
 class CN_Trophy {
 	public $id;

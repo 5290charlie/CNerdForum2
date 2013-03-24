@@ -3,6 +3,16 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
+/***************************************
+		 Comment Table Structure
+****************************************
+	comment_id, int(255), PrimaryKey, AI
+	post_id, int(255), FK->Posts
+	user_id, int(255), FK->Users
+	body, text
+	date, int(255)
+***************************************/
+
 // Define Comment Class
 class CN_Comment {
 	public $id;

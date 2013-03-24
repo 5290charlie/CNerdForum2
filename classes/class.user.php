@@ -3,6 +3,22 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
+/***************************************
+		 User Table Structure
+****************************************
+	user_id, int(255), PrimaryKey, AI
+	login_id, int(255), NULL
+	username, varchar(255)
+	password, varchar(255)
+	firstname, varchar(255)
+	lastname, varchar(255)
+	email, varchar(255)
+	permission, int(5), Default:1
+	session_id, varchar(255), NULL
+	last_accessed, int(255), NULL
+***************************************/
+
+
 // Define User Class
 class CN_User {
 	
@@ -11,12 +27,48 @@ class CN_User {
 	public $username;
 	public $firstname;
 	public $lastname;
+	public $fullname;
 	public $email;
 	public $permission;
 	
 	// Initializes a new user object with the specified user's data
 	public function __construct( $criteria ) {
-		$required_data = array(
+		$dbo =& CN::getDBO();
+		
+		// Build query depending on criteria
+		if ( is_numeric( $criteria ) ) {
+			$query = '
+				SELECT * FROM ' . CN_USERS_TABLE . '
+				WHERE user_id = ' . $dbo->sqlsafe( $criteria )
+			;
+		} else {
+			$query = '
+				SELECT * FROM ' . CN_USERS_TABLE . '
+				WHERE username = "' . $dbo->sqlsafe( $criteria ) . '" 
+				OR login_id = "' . $dbo->sqlsafe( $criteria ) . '"
+			';
+				
+		}
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
+		}
+		if ( $dbo->num_rows( $response ) != 1 ) {
+			// User doesn't exist!
+		}
+		
+		$row = $dbo->getResultObject( $response )->fetch_object();
+		$this->id			= $row->user_id;
+		$this->username		= $row->username;
+		$this->firstname	= $row->firstname;
+		$this->lastname		= $row->lastname;
+		$this->fullname		= $this->firstname . ' ' . $this->lastname;
+		$this->email		= $row->email;
+		$this->permission	= $row->permission;
+		
+	/*	$required_data = array(
 			'username',
 			'firstname',
 			'lastname',
@@ -40,6 +92,7 @@ class CN_User {
 			$this->permission = $criteria['permission'];
 			
 		return self;
+	*/
 	}
 	
 	// Gets (creates if non-existent) a reference to a logged-in user object that holds that user's information
@@ -71,10 +124,10 @@ class CN_User {
 	/* 
 	   Status Codes:
 	 
-		CN_AUTH_ERR_SQL - SQL Error
-		CN_AUTH_SUCCESS - Success
-		CN_AUTH_INVALID - Invalid credentials (username/password)
-		CN_AUTH_LOCKED - Account Locked
+		CN_AUTH_ERROR_SQL - SQL Error
+		CN_AUTH_ERROR_SUCCESS - Success
+		CN_AUTH_ERROR_INVALID - Invalid credentials (password)
+		CN_AUTH_ERROR_UNKNOWN - Invalid credentials (username)
 		 
 	*/
 	public static function authenticate( $username, $password ) {
@@ -156,17 +209,6 @@ class CN_User {
 	public function isOnline() {
 		// TODO
 	}
-	
-	// Check if user is flagged
-	public function isFlagged() {
-		// TODO
-	}
-	
-	// Set flag for user
-	public function toggleFlag( $direction, $reason = null ) {
-		// TODO
-	}
-	
 	// Adds a new user
 	public static function add( array $parameters ) {
 		// TODO

@@ -3,6 +3,16 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
+/***************************************
+		 Vote Table Structure
+****************************************
+	vote_id, int(255), PrimaryKey, AI
+	user_id, int(255), FK->Users
+	post_id, int(255), NULL, FK->Posts
+	comment_id, int(255), NULL
+	value, int(255), Default:0
+***************************************/
+
 // Define Vote Class
 class CN_Vote {
 	public $id;
