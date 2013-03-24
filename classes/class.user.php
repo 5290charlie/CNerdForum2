@@ -33,6 +33,7 @@ class CN_User {
 	
 	// Initializes a new user object with the specified user's data
 	public function __construct( $criteria ) {
+		echo 'begin user::__construct ** ';
 		$dbo =& CN::getDBO();
 		
 		// Build query depending on criteria
@@ -50,14 +51,22 @@ class CN_User {
 				
 		}
 		
+		echo 'query built ** ';
+		
 		$response = $dbo->query( $query );
 		
+		echo 'response given ** ';
+		
 		if ( $dbo->hasError( $response ) ) {
+			echo 'SQL ERROR ** '
 			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
 		}
 		if ( $dbo->num_rows( $response ) != 1 ) {
+			echo 'User doesnt exist ** ';
 			// User doesn't exist!
 		}
+		
+		echo 'ready to load userdata ** ';
 		
 		$row = $dbo->getResultObject( $response )->fetch_object();
 		$this->id			= $row->user_id;
@@ -68,31 +77,7 @@ class CN_User {
 		$this->email		= $row->email;
 		$this->permission	= $row->permission;
 		
-	/*	$required_data = array(
-			'username',
-			'firstname',
-			'lastname',
-			'email'
-		);
-		
-		// Return null if criteria array is missing required data
-		if ( !self::required( $required_data, $criteria ) ) 
-			return null;
-			
-		$this->username = $criteria['username'];
-		$this->firstname = $criteria['firstname'];
-		$this->lastname = $criteria['lastname'];
-		$this->email = $criteria['email'];
-		
-		// Set user permission (default = CN_PERM_USER
-		$valid_perm = ( !is_numeric( $criteria['permission'] ) && ( $criteria['permission'] > CN_PERM_USER && $criteria['permission'] < CN_PERM_ADMIN ) );
-		if ( !isset( $criteria['permission'] ) || !$valid_perm )
-			$this->permission = CN_PERM_USER
-		else
-			$this->permission = $criteria['permission'];
-			
-		return self;
-	*/
+		echo 'userdata loaded ** ';
 	}
 	
 	// Gets (creates if non-existent) a reference to a logged-in user object that holds that user's information
