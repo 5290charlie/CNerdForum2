@@ -118,6 +118,9 @@ define( 'CN_MSG_SUCCESS', 1 );
 	Initialization & Setup
 *******************************/
 
+// Set error reporting
+error_reporting(E_ALL);
+
 // Set the default timezone to GMT-7
 date_default_timezone_set( 'America/Denver' );
 
