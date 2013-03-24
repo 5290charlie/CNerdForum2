@@ -17,7 +17,7 @@ define( 'CN_STATUS', CN_ST_LIVE );
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
 
 // Local Paths
-define( 'CN_ROOTPAGE', '/Users/charlie/Sites/cnerdforum/public/' );
+define( 'CN_ROOTPAGE', '/var/www/dev/cnerdforum/public/' );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
 define( 'CN_DIR_IMAGES', CN_ROOTPAGE . 'images/' );
 define( 'CN_DIR_SCRIPTS', CN_ROOTPAGE . 'scripts/' );
@@ -28,7 +28,7 @@ define( 'CN_DIR_INTERFACES', CN_DIR_CLASSES . 'interfaces/' );
 define( 'CN_DIR_HANDLERS', CN_DIR_CLASSES . 'handlers/' );
 
 // Web Paths
-define( 'CN_WEBROOTPAGE', 'http://cnerdforum.local/' );
+define( 'CN_WEBROOTPAGE', 'http://dev.cnerdforum.com/' );
 define( 'CN_WEBDIR_GLOBALS', CN_WEBROOTPAGE . 'globals/' );
 define( 'CN_WEBDIR_IMAGES', CN_WEBROOTPAGE . 'images/' );
 define( 'CN_WEBDIR_ICONS', CN_WEBDIR_IMAGES . 'icons/' );
