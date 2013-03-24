@@ -17,7 +17,7 @@ define( 'CN_STATUS', CN_ST_LIVE );
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
 
 // Local Paths
-define( 'CN_ROOTPAGE', '/var/www/dev/cnerdforum/public/' );
+define( 'CN_ROOTPAGE', $_SESSION['DOCUMENT_ROOT'] );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
 define( 'CN_DIR_IMAGES', CN_ROOTPAGE . 'images/' );
 define( 'CN_DIR_SCRIPTS', CN_ROOTPAGE . 'scripts/' );
@@ -129,10 +129,10 @@ if ( !isset( $_SESSION['sessionID'] ) )
 	$_SESSION['sessionID'] = CN::generateKey( CN_SESSION_KEYLENGTH_SESSID );
 
 // Register Custom Error & Exception Handlers
-/*require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
+require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
 set_error_handler( 'CN_Error::handleError' );
 set_exception_handler( 'CN_Error::handleException' );
-*/
+
 $cn =& CN::getInstance();
 $dbo =& CN::getDBO();
 $user =& User::getInstance();
