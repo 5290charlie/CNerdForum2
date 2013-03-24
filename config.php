@@ -92,21 +92,13 @@ define( 'CN_MSG_SUCCESS', 1 );
 
 // Define the class and interface autoloader function
 function __autoload( $class_name ) {
-	echo $_SESSION['DOCUMENT_ROOT'];
-	echo 'autoload: ' . $class_name . ' ** ';
 	// Process class name
 	if ( $class_name !== 'CN' ) {
 		$class_name = str_replace( 'CN_', '', strtoupper( $class_name ) );
-		echo 'new class_name: ' . $class_name . ' ** ';
 	}
 	
-	$filename = CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
-
-	echo 'Filename: ' . $filename . ' ** ';
-
 	if( file_exists( CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php' ) ) {
-		echo 'File: ' . $filename . ' exists! ** ';
-//		require_once CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
+		require_once CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
 /*	} elseif( file_exists( DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php' ) ) {
 		require_once DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php';
 	} elseif( file_exists( DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php' ) ) {

@@ -3,6 +3,8 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
+echo('CN_User classfile');
+
 /***************************************
 		 User Table Structure
 ****************************************
