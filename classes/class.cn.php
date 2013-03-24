@@ -19,7 +19,7 @@ final class CN {
 	}
 	
 	// Initialize Site
-/*	public function init() {
+	public function init() {
 		
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
@@ -51,7 +51,7 @@ final class CN {
 			);
 		}
 	}
-*/
+
 	// Check if site is live
 	public static function isLive() {
 		return CN_STATUS == CN_ST_LIVE;
