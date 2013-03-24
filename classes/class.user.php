@@ -111,10 +111,11 @@ class CN_User {
 	/* 
 	   Status Codes:
 	 
-		CN_AUTH_ERROR_SQL - SQL Error
+		CN_AUTH_ERROR_SQL     - SQL Error
 		CN_AUTH_ERROR_SUCCESS - Success
 		CN_AUTH_ERROR_INVALID - Invalid credentials (password)
-		CN_AUTH_ERROR_UNKNOWN - Invalid credentials (username)
+		CN_AUTH_ERROR_NOUSER  - Invalid credentials (username)
+		CN_AUTH_ERROR_UNKNOWN - Unknown Error
 		 
 	*/
 	public static function authenticate( $username, $password ) {
@@ -152,8 +153,9 @@ class CN_User {
 			';
 			$sqlobj->createQuery( $query );
 			$sqlobj->bind( ':username', $username );
+			
 			if ( $response = $sqlobj->runQuery() )
-				print_r($sqlobj->getResultObject( $response ))
+				return CN_AUTH_SUCCESS;
 			else
 				return CN_AUTH_ERROR_INVALID;
 		}		
