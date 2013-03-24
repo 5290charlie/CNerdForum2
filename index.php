@@ -8,7 +8,7 @@ $cn->init();
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 
-echo $_SESSION['DOCUMENT_ROOT'];
+echo $_SERVER['DOCUMENT_ROOT'];
 
 echo 'pre-user ** ';
 

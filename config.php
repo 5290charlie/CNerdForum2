@@ -45,7 +45,7 @@ function __autoload( $class_name ) {
 }
 
 // Local Paths
-define( 'CN_ROOTPAGE', $_SESSION['DOCUMENT_ROOT'] );
+define( 'CN_ROOTPAGE', $_SERVER['DOCUMENT_ROOT'] );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
 define( 'CN_DIR_IMAGES', CN_ROOTPAGE . 'images/' );
 define( 'CN_DIR_SCRIPTS', CN_ROOTPAGE . 'scripts/' );
