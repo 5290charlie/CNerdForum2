@@ -132,9 +132,9 @@ if ( !isset( $_SESSION['sessionID'] ) )
 require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
 //set_error_handler( 'CN_Error::handleError' );
 //set_exception_handler( 'CN_Error::handleException' );
-
+/*
 $cn =& CN::getInstance();
 $dbo =& CN::getDBO();
 $user =& User::getInstance();
-
+*/
 ?>
