@@ -60,7 +60,7 @@ class CN_User {
 		echo 'response given ** ';
 		
 		if ( $dbo->hasError( $response ) ) {
-			echo 'SQL ERROR ** '
+			echo 'SQL ERROR ** ';
 			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
 		}
 		if ( $dbo->num_rows( $response ) != 1 ) {

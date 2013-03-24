@@ -21,29 +21,6 @@ define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or
 //set_error_handler( 'CN_Error::handleError' );
 //set_exception_handler( 'CN_Error::handleException' );
 
-// Define the class and interface autoloader function
-function __autoload( $class_name ) {
-	// Process class name
-	if ( $class_name !== 'CN' ) {
-		$class_name = str_replace( 'CN_', '', strtoupper( $class_name ) );
-	}
-	
-	if( file_exists( CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php' ) ) {
-		require_once CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
-/*	} elseif( file_exists( DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php' ) ) {
-		require_once DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php';
-	} elseif( file_exists( DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php' ) ) {
-		require_once DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php';
-	} elseif( file_exists( DIR_HANDLERS . 'handler.' . str_replace( 'handler', '', strtolower( $class_name ) ) . '.php' ) ) {
-		require_once DIR_HANDLERS . 'handler.' . str_replace( 'handler', '', strtolower( $class_name ) ) . '.php';
-*/	} else {
-		// Should throw exception, but since we're using the singleton design pattern, the exception can't be caught
-		echo $class_name;
-		die( 'Could not find the required file!' );
-		//throw new Exception( 'Could not find the required file!' );
-	}
-}
-
 // Local Paths
 define( 'CN_ROOTPAGE', $_SERVER['DOCUMENT_ROOT'] );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
@@ -120,6 +97,29 @@ define( 'CN_MSG_SUCCESS', 1 );
 
 // Set error reporting
 error_reporting(E_ALL);
+
+// Define the class and interface autoloader function
+function __autoload( $class_name ) {
+	// Process class name
+	if ( $class_name !== 'CN' ) {
+		$class_name = str_replace( 'CN_', '', strtoupper( $class_name ) );
+	}
+	
+	if( file_exists( CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php' ) ) {
+		require_once CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
+/*	} elseif( file_exists( DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php' ) ) {
+		require_once DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php';
+	} elseif( file_exists( DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php' ) ) {
+		require_once DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php';
+	} elseif( file_exists( DIR_HANDLERS . 'handler.' . str_replace( 'handler', '', strtolower( $class_name ) ) . '.php' ) ) {
+		require_once DIR_HANDLERS . 'handler.' . str_replace( 'handler', '', strtolower( $class_name ) ) . '.php';
+*/	} else {
+		// Should throw exception, but since we're using the singleton design pattern, the exception can't be caught
+		echo $class_name;
+		die( 'Could not find the required file!' );
+		//throw new Exception( 'Could not find the required file!' );
+	}
+}
 
 // Set the default timezone to GMT-7
 date_default_timezone_set( 'America/Denver' );
