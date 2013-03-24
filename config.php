@@ -27,6 +27,7 @@ define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
 define( 'CN_DIR_IMAGES', CN_ROOTPAGE . 'images/' );
 define( 'CN_DIR_SCRIPTS', CN_ROOTPAGE . 'scripts/' );
 define( 'CN_DIR_CSS', CN_ROOTPAGE . 'css/' );
+define( 'CN_DIR_AJAX', CN_ROOTPAGE . 'ajax/' );
 define( 'CN_DIR_CLASSES', CN_ROOTPAGE . 'classes/' );
 define( 'CN_DIR_ABSTRACTS', CN_DIR_CLASSES . 'abstracts/' );
 define( 'CN_DIR_INTERFACES', CN_DIR_CLASSES . 'interfaces/' );
@@ -39,6 +40,7 @@ define( 'CN_WEBDIR_IMAGES', CN_WEBROOTPAGE . 'images/' );
 define( 'CN_WEBDIR_ICONS', CN_WEBDIR_IMAGES . 'icons/' );
 define( 'CN_WEBDIR_SCRIPTS', CN_WEBROOTPAGE . 'scripts/' );
 define( 'CN_WEBDIR_CSS', CN_WEBROOTPAGE . 'css/' );
+define( 'CN_WEBDIR_AJAX', CN_WEBROOTPAGE . 'ajax/' );
 
 // Database Connection Settings
 define( 'CN_DB_HOST', 'localhost' );

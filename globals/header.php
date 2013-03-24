@@ -38,9 +38,9 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 			<?php // Begin HTML header tag ?>	
 			<header id="header">
 				<div id="userdata">
-					<button>Sign Up!</button> 
+					<a href="<?php echo WEBROOTPAGE; ?>signup.php" class="button">Sign Up!</button>
 					OR 
-					<button>Login</button>
+					<a href="<?php echo WEBROOTPAGE; ?>login.php" class="button">Login</button>
 				</div>
 				<hgroup>
 					<h1>CNerdForum</h1>
@@ -48,4 +48,3 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 				</hgroup>
 			</header>
 			<div id="content">
-				<div id="tabs">
