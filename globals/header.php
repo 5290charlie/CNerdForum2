@@ -39,7 +39,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 			<header id="header">
 				<div id="userdata">
 					<a href="<?php echo CN_WEBROOTPAGE; ?>signup.php" class="button">Sign Up!</a>
-					OR 
+					OR
 					<a href="<?php echo CN_WEBROOTPAGE; ?>login.php" class="button">Login</a>
 				</div>
 				<hgroup>
