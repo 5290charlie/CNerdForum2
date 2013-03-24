@@ -1,0 +1,129 @@
+/*******************************
+	CNerdForum LESS Stylesheet
+	Written By: Charlie McClung
+	Updated On: 3/23/2013
+*******************************/
+
+/*** Function creates rounded top corners 
+		@radius = radius of rounded corners ***/
+.border-radius-top (@radius: 5px) {
+	border-top-left-radius: @radius;
+	border-top-right-radius: @radius;
+	-moz-border-radius-topleft: @radius;
+	-moz-border-radius-topright: @radius;
+	-webkit-border-top-left-radius: @radius;
+	-webkit-border-top-right-radius: @radius;
+}
+
+/*** Function creates rounded bottom corners
+		@radius = radius of rounded corners ***/
+.border-radius-bottom (@radius: 5px) {
+	/* General */
+	border-bottom-left-radius: @radius;
+	border-bottom-right-radius: @radius;
+	
+	/* Firefox */
+	-moz-border-radius-bottomleft: @radius;
+	-moz-border-radius-bottomright: @radius;
+	
+	/* Safari and Chrome */
+	-webkit-border-bottom-left-radius: @radius;
+	-webkit-border-bottom-right-radius: @radius;
+}
+
+/*** Function creates box shadow for an element
+		@a = shift shadow right (negative for left)
+		@b = shift shadow down (negative for left)
+		@c = blur shadow
+		@color = shadow color **/
+.box-shadow (@a: 5px, @b: 5px, @c: 5px, @color: #000) {
+	/* General */
+ 	box-shadow: @a @b @c @color;
+ 	
+ 	/* Firefox */
+	-moz-box-shadow: @a @b @c @color; /* Firefox */
+	
+	/* Safari and Chrome */
+ 	-webkit-box-shadow: @a @b @c @color;
+}
+
+/*** Create custom font-face for header ***/
+@font-face {
+	font-family: header;
+	src: url('fonts/header.TTF');
+}
+
+/*** Begin html ***/
+html {
+
+	/*** Begin body ***/
+	body {
+		background: url('images/textured_paper.png');
+		font-family: 'Rufina', serif;
+				
+		/*** Begin html>body>container ***/
+		div#container {
+			padding: 0;
+			background: url('images/dark_fish_skin.png');
+			width: 960px;
+			margin: 0 auto;
+			.border-radius-top(10px);
+			.border-radius-bottom(10px);
+			.box-shadow();
+			
+			/*******************************
+				Begin html>body>container>header
+			*******************************/
+			header {
+				
+				hgroup {
+					display: block;
+					width: 400px;
+					margin: 25px;
+					padding: 0;
+						
+					h1 {
+						margin: 0;
+						padding: 0;
+						font-family: header;
+						font-size: 75px;
+						color: #eee;
+					}
+					
+					h2 {
+						margin: 0;
+						padding: 0;
+						font-size: 15px;
+						text-align: right;
+						color: #aaa;
+					}
+				}
+		
+			}
+			
+			/*******************************
+				Begin html>body>container>content styles
+			*******************************/
+			div#content {
+				display: block;
+				margin: 15px 0;
+				
+				div#tabs {
+					.border-radius-bottom(10px);
+				}
+			
+				/*******************************
+					Begin html>body>container>footer styles
+				*******************************/
+				footer {
+					color: #666;
+					margin: 15px;
+					padding: 10px;
+					border-top: 1px solid #ccc;
+					font-size: 10px;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
