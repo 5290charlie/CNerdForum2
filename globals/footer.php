@@ -7,7 +7,8 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		</div>
 		<?php // Begin HTML footer ?>
 		<footer id="footer">
-			Footer
+			&copy; 2008-<?php echo date("Y"); ?> CNerdForum
+			A <a href="http://www.charliemcclung.com">Charlie McClung</a> Production
 		</footer>
 	</body>
 </html>
