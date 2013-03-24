@@ -16,6 +16,8 @@ define( 'CN_STATUS', CN_ST_LIVE );
 // Global Messages
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
 
+echo $_SESSION['DOCUMENT_ROOT'];
+
 // Local Paths
 define( 'CN_ROOTPAGE', $_SESSION['DOCUMENT_ROOT'] );
 define( 'CN_DIR_GLOBALS', CN_ROOTPAGE . 'globals/' );
