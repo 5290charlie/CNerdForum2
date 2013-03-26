@@ -75,7 +75,25 @@ class CN_User {
 	
 	// Gets (creates if non-existent) a reference to a logged-in user object that holds that user's information
 	public static function &getInstance() {
-		// TODO
+		// Make sure the user is logged in
+		if ( !isset( $_SESSION['login'] ) ) {
+			throw new Exception( 'The user is not logged in!' );
+		}
+		
+		static $instance;
+		
+		if ( !is_object( $instance ) ) {
+			$class = __CLASS__;
+			$instance = new $class( $_SESSION['login'] );
+			unset( $class );
+			
+			// Make sure user is logged in
+			if ( !$instance->isOnline() ) {
+				throw new Exception( 'The user is not logged in!' );
+			}
+		}
+		
+		return $instance;
 	}
 	
 	// Private function that validates two passwords
