@@ -63,7 +63,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 									Updated: <?php echo date( CN_DATE_FORMAT, $t->updated ); ?>
 								</div>
 								<div class="smallfont">
-									Author: <?php echo $t->author->username . ' (' . $t->author->firstname . ' ' . $t->author->lastname . ')'; ?>
+									Author: <?php echo $t->author->username; ?>
 								</div>
 							</td>
 						</tr>
