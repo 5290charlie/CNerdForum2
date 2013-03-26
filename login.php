@@ -37,7 +37,7 @@ Add CN_AUTH_CREATED for newly created users to auto login
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
-				<form id="login" method="post" action="<?php echo CN_WEBLOGINPAGE . ( ( isset( $_GET['r'] ) && !empty( $_GET['r'] ) ) ? '?r=' . $_GET['r'] : '' ); ?>">
+				<form id="login" method="post" action="<?php echo CN_WEBLOGIN . ( ( isset( $_GET['r'] ) && !empty( $_GET['r'] ) ) ? '?r=' . $_GET['r'] : '' ); ?>">
 					<table>
 						<tr>
 							<td class="right">

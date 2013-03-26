@@ -40,14 +40,16 @@ class CN_User {
 		// Build query depending on criteria
 		if ( is_numeric( $criteria ) ) {
 			$query = '
-				SELECT * FROM ' . CN_USERS_TABLE . '
-				WHERE user_id = ' . $dbo->sqlsafe( $criteria )
+				SELECT 	* 
+				FROM 	' . CN_USERS_TABLE . ' 
+				WHERE 	user_id = ' . $dbo->sqlsafe( $criteria )
 			;
 		} else {
 			$query = '
-				SELECT * FROM ' . CN_USERS_TABLE . '
-				WHERE username = "' . $dbo->sqlsafe( $criteria ) . '" 
-				OR login_id = "' . $dbo->sqlsafe( $criteria ) . '"
+				SELECT 	* 
+				FROM 	' . CN_USERS_TABLE . '
+				WHERE 	username = "' . $dbo->sqlsafe( $criteria ) . '" 
+				OR 		login_id = "' . $dbo->sqlsafe( $criteria ) . '"
 			';
 				
 		}
@@ -113,11 +115,11 @@ class CN_User {
 				
 		/*** Authenticate the user against the database ***/
 		$query = '
-			SELECT password
-			FROM '
-			. CN_USERS_TABLE .
-			' WHERE username = :username'
-		;
+			SELECT 	password
+			FROM 	' . CN_USERS_TABLE . ' 
+			WHERE 	username = :username
+		';
+	
 		$sqlobj->createQuery( $query );
 		$sqlobj->bind( ':username', $username );
 		$response = $sqlobj->runQuery();
@@ -136,10 +138,12 @@ class CN_User {
 		
 		if ( self::validate_password($stored_password, $password) )
 		{
-			$query = ' SELECT * FROM '
-				. CN_USERS_TABLE . 
-				' WHERE username=:username
+			$query = ' 
+				SELECT 	* 
+				FROM 	' . CN_USERS_TABLE . ' 
+				WHERE 	username=:username
 			';
+			
 			$sqlobj->createQuery( $query );
 			$sqlobj->bind( ':username', $username );
 			

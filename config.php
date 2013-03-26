@@ -58,9 +58,9 @@ define( 'CN_POSTS_TABLE', CN_DB_DBNAME . '.posts' );
 define( 'CN_COMMENTS_TABLE', CN_DB_DBNAME . '.comments' );
 define( 'CN_VOTES_TABLE', CN_DB_DBNAME . '.votes' );
 define( 'CN_TROPHIES_TABLE', CN_DB_DBNAME . '.trophies' );
-define( 'CN_ERROR_LOG_TABLE', CN_DB_DBNAME . '.errorlog' );
-define( 'CN_MESSAGE_TABLE', CN_DB_DBNAME . '.messages' );
-define( 'CN_SESSION_TABLE', CN_DB_DBNAME . '.sessions' );
+//define( 'CN_ERROR_LOG_TABLE', CN_DB_DBNAME . '.errorlog' );
+define( 'CN_MESSAGES_TABLE', CN_DB_DBNAME . '.messages' );
+define( 'CN_SESSIONS_TABLE', CN_DB_DBNAME . '.sessions' );
 //define( 'CN_PREV_LOCATION_TABLE', CN_DB_DBNAME . '.previous_location' );
 
 // Set Default Posts & Comments Per Page

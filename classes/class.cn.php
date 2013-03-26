@@ -51,14 +51,14 @@ final class CN {
 				$query = '
 					SELECT 	id 
 					FROM 	' . CN_USERS_TABLE . ' 
-					WHERE 	login_id = :loginid'
-				;
+					WHERE 	login_id = :loginid
+				';
 				$GLOBALS['dbo']->createQuery( $query );
 				$GLOBALS['dbo']->bind( ':loginid', $_SESSION['login'] );
-				$simultaneous = $GLOBALS['dbo']->runQuery();
+				$response = $GLOBALS['dbo']->runQuery();
 				
-				if ( $GLOBALS['dbo']->hasError( $simultaneous ) ) {
-					$GLOBALS['dbo']->submitErrorLog( $simultaneous, 'CN->init() - Security Layer' );
+				if ( $GLOBALS['dbo']->hasError( $response ) ) {
+					$GLOBALS['dbo']->submitErrorLog( $response, 'CN->init() - Security Layer' );
 					$this->enqueueMessage(
 						'An error occurred while loading the page.',
 						CN_MSG_ERROR,
@@ -68,7 +68,7 @@ final class CN {
 					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false )
 						CN::redirect( CN_WEBLOGIN );
 						
-				} elseif ( $GLOBALS['dbo']->num_rows( $simultaneous ) == 0 ) {
+				} elseif ( $GLOBALS['dbo']->num_rows( $response ) == 0 ) {
 					// Throw away everything but sessionID & username
 					foreach( $_SESSION as $key => $value ) {
 						if ( $key == 'sessionID' || $key == 'username' )
@@ -163,11 +163,168 @@ final class CN {
 		
 	*/
 	public function enqueueMessage( $message, $type, $session ) {
-		// TODO
+		$dbo =& self::getDBO();
+		
+		// Map message string types to message codes (if possible)
+		if ( !is_numeric( $type ) || ( $type < CN_MSG_ERROR || $type > CN_MSG_SUCCESS ) ) {
+			switch( $type ) {
+				case 'error':
+					$type = CN_MSG_ERROR;
+					break;
+				case 'warning':
+					$type = CN_MSG_WARNING;
+					break;
+				case 'announcement':
+					$type = CN_MSG_ANNOUNCEMENT;
+					break;
+				case 'success':
+					$type = CN_MSG_SUCCESS;
+					break;
+				default:
+					$type = CN_MSG_WARNING;
+					break;
+			}
+		}
+		
+		// Make sure message doesn't already exist
+		$query = '
+			SELECT	session_id 
+			FROM	' . CN_MESSAGES_TABLE . ' 
+			WHERE	session_id = :session 
+			AND		type = :type 
+			AND		message = :msg
+		';
+		
+		$dbo->createQuery( $query );
+		$dbo->bind( ':session', $session );
+		$dbo->bind( ':type', $type );
+		$dbo->bind( ':msg', $message );
+		$duplicate = $dbo->runQuery();
+		
+		try {
+			if ( $dbo->hasStopFlag() ) {
+				$dbo->submitErrorLog( $duplicate, 'CN::enqueueMessage() - Error finding duplicates' );
+				throw new Exception( 'DB query failed' );
+			} else {
+				if ( $dbo->num_rows( $duplicate ) != 0 )
+					return true;
+			}
+			
+			// Find out what the highest ID is (if no rows exist, return 1
+			$query = '
+				SELECT	IFNULL( MAX(message_id) + 1, 1 ) AS maxid 
+				FROM 	' . CN_MESSAGES_TABLE
+			;
+			
+			$lastidquery = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $lastidquery ) ) {
+				$dbo->submitErrorLog( $lastidquery, 'CN::enqueueMessage() - Error finding last message_id' );
+				throw new Exception( 'DB query failed' );
+			}
+			
+			$maxid = $dbo->field( 0, 'maxid', $lastidquery );
+			
+			$query = '
+				INSERT 
+				INTO	' . CN_MESSAGES_TABLE . '
+				VALUES	( :id, :msg, :type, :session )
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':id', $maxid );
+			$dbo->bind( ':msg', $message );
+			$dbo->bind( ':type', $type );
+			$dbo->bind( ':session', $session );
+			
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasStopFlag() ) {
+				$dbo->submitErrorLog( $response, 'CN::enqueueMessage() - Error enqueuing system message' );
+				throw new Exception( 'DB query failed' );
+			}
+		// If DB fails, fall back to session messages
+		} catch ( Exception $e ) {
+			if ( !isset( $_SESSION['messages'] ) || empty( $_SESSION['messages'] ) ) {
+				$_SESSION['messages'][$type][] = $message;
+			} elseif ( !in_array( $message, $_SESSION['messages'][$type] ) ) {
+				$_SESSION['messages'][$type][] $message;
+			}
+		}
+		
+		return true;
 	}
 	
+	// Retrieves the message queue for this session
 	public function getMessages( $session = null ) {
-		// TODO
+		$dbo =& self::getDBO();
+		$session = ( $session == null ) ? $_SESSION['sessionID'] : $session;
+		
+		$query = '
+			SELECT	message, type 
+			FROM	' . CN_MESSAGES_TABLE . ' 
+			WHERE	session_id = :session
+		';
+		
+		$dbo->createQuery( $query );
+		$dbo->bind( ':session', $session );
+		$response = $dbo->runQuery();
+		
+		if ( $dbo->hasStopFlag() ) {
+			$dbo->submitErrorLog( $response, 'CN::getMessages() - Error retrieving messages' );
+			return array(
+				'error' => array( 'An error occurred while retrieving the system messages. Please try again later.' )
+			);
+		} else {
+			// Get session messages
+			$messages = array();
+			if ( isset( $_SESSION['messages'] ) && !empty( $_SESSION['messages'] ) ) {
+				foreach( $_SESSION['messages'] as $message_type => $message_cue ) {
+					foreach( $message_cue as $message ) {
+						$messages[$message_type][] = $message;
+					}
+				}
+				
+				unset( $_SESSION['messages'] );
+			}
+			
+			for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+				switch( $dbo->field( $a, 'type', $response ) ) {
+					case CN_MSG_ERROR:
+					case CN_MSG_WARNING:
+					case CN_MSG_ANNOUNCEMENT:
+					case CN_MSG_SUCCESS:
+						$type = $dbo->field( $a, 'type', $response );
+						break;
+					default:
+						$type = CN_MSG_WARNING;
+						break;
+				}
+				
+				$messages[$type][] = $dbo->field( $a, 'message', $response );
+			}
+			
+			$query = '
+				DELETE 
+				FROM	' . CN_MESSAGES_TABLE . '
+				WHERE	session_id = :session
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':session', $session );
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasStopFlag() ) {
+				$dbo->submitErrorLog( $response, 'CN::getMessages() - Error deleting retrieved messages' );
+				return array(
+					'error' => array(
+						0 => 'An error occurred while retrieving the system messages. Please try again later.'
+					)
+				);
+			}
+		}
+		
+		return $messages;
 	}
 	
 	// Generates random character sequences of specified length
