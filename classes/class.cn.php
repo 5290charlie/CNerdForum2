@@ -200,7 +200,7 @@ final class CN {
 	}
 	
 	// Delete specific message
-	public static deleteMessage( $mid ) {
+	public static function deleteMessage( $mid ) {
 		$dbo =& self::getDBO();
 		
 		if ( is_numeric( $mid ) ) {
