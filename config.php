@@ -83,7 +83,7 @@ define( 'CN_SESSION_EXPIRE', 1800 );
 define( 'CN_AUTH_ERROR_SQL', -1 );
 define( 'CN_AUTH_SUCCESS', 0 );
 define( 'CN_AUTH_ERROR_INVALID', 1 );
-define( 'CN_AUTH_ERROR_LOCKED', 2 );
+//define( 'CN_AUTH_ERROR_LOCKED', 2 );
 define( 'CN_AUTH_ERROR_NOUSER', 3 );
 define( 'CN_AUTH_ERROR_UNKNOWN', 4 );
 

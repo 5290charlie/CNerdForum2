@@ -9,7 +9,20 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
 	
+	CN_AUTH_ERROR_SQL     - SQL Error
+		CN_AUTH_ERROR_SUCCESS - Success
+		CN_AUTH_ERROR_INVALID - Invalid credentials (password)
+		CN_AUTH_ERROR_NOUSER  - Invalid credentials (username)
+		CN_AUTH_ERROR_UNKNOWN - Unknown Error
 	switch( $response ) {
+		// A error occurred with the database
+		case CN_AUTH_ERROR_SQL:
+			$cn->enqueueMessage(
+				'An error occurred authenticating you with the database.',
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+			break;
 		// Authentican successful
 		case CN_AUTH_SUCCESS:
 			// Log user in
@@ -22,16 +35,53 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			}
 			
 			// Handle login response
-			switch( $login_response[0] ) {
-/*
-
-Add CN_AUTH_CREATED for newly created users to auto login
-
-*/
-				
+			switch( $login_response[0] ) {				
 				// Login successful
+				case CN_LOGIN_SUCCESS:
+					CN::redirect( $login_response[1] );
+					break;
+				case CN_LOGIN_ERROR:
+					$cn->enqueueMessage(
+						'An error occurred while logging you in.',
+						CN_MSG_ERROR,
+						$_SESSION['sessionID']
+					);
+					break;
 			}
+			break;
+		
+		// Incorrect password
+		case CN_AUTH_ERROR_INVALID:
+			$cn->enqueueMessage(
+				'Wrong password. Please try again.',
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+			break;
+		// Incorrect username
+		case CN_AUTH_ERROR_NOUSER:
+			$cn->enqueueMessage(
+				'Username does not exist.',
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+			break;
+		// Unknown error
+		case CN_AUTH_UNKNOWN:
+		default:
+			$cn->enqueueMessage(
+				'An unknown error occurred while trying to log in. Please try again.',
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+			break;
 	}
+} elseif ( !empty( $_POST ) ) {
+	$cn->enqueueMessage(
+		'The username/password combination is incorrect.',
+		CN_MSG_ERROR,
+		$_SESSION['sessionID']
+	);
 }
 
 // Require header global
