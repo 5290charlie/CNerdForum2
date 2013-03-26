@@ -72,6 +72,7 @@ html {
 			.box-shadow();
 			
 			a.button {
+				text-decoration: none;
 				color: #000;
 				background: #ccc;
 				padding: 10px;
@@ -174,6 +175,11 @@ html {
 					.border-radius-bottom(10px);
 				}
 				
+				div#main {
+					margin: 25px;
+					color: #000;
+				}
+				
 				form {
 					width: 300px;
 					padding: 0;
@@ -208,11 +214,20 @@ html {
 				Begin html>body>container>footer styles
 			*******************************/
 			footer {
-				color: #333;
+				border-top: 1px #ccc solid;
+				color: #fff;
 				margin: 15px;
 				padding: 10px;
 				font-size: 10px;
 				text-align: center;
+				
+				a {
+					color: green;
+					
+					&:hover {
+						text-decoration: none;
+					}
+				}
 			}
 		}
 	}

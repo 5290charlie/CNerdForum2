@@ -38,9 +38,14 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 			<?php // Begin HTML header tag ?>	
 			<header id="header">
 				<div id="userdata">
-					<a href="<?php echo CN_WEBLOGIN; ?>" class="button">Login</a>
-					OR
-					<a href="<?php echo CN_WEBSIGNUP; ?>" class="button">Sign Up!</a>
+					<?php if ( isset( $user ) && $user->isOnline() ) {
+						echo 'Welcome, ' . $user->username . ' | '; ?>
+						<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
+					<?php } else { ?>
+						<a href="<?php echo CN_WEBLOGIN; ?>" class="button">Login</a>
+						OR
+						<a href="<?php echo CN_WEBSIGNUP; ?>" class="button">Sign Up!</a>
+					<?php } ?>
 				</div>
 				<hgroup>
 					<h1><a href="<?php echo CN_WEBROOTPAGE; ?>">CNerdForum</a></h1>
