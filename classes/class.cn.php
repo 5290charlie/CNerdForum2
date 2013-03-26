@@ -33,13 +33,21 @@ final class CN {
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
 			CN::redirect( CN_WEBMAINTENANCE );
-			
+		
+	echo '<br />';
+		echo 'before beginning session';
+			echo '<br />';
+
 		// Begin Session
 		session_name( CN_SESSION_NAME );
 		session_start();
 		
 		// Regenerate session ID (hinders session hijacking)
 		session_regenerate_id();
+
+			echo '<br />';
+echo 'after session init';
+	echo '<br />';
 		
 		// Generate CNerdForum session ID
 		if ( !isset( $_SESSION['sessionID'] ) )
@@ -52,10 +60,18 @@ final class CN {
 			die( 'Could not connect to the database!' );
 		}
 		
+	echo '<br />';
+		echo 'SERVER[SCRIPT_FILENAME]=' . $_SERVER['SCRIPT_FILENAME'];
+	echo '<br />';
+		
 		// Security layer
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
+					echo '<br />';
+echo 'session[login] set';
+	echo '<br />';
+
 				$query = '
 					SELECT 	user_id 
 					FROM 	' . CN_USERS_TABLE . ' 
@@ -73,9 +89,14 @@ final class CN {
 						$_SESSION['sessionID']
 					);
 					
-					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false )
+					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false ) {
+						$this->enqueueMessage(
+							'redirected to login',
+							CN_MSG_WARNING,
+							$_SESSION['sessionID']
+						);
 						CN::redirect( CN_WEBLOGIN );
-						
+					}	
 				} elseif ( $GLOBALS['dbo']->num_rows( $response ) == 0 ) {
 					// Throw away everything but sessionID & username
 					foreach( $_SESSION as $key => $value ) {
