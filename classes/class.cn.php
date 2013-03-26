@@ -123,15 +123,15 @@ final class CN {
 			} catch( Exception $e ) {
 				die( 'An error occurred while retrieving the user information. ' . $e->getMessage() );
 			}
-		}
-		
-		// Notify in case of DEBUG mode
-		if ( CN_STATUS == CN_ST_DEBUG ) {
-			$this->enqueueMessage(
-				'CNerdForum is currently in debug mode.',
-				CN_MSG_ANNOUNCEMENT,
-				$_SESSION['sessionID']
-			);
+			
+			// Notify user in case of DEBUG mode
+			if ( CN_STATUS == CN_ST_DEBUG ) {
+				$this->enqueueMessage(
+					'CNerdForum is currently in debug mode.',
+					CN_MSG_ANNOUNCEMENT,
+					$_SESSION['sessionID']
+				);
+			}
 		}
 	}
 
