@@ -159,12 +159,13 @@ class CN_User {
 			if ( $response = $sqlobj->runQuery() )
 				return CN_AUTH_SUCCESS;
 			else
-				return CN_AUTH_ERROR_INVALID;
+				return CN_AUTH_ERROR_SQL;
 		}		
 		else
 		{
-			return CN_AUTH_ERROR_UNKNOWN;
+			return CN_AUTH_ERROR_INVALID;
 		}
+		return CN_AUTH_ERROR_UNKNOWN;
 	}
 	
 	// Logs the current user in

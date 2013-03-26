@@ -10,6 +10,8 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
 	
+	print_r( $response );
+	
 	switch( $response ) {
 		// A error occurred with the database
 		case CN_AUTH_ERROR_SQL:
@@ -29,6 +31,8 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			} else {
 				$login_response = $user->login();
 			}
+			
+			print_r( $login_response );
 			
 			// Handle login response
 			switch( $login_response[0] ) {				
