@@ -94,7 +94,7 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 }
 
 // Require header global
-require_once( CN_DIR_GLOBALS . 'header.php' );
+//require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<form id="login" method="post" action="<?php echo CN_WEBLOGIN . ( ( isset( $_GET['r'] ) && !empty( $_GET['r'] ) ) ? '?r=' . $_GET['r'] : '' ); ?>">
 					<table>
@@ -125,5 +125,5 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 				</form>
 <?php
 // Require footer global
-require_once( CN_DIR_GLOBALS . 'footer.php' );
+//require_once( CN_DIR_GLOBALS . 'footer.php' );
 ?>
