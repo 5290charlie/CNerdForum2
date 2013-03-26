@@ -400,6 +400,9 @@ final class CN {
 			}
 		}
 		
+		// Cleanup junk messages
+		self::cleanMessages();
+		
 		return $messages;
 	}
 	
