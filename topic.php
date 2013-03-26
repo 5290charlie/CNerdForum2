@@ -26,6 +26,8 @@ if( !empty( $_POST ) && !empty( $_POST['topic_id'] ) && !empty( $_POST['user_id'
 if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	$topic = new CN_Topic( $_GET['tid'] );
 	$topic->view();
+
+	$posts = $topic->getPosts();
 	
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
@@ -33,21 +35,20 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 				<h1>Topic: <?php echo $topic->title; ?></h1>
 				<hr>
 				<h2>Posts:</h2>
-				<ul>
-				<?php
-				$posts = $topic->getPosts();
-				
-				foreach( $posts as $p ) { ?>
-					<li>
-						<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>"><?php echo $p->title; ?></a> 
-						(<a href="<?php echo CN_WEBROOTPAGE . 'touch?pid=' . $p->id; ?>">touch</a>)<br />
-						<strong>Details:</strong> <?php echo $p->details; ?><br />
-						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $p->date ); ?><br />
-						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $p->updated ); ?><br />
-						<strong>Author:</strong> <?php echo $p->author->username . ' (' . $p->author->firstname . ' ' . $p->author->lastname . ')'; ?>
-					</li>
-				<?php } ?>
-				</ul>
+				<?php if ( count( $posts ) > 0 ) { ?>
+					<ul>
+					<?php foreach( $posts as $p ) { ?>
+						<li>
+							<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>"><?php echo $p->title; ?></a> 
+							(<a href="<?php echo CN_WEBROOTPAGE . 'touch?pid=' . $p->id; ?>">touch</a>)<br />
+							<strong>Details:</strong> <?php echo $p->details; ?><br />
+							<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $p->date ); ?><br />
+							<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $p->updated ); ?><br />
+							<strong>Author:</strong> <?php echo $p->author->username . ' (' . $p->author->firstname . ' ' . $p->author->lastname . ')'; ?>
+						</li>
+					<?php } ?>
+					</ul>
+				<?php } else { echo 'No Posts'; } ?>
 				<hr>
 				<form id="new_post" method="post" action="<?php echo CN_WEBROOTPAGE . 'topic'; ?>">
 					<input type="hidden" id="topic_id" name="topic_id" value="<?php echo $topic->id; ?>" />

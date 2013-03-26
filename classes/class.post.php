@@ -25,6 +25,7 @@ class CN_Post {
 	public $date;
 	public $updated;
 	public $author;
+	public $views;
 	
 	// Constructor to build new Post Object
 	public function __construct( $id ) {
@@ -55,6 +56,7 @@ class CN_Post {
 			$this->date		= $row->date;
 			$this->updated 	= $row->updated;
 			$this->author	= new CN_User( $row->user_id );
+			$this->views	= $row->views;
 		} else {
 			throw new Exception( 'Invalid post ID!' );
 		}
@@ -205,6 +207,24 @@ class CN_Post {
 		}
 		
 		return $this->topic->touch();
+	}
+	
+	// Update view count for current post
+	public function view() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			UPDATE	' . CN_POSTS_TABLE . ' 
+			SET 	views = views+1 
+			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '"
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Post::view()' );
+			throw new Exception( 'Could not update post views' );
+		}
 	}
 	
 	// Get mana for current post
