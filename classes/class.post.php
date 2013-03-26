@@ -36,6 +36,16 @@ class CN_Post {
 		// TODO
 	}
 	
+	// Returns all posts
+	public static function getAll() {
+		// TODO
+	}
+	
+	// Returns posts for a specific topic
+	public static function getFromTopic( $tid ) {
+		// TODO
+	}
+	
 	// Search all posts
 	public static function search( $search ) {
 		// TODO

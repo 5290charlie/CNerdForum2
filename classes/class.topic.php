@@ -26,7 +26,36 @@ class CN_Topic {
 	
 	// Constructor to build new Post Object
 	public function __construct( $id ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		if ( is_numeric( $id ) ) {
+			$query = '
+				SELECT	*
+				FROM	' . CN_TOPICS_TABLE . ' 
+				WHERE	topic_id = "' . $dbo->sqlsafe( $id ) . '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Topic::__construct()' );
+				throw new Exception( 'Could not load topic information' );
+			}
+			if ( $dbo->num_rows( $response ) != 1 ) {
+				throw new Exception( 'The specified topic does not exist!' );
+			}
+			
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			$this->id 		= $row->topic_id;
+			$this->title	= $row->title;
+			$this->details	= $row->details;
+			$this->date		= $row->date;
+			$this->updated 	= $row->updated;
+			$this->author	= new CN_User( $row->user_id );
+			$this->posts	= CN_Post::getFromTopic( $this->id );
+		} else {
+			throw new Exception( 'Invalid topic ID!' );
+		}
 	}
 	
 	// Returns a specific post
@@ -39,7 +68,7 @@ class CN_Topic {
 		$dbo =& CN::getDBO();
 		
 		$query = '
-			SELECT	*
+			SELECT	topic_id 
 			FROM	' . CN_TOPICS_TABLE . ' 
 			WHERE 	1
 		';
@@ -51,10 +80,16 @@ class CN_Topic {
 			throw new Exception( 'Could not load all topics!' );
 		}
 		
+		// Create empty array to store topic objects
+		$topics = array();
+		
 		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
 			$row = $dbo->getResultObject( $response )->fetch_object();
-			print_r($row);
+			
+			$topics[$a] = new CN_Topic( $row->topic_id );
 		}
+		
+		return $topics;
 	}
 	
 	// Search all posts
