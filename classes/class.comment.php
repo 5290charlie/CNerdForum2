@@ -135,7 +135,7 @@ class CN_Comment {
 		if ( CN::required( $required, $criteria ) ) {
 			$query = '
 				INSERT 
-				INTO	' . CN_POSTS_TABLE . ' 
+				INTO	' . CN_COMMENTS_TABLE . ' 
 				( post_id, user_id, body, date ) 
 				VALUES
 				( :pid, :uid, :body, :date )
