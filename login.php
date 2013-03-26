@@ -2,8 +2,16 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+echo 'before CN::getINstance()';
+	echo '<br />';
+
+
 $cn =& CN::getInstance();
 $cn->init();
+
+echo 'after init';
+	echo '<br />';
+
 
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
 	
