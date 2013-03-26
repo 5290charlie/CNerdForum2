@@ -2,8 +2,6 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
-echo "login.php: After config include, before CN init<br />";
-
 $cn =& CN::getInstance();
 $cn->init();
 
@@ -40,7 +38,9 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 				$login_response = $user->login();
 			}
 			
+			echo "Login_Response: ";
 			print_r( $login_response );
+			echo "<br />";
 			
 			// Handle login response
 			switch( $login_response[0] ) {				
