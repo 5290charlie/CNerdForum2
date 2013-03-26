@@ -20,7 +20,7 @@ if ( !empty( $_POST ) && !empty( $_POST['user_id'] ) && !empty( $_POST['title'] 
 		);
 	}
 	
-	CN::redirect( CN_WEBROOT_PAGE . 'topics' );
+	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
 
 // Require header global
