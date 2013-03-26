@@ -126,7 +126,7 @@ class CN_Post {
 			throw new Exception( 'Invalid topic post to!' );
 		}
 		
-		return false
+		return false;
 	}
 	
 	// Search all posts
