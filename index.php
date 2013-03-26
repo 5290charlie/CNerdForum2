@@ -8,6 +8,8 @@ $cn->init();
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
+Homepage
+<!--
 				<div id="tabs">
 					<ul>
 						<li id="topics-tab"><a href="#topics">Topics</a></li>
@@ -24,6 +26,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						Users	
 					</div>
 				</div>
+-->
 <?php
 // Require footer global
 require_once( CN_DIR_GLOBALS . 'footer.php' );

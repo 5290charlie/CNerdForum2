@@ -71,6 +71,17 @@ html {
 			.border-radius-bottom(10px);
 			.box-shadow();
 			
+			a.button {
+				background: #ccc;
+				padding: 10px;
+				.border-radius-top();
+				.border-radius-bottom();
+				
+				&:hover {
+					background: #fff;
+				}
+			}
+			
 			/*******************************
 				Begin html>body>container>header
 			*******************************/
@@ -119,6 +130,44 @@ html {
 			div#content {
 				display: block;
 				margin: 15px 0;
+				
+				div#messages {
+					div.error {
+						width: 97%;
+						background-color: #f2bfbf;
+						margin: 10px auto;
+						padding: 10px;
+						color: #000000;
+						border: 1px #cc0000 solid;
+					}
+					
+					div.success {
+						width: 97%;
+						background-color: #ccf4cc;
+						margin: 10px auto;
+						padding: 10px;
+						color: #000000;
+						border: 1px #00cc00 solid;
+					}
+					
+					div.announcement {
+						width: 97%;
+						background-color: #ccd6ea;
+						margin: 10px auto;
+						padding: 10px;
+						color: #000000;
+						border: 1px #003399 solid;
+					}
+					
+					div.warning {
+						width: 97%;
+						background-color: #ffea99;
+						margin: 10px auto;
+						padding: 10px;
+						color: #000000;
+						border: 1px #ffcc00 solid;
+					}
+				}
 				
 				div#tabs {
 					.border-radius-bottom(10px);

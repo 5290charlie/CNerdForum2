@@ -9,10 +9,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 *************************** -->
 <html>
 	
-	<?php // Begin HTML head tag
-	$cn =& CN::getInstance();
-	print_r($cn->getMessages());
-	?>
+	<?php // Begin HTML head tag ?>
 	<head>
 	
 		<?php // Basic header setup ?>
@@ -51,3 +48,6 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 				</hgroup>
 			</header>
 			<div id="content">
+				<div id="messages">
+					<?php require_once( CN_DIR_GLOBALS . 'getMessages.php' ); ?>
+				</div>
