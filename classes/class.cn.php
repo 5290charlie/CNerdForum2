@@ -59,7 +59,7 @@ final class CN {
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
 				$query = '
-					SELECT 	id 
+					SELECT 	user_id 
 					FROM 	' . CN_USERS_TABLE . ' 
 					WHERE 	login_id = :loginid
 				';

@@ -14,7 +14,7 @@ define( '_CN_EXEC', 1 );
 define( 'CN_ST_OFFLINE', 0 );
 define( 'CN_ST_DEBUG', 1 );
 define( 'CN_ST_LIVE', 2 );
-define( 'CN_STATUS', CN_ST_LIVE );
+define( 'CN_STATUS', CN_ST_DEBUG );
 
 // Global Messages
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );

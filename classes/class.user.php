@@ -150,7 +150,7 @@ class CN_User {
 			$query = ' 
 				SELECT 	* 
 				FROM 	' . CN_USERS_TABLE . ' 
-				WHERE 	username=:username
+				WHERE 	username = :username
 			';
 			
 			$sqlobj->createQuery( $query );
