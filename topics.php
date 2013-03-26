@@ -41,8 +41,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $t->updated ); ?><br />
 						<strong>Author:</strong> <?php echo $t->author->username . ' (' . $t->author->firstname . ' ' . $t->author->lastname . ')'; ?>
 					</li>
-				<?php }
-				?>
+				<?php } ?>
 				</ul>
 				<hr>
 				<form id="new_topic" method="post" action="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">
