@@ -19,13 +19,5 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	<?
 	// Require footer global
 	require_once( CN_DIR_GLOBALS . 'footer.php' );
-} else {
-	$cn->enqueueMessage((
-		'MUST provide topic_id (tid) to view topic!',
-		CN_MSG_ERROR,
-		$_SESSION['sessionID']
-	);
-	
-	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
 ?>
