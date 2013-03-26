@@ -31,6 +31,13 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 				<h1>Topics</h1>
 				<hr>
 				<table id="topics">
+					<thead>
+						<tr>
+							<td>Topic</td>
+							<td>Stats</td>
+							<td>Details</td>
+						</tr>
+					</thead>
 				<?php foreach( $topics as $t ) { ?>
 					<tr class="topic">
 						<td class="title">
