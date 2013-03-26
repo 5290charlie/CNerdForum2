@@ -120,7 +120,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 					</table>
 				</form>
-				
+<!--		
 				<form id="signup" method="post" action="<?php echo CN_WEBSIGNUP; ?>">
 					<table>
 						<tr>
@@ -180,6 +180,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 					</table>
 				</form>
+-->
 <?php
 // Require footer global
 require_once( CN_DIR_GLOBALS . 'footer.php' );
