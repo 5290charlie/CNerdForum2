@@ -23,7 +23,7 @@ final class CN {
 		
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
-			CN::redirect( CN_WEBROOTPAGE . 'maintenance.php' );
+			CN::redirect( CN_WEBMAINTENANCE );
 			
 		// Begin Session
 		session_name( CN_SESSION_NAME );
@@ -36,10 +36,85 @@ final class CN {
 		if ( !isset( $_SESSION['sessionID'] ) )
 			$_SESSION['sessionID'] = self::generateKey( CN_SESSION_KEYLENGTH_SESSID );
 		
+		// Initialize global objects
 		try {
 			$GLOBALS['dbo'] =& self::getDBO();
 		} catch ( Exception $e ) {
 			die( 'Could not connect to the database!' );
+		}
+		
+		// Security layer
+		
+		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
+			// Prevent simultaneous sessions if the user is logged in
+			if ( isset( $_SESSION['login'] ) ) {
+				$query = '
+					SELECT 	id 
+					FROM 	' . CN_USERS_TABLE . ' 
+					WHERE 	login_id = :loginid'
+				;
+				$GLOBALS['dbo']->createQuery( $query );
+				$GLOBALS['dbo']->bind( ':loginid', $_SESSION['login'] );
+				$simultaneous = $GLOBALS['dbo']->runQuery();
+				
+				if ( $GLOBALS['dbo']->hasError( $simultaneous ) ) {
+					$GLOBALS['dbo']->submitErrorLog( $simultaneous, 'CN->init() - Security Layer' );
+					$this->enqueueMessage(
+						'An error occurred while loading the page.',
+						CN_MSG_ERROR,
+						$_SESSION['sessionID']
+					);
+					
+					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false )
+						CN::redirect( CN_WEBLOGIN );
+						
+				} elseif ( $GLOBALS['dbo']->num_rows( $simultaneous ) == 0 ) {
+					// Throw away everything but sessionID & username
+					foreach( $_SESSION as $key => $value ) {
+						if ( $key == 'sessionID' || $key == 'username' )
+							continue;
+						unset( $_SESSION[$key] );
+					}
+					
+					$this->enqueueMessage(
+						'You were logged out because you have logged into another location.',
+						CN_MSG_WARNING,
+						$_SESSION['sessionID']
+					);
+					
+					// Redirect
+					CN::redirect( CN_WEBLOGIN );
+				
+				// Reidrect the user to login page if not logged in and site is not offline
+				} else {
+					if ( CN_STATUS != CN_ST_OFFLINE )
+						CN::redirect( CN_WEBLOGIN . ( ( $_SERVER['REQUEST_URI'] != '/' ) ? '?r=' . base64_encode( $_SERVER['REQUEST_URI'] ) : '' ) );
+				}
+			}
+		}
+		
+		// Initialize more global objects (specifically, the user object)
+		if ( isset( $_SESSION['login'] ) ) {
+			try {
+				$GLOBALS['user'] =& self::getUser();
+				
+				// If the session expired, log the user out and prompt for relogin
+				if ( ( time() - $GLOBALS['user']->lastAccessed() ) > CN_SESSION_EXPIRE && $_SERVER['REQUEST_URI'] != '/logout' ) {
+					$GLOBALS['user']->logout( true );
+					$this->enqueueMessage(
+						'Your session has expired, please login again.',
+						CN_MSG_WARNING,
+						$_SESSION['sessionID']
+					);
+					$_SESSION['username'] = $GLOBALS['user']->username;
+					CN::redirect( CN_WEBLOGIN );
+				} else {
+					// Update the "last accessed" timestamp for user
+					$GLOBALS['user']->touch();
+				}
+			} catch( Exception $e ) {
+				die( 'An error occurred while retrieving the user information. ' . $e->getMessage() );
+			}
 		}
 		
 		// Notify in case of DEBUG mode

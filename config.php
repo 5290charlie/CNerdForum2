@@ -35,6 +35,10 @@ define( 'CN_DIR_HANDLERS', CN_DIR_CLASSES . 'handlers/' );
 
 // Web Paths
 define( 'CN_WEBROOTPAGE', 'http://dev.cnerdforum.com/' );
+define( 'CN_WEBLOGIN', CN_WEBROOTPAGE . 'login' );
+define( 'CN_WEBLOGOUT', CN_WEBROOTPAGE . 'logout' );
+define( 'CN_WEBSIGNUP', CN_WEBROOTPAGE . 'signup' );
+define( 'CN_WEBMAINTENANCE', CN_WEBROOTPAGE . 'maintenance' );
 define( 'CN_WEBDIR_GLOBALS', CN_WEBROOTPAGE . 'globals/' );
 define( 'CN_WEBDIR_IMAGES', CN_WEBROOTPAGE . 'images/' );
 define( 'CN_WEBDIR_ICONS', CN_WEBDIR_IMAGES . 'icons/' );
@@ -72,6 +76,7 @@ define( 'CN_DATE_FORMAT', 'm-d-Y @h:i:s A' );
 // Session Settings
 define( 'CN_SESSION_NAME', 'cnerdforum_id' );
 define( 'CN_SESSION_KEYLENGTH_SESSID', 9 );
+define( 'CN_SESSION_EXPIRE', 1800 );
 //define( 'CN_SESSION_KEYLENGTH_LOGINID', 12 );
 
 // Authentication Settings
