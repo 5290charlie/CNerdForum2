@@ -28,10 +28,21 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<h1>Topics</h1>
 				<hr>
+				<ul>
 				<?php
 				$topics = CN_Topic::getAll();
-				print_r( $topics );
+				
+				foreach( $topics as $t ) { ?>
+					<li>
+						<strong>Title:</strong> <?php echo $t->title; ?>
+						<strong>Details:</strong> <?php echo $t->details; ?>
+						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $t->date ); ?>
+						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $t->updated ); ?>
+						<strong>Author:</strong> <?php echo $t->author->username . ' (' . $t->author->firstname . ' ' . $t->author->lastname . ')'; ?>
+					</li>
+				<?php }
 				?>
+				</ul>
 				<hr>
 				<form id="new_topic" method="post" action="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">
 					<input type="hidden" id="user_id" name="user_id" value="<?php echo $user->id; ?>" />
