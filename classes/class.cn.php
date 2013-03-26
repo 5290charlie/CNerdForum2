@@ -98,8 +98,9 @@ final class CN {
 							CN_MSG_WARNING,
 							$_SESSION['sessionID']
 						);
-						CN::redirect( CN_WEBLOGIN );
 						die ('death');
+						CN::redirect( CN_WEBLOGIN );
+						
 					}	
 				} elseif ( $GLOBALS['dbo']->num_rows( $response ) == 0 ) {
 					// Throw away everything but sessionID & username
