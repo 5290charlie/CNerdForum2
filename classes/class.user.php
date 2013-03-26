@@ -241,7 +241,7 @@ class CN_User {
 		
 		// Check to make sure the session variable is registered
 		if ( $this->isOnline() ) { // User has registered session, ready for logout
-			$dbo =& self::getDBO();
+			$dbo =& CN::getDBO();
 			
 			// Delete session table entry
 			$query = '
@@ -492,7 +492,7 @@ class CN_User {
 		
 		$query		=	'
 			SELECT		session_id
-			FROM		' . CN_SESSION_TABLE . '
+			FROM		' . CN_SESSIONS_TABLE . '
 			WHERE		user_id = "' . $dbo->sqlsafe( $this->id )  . '"'
 		;
 		$sessionquery = $dbo->query( $query );
