@@ -1,5 +1,8 @@
 <?php
 
+// Set error reporting
+error_reporting(E_ALL);
+
 /********************
 	Constants
 ********************/
@@ -105,9 +108,6 @@ define( 'CN_MSG_SUCCESS', 1 );
 /*******************************
 	Initialization & Setup
 *******************************/
-
-// Set error reporting
-error_reporting(E_ALL);
 
 // Define the class and interface autoloader function
 function __autoload( $class_name ) {
