@@ -73,7 +73,7 @@ final class CN {
 				echo '<br />';
 				echo 'session[login] set';
 				echo '<br />';
-
+				die ('death');
 				$query = '
 					SELECT 	user_id 
 					FROM 	' . CN_USERS_TABLE . ' 
