@@ -223,7 +223,7 @@ class CN_User {
 			return array( CN_LOGIN_SUCCESS, $redirect );
 		} else {
 			// If user just closed browser, restart session
-			if ( $_SESSOIN['sessionID'] != $this->session_id() ) {
+			if ( $_SESSION['sessionID'] != $this->session_id() ) {
 				if ( $this->logout( true ) ) {
 					return $this->login( $redirect );
 				} else {

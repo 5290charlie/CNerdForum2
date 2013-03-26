@@ -63,7 +63,7 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			);
 			break;
 		// Unknown error
-		case CN_AUTH_UNKNOWN:
+		case CN_AUTH_ERROR_UNKNOWN:
 		default:
 			$cn->enqueueMessage(
 				'An unknown error occurred while trying to log in. Please try again.',
