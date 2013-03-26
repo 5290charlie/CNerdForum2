@@ -248,7 +248,7 @@ final class CN {
 			if ( !isset( $_SESSION['messages'] ) || empty( $_SESSION['messages'] ) ) {
 				$_SESSION['messages'][$type][] = $message;
 			} elseif ( !in_array( $message, $_SESSION['messages'][$type] ) ) {
-				$_SESSION['messages'][$type][] $message;
+				$_SESSION['messages'][$type][] = $message;
 			}
 		}
 		
