@@ -72,7 +72,7 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			);
 			break;
 	}
-	*/
+	
 } elseif ( !empty( $_POST ) ) {
 	$cn->enqueueMessage(
 		'The username/password combination is incorrect.',
