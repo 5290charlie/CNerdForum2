@@ -76,8 +76,8 @@ define( 'CN_DATE_FORMAT', 'm-d-Y @h:i:s A' );
 // Session Settings
 define( 'CN_SESSION_NAME', 'cnerdforum_id' );
 define( 'CN_SESSION_KEYLENGTH_SESSID', 9 );
+define( 'CN_SESSION_KEYLENGTH_LOGINID', 12 );
 define( 'CN_SESSION_EXPIRE', 1800 );
-//define( 'CN_SESSION_KEYLENGTH_LOGINID', 12 );
 
 // Authentication Settings
 define( 'CN_AUTH_ERROR_SQL', -1 );
@@ -86,6 +86,10 @@ define( 'CN_AUTH_ERROR_INVALID', 1 );
 define( 'CN_AUTH_ERROR_LOCKED', 2 );
 define( 'CN_AUTH_ERROR_NOUSER', 3 );
 define( 'CN_AUTH_ERROR_UNKNOWN', 4 );
+
+// Define login status codes
+define( 'CN_LOGIN_ERROR', -1 );
+define( 'CN_LOGIN_SUCCESS', 0 );
 
 // Permission Levels (MUST be in ascending order!)
 define( 'CN_PERM_USER', 1 );

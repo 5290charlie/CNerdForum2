@@ -5,6 +5,16 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 
 final class CN {
 	
+	// Checks $data array for $required keys
+	private static function required( $required, $data )
+	{
+		foreach ( $required as $field ) {
+			if ( !isset( $data[$field] ) )
+				return false;
+		}
+		return true;
+	}
+	
 	// Gets (creates if non-existent) a reference to an instance of this class
 	public static function &getInstance() {
 		static $instance;
@@ -258,7 +268,7 @@ final class CN {
 	// Retrieves the message queue for this session
 	public function getMessages( $session = null ) {
 		$dbo =& self::getDBO();
-		$session = ( $session == null ) ? $_SESSION['sessionID'] : $session;
+		$session = ( empty( $session ) ) ? $_SESSION['sessionID'] : $session;
 		
 		$query = '
 			SELECT	message, type 
