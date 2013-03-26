@@ -67,6 +67,7 @@ echo 'after session init';
 		
 		// Security layer
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
+			echo '<br />script_filename===false<br />';
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
 					echo '<br />';
