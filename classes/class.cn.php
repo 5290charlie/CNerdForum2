@@ -157,6 +157,74 @@ final class CN {
 		exit;
 	}
 	
+	// Removes messages with inactive session_id
+	public static function cleanMessages() {
+		$dbo =& self::getDBO();
+		
+		$query = '
+			SELECT	*
+			FROM	' . CN_MESSAGES_TABLE . ' 
+			WHERE	1
+		';
+		
+		$allmsgs = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $allmsgs ) ) {
+			$dbo->submitErrorLog( $allmsgs, 'CN::cleanMessages() - Error cleaning messages' );
+			throw new Exception( 'Cannot cleanup old messages!' );
+		}
+		
+		// Loop all messages
+		for ( $a = 0; $a < $dbo->num_rows( $allmsgs ); $a++ ) {
+			// Get object for current message
+			$row = $dbo->getResultObject( $allmsgs )->fetch_object();
+			
+			$checksessions = '
+				SELECT 	*
+				FROM	' . CN_SESSIONS_TABLE . ' 
+				WHERE	session_id = :session
+			';
+			
+			$dbo->createQuery( $checksessions );
+			$dbo->bind( ':session', $row->session_id );
+			$response = $dbo->runQuery();
+			
+			// If no session exists, delete the message
+			if ( $dbo->num_rows( $response ) == 0 ) {
+				if ( !self::deleteMessage( $row->message_id ) )
+					return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	// Delete specific message
+	public static deleteMessage( $mid ) {
+		$dbo =& self::getDBO();
+		
+		if ( is_numeric( $mid ) ) {
+			$query = '
+				DELETE	
+				FROM	' . CN_MESSAGES_TABLE . ' 
+				WHERE	message_id = "' . $dbo->sqlsafe( $mid ) . '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN::deleteMessage() - Error deleting message' );
+				throw new Exception( 'Cannot delete message!' );
+			} else {
+				return true;
+			}
+		} else {
+			throw new Exception( 'Invalid message_id!' );
+		}
+		
+		return false;
+	}
+	
 	// Adds a message to system message queue
 	/* 
 	   Message Types:
