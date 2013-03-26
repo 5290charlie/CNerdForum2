@@ -58,7 +58,7 @@ class CN_Topic {
 	
 	// Returns a specific topic
 	public static function get( $id ) {
-		// TODO
+		return new CN_Topic( $id );
 	}
 	
 	// Returns all topics
@@ -139,6 +139,29 @@ class CN_Topic {
 	// Get posts for current topic
 	public function getPosts() {
 		return CN_Post::getFromTopic( $this->id );
+	}
+	
+	// Update the "updated" field in database for current topic
+	public function touch() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			UPDATE	' . CN_TOPICS_TABLE . ' 
+			SET		updated = :updated 
+			WHERE	topic_id = :tid
+		';
+		
+		$dbo->createQuery( $query );
+		$dbo->bind( ':updated', time() );
+		$dbo->bind( ':tid', $this->id );
+		$response = $dbo->runQuery();
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::touch()' );
+			throw new Exception( 'Could not update (touch()) topic!' );
+		}
+		
+		return true;
 	}
 	
 	// Get mana for current topic
