@@ -2,7 +2,8 @@
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 ?>
-			<?php // Make sure to close #content! ?>
+			<?php // Make sure to close #main & #content! ?>
+				</div>
 			</div>
 			
 			<?php // Begin HTML footer ?>
