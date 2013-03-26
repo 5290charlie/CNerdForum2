@@ -38,7 +38,8 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 				
 				foreach( $posts as $p ) { ?>
 					<li>
-						<strong>Title:</strong> <?php echo $p->title; ?> (<a href="<?php echo CN_WEBROOTPAGE . 'touch?pid=' . $p->id; ?>">touch</a>)<br />
+						<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>"><?php echo $p->title; ?></a> 
+						(<a href="<?php echo CN_WEBROOTPAGE . 'touch?pid=' . $p->id; ?>">touch</a>)<br />
 						<strong>Details:</strong> <?php echo $p->details; ?><br />
 						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $p->date ); ?><br />
 						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $p->updated ); ?><br />

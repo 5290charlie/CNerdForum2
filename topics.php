@@ -34,7 +34,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 				
 				foreach( $topics as $t ) { ?>
 					<li>
-						<strong><a href="<?php echo CN_WEBROOTPAGE . 'topic?tid=' . $t->id; ?>">Title:</a></strong> <?php echo $t->title; ?> 
+						<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'topic?tid=' . $t->id; ?>"><?php echo $t->title; ?></a> 
 						(<a href="<?php echo CN_WEBROOTPAGE . 'touch?tid=' . $t->id; ?>">touch</a>)<br />
 						<strong>Details:</strong> <?php echo $t->details; ?><br />
 						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $t->date ); ?><br />
