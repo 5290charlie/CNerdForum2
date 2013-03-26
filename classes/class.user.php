@@ -186,6 +186,8 @@ class CN_User {
 			// Redirect to given location, otherwise home
 			$redirect = ( empty( $redirect ) ) ? CN_WEBROOTPAGE : $redirect;
 			
+			echo "Redirect: $redirect";
+			
 			// Generate login id and update session vars
 			$_SESSION['login'] = CN::generateKey( CN_SESSION_KEYLENGTH_LOGINID );
 			$_SESSION['username'] = $this->username;
@@ -221,6 +223,7 @@ class CN_User {
 			$response = $dbo->runQuery();
 			
 			// Logged in. Return with redirect location
+			echo "Redirect: $redirect";
 			return array( CN_LOGIN_SUCCESS, $redirect );
 		} else {
 			// If user just closed browser, restart session
@@ -234,7 +237,8 @@ class CN_User {
 		}
 		
 		// Otherwise this function was called twice, redirect
-		return array( CN_LOGIN_SUCCESS, $redirect );
+				echo "Redirect: $redirect";
+	return array( CN_LOGIN_SUCCESS, $redirect );
 	}
 	
 	// Logs the current user out
