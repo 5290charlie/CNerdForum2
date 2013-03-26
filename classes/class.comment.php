@@ -22,16 +22,146 @@ class CN_Comment {
 	public $author;
 
 	// Constructor to build new Comment Object
-	public function __construct( $post, $body, $author ) {
-		$this->post = $post;
-		$this->body = $body;
-		$this->date = time();
-		$this->author = $author;
+	public function __construct( $id ) {
+		$dbo =& CN::getDBO();
+		
+		if ( is_numeric( $id ) ) {
+			$query = '
+				SELECT	*
+				FROM	' . CN_COMMENTS_TABLE . ' 
+				WHERE	comment_id = "' . $dbo->sqlsafe( $id ) . '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Comment::__construct()' );
+				throw new Exception( 'Could not load comment information' );
+			}
+			if ( $dbo->num_rows( $response ) != 1 ) {
+				throw new Exception( 'The specified comment does not exist!' );
+			}
+			
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			$this->id 		= $row->post_id;
+			$this->post		= new CN_Post( $row->post_id );
+			$this->body		= $row->body;
+			$this->date		= $row->date;
+			$this->author	= new CN_User( $row->user_id );
+		} else {
+			throw new Exception( 'Invalid comment ID!' );
+		}
 	}
 	
 	// Returns a specific comment
 	public static function get( $id ) {
-		// TODO
+		return new CN_Comment( $id );
+	}
+	
+	// Returns all posts
+	public static function getAll() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	comment_id 
+			FROM	' . CN_COMMENTS_TABLE . ' 
+			WHERE 	1
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Comment::getAll()' );
+			throw new Exception( 'Could not load all comments!' );
+		}
+		
+		// Create empty array to store post objects
+		$comments = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			
+			$comments[$a] = new CN_Comment( $row->comment_id );
+		}
+		
+		return $comments;
+	}
+	
+	// Returns posts for a specific topic
+	public static function getFromPost( $pid ) {
+		$dbo =& CN::getDBO();
+		
+		if ( is_numeric( $pid ) ) {
+			$query = '
+				SELECT	comment_id 
+				FROM	' . CN_COMMENTS_TABLE . ' 
+				WHERE 	post_id = "' . $dbo->sqlsafe( $pid ) . '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Comment::getAll()' );
+				throw new Exception( 'Could not load all comments!' );
+			}
+			
+			// Create empty array to store comment objects
+			$comments = array();
+			
+			for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+				$row = $dbo->getResultObject( $response )->fetch_object();
+				
+				$comments[$a] = new CN_Comment( $row->comment_id );
+			}
+			
+			return $comments;
+		} else {
+			throw new Exception( 'Invalid post to comment to!' );
+		}
+		
+		return false;
+	}
+	
+	// Add new comment to post in database
+	public static function add( $criteria ) {
+		$dbo =& CN::getDBO();
+		
+		$required = array(
+			'post_id',
+			'user_id',
+			'body'
+		);
+		
+		if ( CN::required( $required, $criteria ) ) {
+			$query = '
+				INSERT 
+				INTO	' . CN_POSTS_TABLE . ' 
+				( post_id, user_id, body, date ) 
+				VALUES
+				( :pid, :uid, :body, :date )
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':pid', $criteria['post_id'] );
+			$dbo->bind( ':uid', $criteria['user_id'] );
+			$dbo->bind( ':body', $criteria['body'] );
+			$dbo->bind( ':date', time() );
+			
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Comment::add()' );
+				throw new Exception( 'Could not add new comment!' );
+			}
+			
+			// Update post object with touch() method
+			$post = new CN_Post( $criteria['post_id'] );
+			return $post->touch();
+		} else {
+			throw new Exception( 'Required comment information not provided!' );
+		}
+		
+		return false;
 	}
 	
 	// Search all comments

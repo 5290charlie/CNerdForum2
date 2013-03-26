@@ -169,7 +169,9 @@ class CN_Post {
 				throw new Exception( 'Could not add new post!' );
 			}
 			
-			return true;
+			// Update topic object with touch() method
+			$topic = new CN_Topic( $criteria['topic_id'] );
+			return $topic->touch();
 		} else {
 			throw new Exception( 'Required post information not provided!' );
 		}
