@@ -32,22 +32,47 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
 	?>
-				<h1>Topic: <?php echo $topic->title; ?></h1>
-				<hr>
-				<h2>Posts:</h2>
 				<?php if ( count( $posts ) > 0 ) { ?>
-					<ul>
+					<table id="topics">
+						<thead>
+							<tr>
+								<td>Post Title and Details</td>
+								<td>Stats</td>
+								<td>Info</td>
+							</tr>
+						</thead>
 					<?php foreach( $posts as $p ) { ?>
-						<li>
-							<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>"><?php echo $p->title; ?></a> 
-							(<a href="<?php echo CN_WEBROOTPAGE . 'touch?pid=' . $p->id; ?>">touch</a>)<br />
-							<strong>Details:</strong> <?php echo $p->details; ?><br />
-							<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $p->date ); ?><br />
-							<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $p->updated ); ?><br />
-							<strong>Author:</strong> <?php echo $p->author->username . ' (' . $p->author->firstname . ' ' . $p->author->lastname . ')'; ?>
-						</li>
+						<tr class="post">
+							<td class="title">
+								<a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>">
+									<strong><?php echo $p->title; ?></strong>
+								</a>
+								<div class="smallfont">
+									<?php echo $p->details; ?>
+								</div>
+							</td>
+							<td class="stats">
+								<div class="smallfont">
+									Posts: <?php echo count( $p->getComments() ); ?>
+								</div>
+								<div class="smallfont">
+									Views: <?php echo $p->views; ?>
+								</div>
+							</td>
+							<td class="details">
+								<div class="smallfont">
+									Created: <?php echo date( CN_DATE_FORMAT, $p->date ); ?>
+								</div>
+								<div class="smallfont">
+									Updated: <?php echo date( CN_DATE_FORMAT, $p->updated ); ?>
+								</div>
+								<div class="smallfont">
+									Author: <?php echo $p->author->username; ?>
+								</div>
+							</td>
+						</tr>
 					<?php } ?>
-					</ul>
+					</table>
 				<?php } else { echo 'No Posts'; } ?>
 				<hr>
 				<form id="new_post" method="post" action="<?php echo CN_WEBROOTPAGE . 'topic'; ?>">
