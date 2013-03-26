@@ -6,6 +6,9 @@ $cn =& CN::getInstance();
 $cn->init();
 
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
+	echo 'posted ';
+	print_r($_POST);
+	/*
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
 	
@@ -76,6 +79,7 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			);
 			break;
 	}
+	*/
 } elseif ( !empty( $_POST ) ) {
 	$cn->enqueueMessage(
 		'The username/password combination is incorrect.',
