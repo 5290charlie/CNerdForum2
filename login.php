@@ -6,17 +6,10 @@ $cn =& CN::getInstance();
 $cn->init();
 
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
-	echo 'posted ';
-	print_r($_POST);
-	/*
+	
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
 	
-	CN_AUTH_ERROR_SQL     - SQL Error
-		CN_AUTH_ERROR_SUCCESS - Success
-		CN_AUTH_ERROR_INVALID - Invalid credentials (password)
-		CN_AUTH_ERROR_NOUSER  - Invalid credentials (username)
-		CN_AUTH_ERROR_UNKNOWN - Unknown Error
 	switch( $response ) {
 		// A error occurred with the database
 		case CN_AUTH_ERROR_SQL:
