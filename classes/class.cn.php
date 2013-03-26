@@ -129,7 +129,7 @@ final class CN {
 			try {
 				$GLOBALS['user'] =& self::getUser();
 				
-				print( $GLOBALS['user'] );
+				print_r( $GLOBALS['user'] );
 				
 				// If the session expired, log the user out and prompt for relogin
 				if ( ( time() - $GLOBALS['user']->lastAccessed() ) > CN_SESSION_EXPIRE && $_SERVER['REQUEST_URI'] != '/logout' ) {
