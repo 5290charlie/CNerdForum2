@@ -168,7 +168,7 @@ class CN_Topic {
 	
 	// Update view count for current topic
 	public function view() {
-		$dbo =& self::getDBO();
+		$dbo =& CN::getDBO();
 		
 		$query = '
 			UPDATE	' . CN_TOPICS_TABLE . ' 
