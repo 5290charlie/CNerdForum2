@@ -20,9 +20,9 @@ define( 'CN_STATUS', CN_ST_LIVE );
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
 
 // Register Custom Error & Exception Handlers
-//require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
-//set_error_handler( 'CN_Error::handleError' );
-//set_exception_handler( 'CN_Error::handleException' );
+require realpath( dirname( __FILE__ ) . '/classes/class.error.php' );
+set_error_handler( 'CN_Error::handleError' );
+set_exception_handler( 'CN_Error::handleException' );
 
 // Local Paths
 define( 'CN_ROOTPAGE', $_SERVER['DOCUMENT_ROOT'] );

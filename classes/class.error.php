@@ -16,7 +16,7 @@ class CN_Error {
 		if( in_array( $err_type, array( E_WARNING, E_NOTICE, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_USER_NOTICE, E_STRICT, E_DEPRECATED, E_USER_DEPRECATED ) ) ) {
 				
 			// Should log errors if the site is live and if errors are not being displayed
-			if( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) && $user->permission > CN_PERM_FACULTY ) {
+			if( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) && $user->permission > CN_PERM_USER ) {
 				$cn->enqueueMessage( 
 					'Type: ' . $err_type . '<br />' . $err_str . '<br />' . 'File: ' . $err_file . '<br />' . 'Line: ' . $err_line,
 					CN_MSG_WARNING,
