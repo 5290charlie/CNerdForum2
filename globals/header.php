@@ -9,7 +9,9 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 *************************** -->
 <html>
 	
-	<?php // Begin HTML head tag ?>
+	<?php // Begin HTML head tag
+	print_r($_SESSION);
+	?>
 	<head>
 	
 		<?php // Basic header setup ?>
