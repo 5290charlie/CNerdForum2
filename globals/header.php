@@ -10,12 +10,8 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 <html>
 	
 	<?php // Begin HTML head tag
-	echo '<br />';
-	print_r($_SESSION);
-	echo '<br />';
 	$cn =& CN::getInstance();
 	print_r($cn->getMessages());
-	echo '<br />';
 	?>
 	<head>
 	

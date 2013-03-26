@@ -54,7 +54,6 @@ final class CN {
 		
 		// Security layer
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
-			echo '<br />script_filename===false<br />';
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
 				
@@ -106,9 +105,7 @@ final class CN {
 		if ( isset( $_SESSION['login'] ) ) {
 			try {
 				$GLOBALS['user'] =& self::getUser();
-				
-				print_r( $GLOBALS['user'] );
-				
+								
 				// If the session expired, log the user out and prompt for relogin
 				if ( ( time() - $GLOBALS['user']->lastAccessed() ) > CN_SESSION_EXPIRE && $_SERVER['REQUEST_URI'] != '/logout' ) {
 					$GLOBALS['user']->logout( true );
