@@ -2,15 +2,23 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+echo "login.php: After config include, before CN init<br />";
+
 $cn =& CN::getInstance();
 $cn->init();
 
+echo "login.php: After CN init, before POST check<br />";
+
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
 	
+	echo "login.php: Before CN_User::authenticate()<br />";
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
+	echo "login.php: After CN_User::authenticate()<br />";
 	
+	echo "Auth_Response: ";
 	print_r( $response );
+	echo "<br />";
 	
 	switch( $response ) {
 		// A error occurred with the database
@@ -38,6 +46,11 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 			switch( $login_response[0] ) {				
 				// Login successful
 				case CN_LOGIN_SUCCESS:
+					$cn->enqueueMessage(
+						'Login Successful'
+						CN_MSG_SUCCESS,
+						$_SESSION['sessionID']
+					);
 					CN::redirect( $login_response[1] );
 					break;
 				case CN_LOGIN_ERROR:
@@ -84,6 +97,8 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 		$_SESSION['sessionID']
 	);
 }
+
+echo "login.php: Before header include<br />";
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );

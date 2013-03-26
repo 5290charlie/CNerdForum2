@@ -2,11 +2,17 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+echo "index.php: After config include, before CN init<br />";
+
 $cn =& CN::getInstance();
 $cn->init();
 
+echo "index.php: After CN init, before header include<br />";
+
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
+
+echo "index.php: After header include<br />
 ?>
 				<div id="tabs">
 					<ul>
@@ -27,4 +33,6 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 <?php
 // Require footer global
 require_once( CN_DIR_GLOBALS . 'footer.php' );
+
+echo "index.php: After footer include<br />";
 ?>

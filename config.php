@@ -1,7 +1,9 @@
 <?php
 
+echo "Begin config.php<br />";
+
 // Set error reporting
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 
 /********************
 	Constants
@@ -155,4 +157,6 @@ $cn =& CN::getInstance();
 $dbo =& CN::getDBO();
 $user =& User::getInstance();
 */
+
+echo "End config.php<br />";
 ?>
