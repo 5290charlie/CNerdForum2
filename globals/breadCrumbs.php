@@ -6,7 +6,7 @@ if( strpos( $_SERVER['REQUEST_URI'], 'post' ) !== false )
 	print_r( $post );
 elseif( strpos( $_SERVER['REQUEST_URI'], 'topics' ) !== false )
 	print_r( $topics );
-else
+elseif( strpos( $_SERVER['REQUEST_URI'], '/' ) === false )
 	print_r( $topic );
 
 ?>
