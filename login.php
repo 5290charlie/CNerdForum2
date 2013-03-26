@@ -5,6 +5,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
+if ( isset( $user ) && $user->isOnline() ) {
+	$cn->enqueueMessage(
+		'You are already logged in!',
+		CN_MSG_ANNOUNCEMENT,
+		$_SESSION['sessionID']
+	);
+	CN::redirect( CN_WEBROOTPAGE );
+}
+
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
 	
 	// Authenticate User

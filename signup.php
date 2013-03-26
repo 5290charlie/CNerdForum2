@@ -5,6 +5,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
+if ( isset( $user ) && $user->isOnline() ) {
+	$cn->enqueueMessage(
+		'You are already logged in!',
+		CN_MSG_ANNOUNCEMENT,
+		$_SESSION['sessionID']
+	);
+	CN::redirect( CN_WEBROOTPAGE );
+}
+
 if ( !empty( $_POST ) ) {
 	
 }
@@ -32,7 +41,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 						<tr>
 							<td class="right">
-								<label for="email">Username:</label>
+								<label for="email">Email:</label>
 							</td>
 							<td>
 								<input type="email" id="email" name="email" />
