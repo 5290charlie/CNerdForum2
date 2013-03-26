@@ -8,14 +8,9 @@ $cn->init();
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
-Homepage
-<br />
-Topics Test:
-<br />
-<?php
-$topics = CN_Topic::getAll();
-print_r( $topics );
-?>
+				<h1>Homepage</h1>
+				<br />
+				<a href="<?php echo WEBROOTPAGE . 'topics'; ?>">View Topics</a>
 <!--
 				<div id="tabs">
 					<ul>

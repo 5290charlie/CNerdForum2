@@ -22,9 +22,8 @@ class CN_Topic {
 	public $date;
 	public $updated;
 	public $author;
-	public $posts;
 	
-	// Constructor to build new Post Object
+	// Constructor to build new Topic Object
 	public function __construct( $id ) {
 		$dbo =& CN::getDBO();
 		
@@ -52,13 +51,12 @@ class CN_Topic {
 			$this->date		= $row->date;
 			$this->updated 	= $row->updated;
 			$this->author	= new CN_User( $row->user_id );
-			$this->posts	= CN_Post::getFromTopic( $this->id );
 		} else {
 			throw new Exception( 'Invalid topic ID!' );
 		}
 	}
 	
-	// Returns a specific post
+	// Returns a specific topic
 	public static function get( $id ) {
 		// TODO
 	}
@@ -92,17 +90,68 @@ class CN_Topic {
 		return $topics;
 	}
 	
-	// Search all posts
+	// Search all topics
 	public static function search( $search ) {
 		// TODO
 	}
 	
-	// Get mana for current post
+	// Add new topic to database
+	public static function add( $criteria ) {
+		$dbo =& CN::getDBO();
+		
+		$required = array(
+			'user_id',
+			'title',
+			'details'
+		);
+		
+		if ( CN::required( $required, $criteria ) ) {
+			$query = '
+				INSERT 
+				INTO	' . CN_TOPICS_TABLE . ' 
+				( user_id, title, details, date, updated ) 
+				VALUES
+				( :uid, :title, :details, :date, :updated )
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':uid', $criteria['user_id'] );
+			$dbo->bind( ':title', $criteria['title'] );
+			$dbo->bind( ':details', $criteria['details'] );
+			$dbo->bind( ':date', time() );
+			$dbo->bind( ':updated', time() );
+			
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Topic::add()' );
+				throw new Exception( 'Could not add new topic!' );
+			}
+			
+			return true;
+		} else {
+			throw new Exception( 'Required topic information not provided!' )
+		}
+		
+		return false;
+	}
+	
+	// Get posts for current topic
+	public function getPosts() {
+		return CN_Post::getFromTopic( $this->id );
+	}
+	
+	// Get mana for current topic
 	public function getMana() {
 		// TODO
 	}
 	
-	// Delete current post
+	// Get author of current topic
+	public function getAuthor() {
+		return $this->author;
+	}
+	
+	// Delete current topic
 	public function delete() {
 	}
 }
