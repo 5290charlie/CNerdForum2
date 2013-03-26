@@ -34,10 +34,10 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 				
 				foreach( $topics as $t ) { ?>
 					<li>
-						<strong>Title:</strong> <?php echo $t->title; ?>
-						<strong>Details:</strong> <?php echo $t->details; ?>
-						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $t->date ); ?>
-						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $t->updated ); ?>
+						<strong>Title:</strong> <?php echo $t->title; ?><br />
+						<strong>Details:</strong> <?php echo $t->details; ?><br />
+						<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $t->date ); ?><br />
+						<strong>Updated:</strong> <?php echo date( CN_DATE_FORMAT, $t->updated ); ?><br />
 						<strong>Author:</strong> <?php echo $t->author->username . ' (' . $t->author->firstname . ' ' . $t->author->lastname . ')'; ?>
 					</li>
 				<?php }
