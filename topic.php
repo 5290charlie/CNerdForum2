@@ -33,7 +33,7 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	require_once( CN_DIR_GLOBALS . 'header.php' );
 	?>
 				<?php if ( count( $posts ) > 0 ) { ?>
-					<table id="topics">
+					<table id="posts">
 						<thead>
 							<tr>
 								<td>Post Title and Details</td>
