@@ -52,7 +52,7 @@ class CN_Topic {
 		}
 		
 		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
-			$row = $dbo->getResultObject( $response )->fetch_object() );
+			$row = $dbo->getResultObject( $response )->fetch_object();
 			print_r($row);
 		}
 	}
