@@ -100,7 +100,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 								<label for="username">Username:</label>
 							</td>
 							<td>
-								<input type="text" id="username" name="username" autocomplete="off" />
+								<input type="text" id="username" name="username" value="<?php ( isset( $_SESSION['username'] ) ? $_SESSION['username'] : '' ); ?>" autocomplete="off" />
 							</td>
 						</tr>
 						<tr>
