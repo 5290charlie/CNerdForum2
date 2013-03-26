@@ -52,7 +52,9 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 				<div id="messages">
 					<?php require_once( CN_DIR_GLOBALS . 'getMessages.php' ); ?>
 				</div>
+				<?php if ( isset( $user ) && $user->isOnline() ) { ?>
 				<div id="breadcrumbs">
 					<?php require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' ); ?>
 				</div>
+				<?php } ?>
 				<div id="main">
