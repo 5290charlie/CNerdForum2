@@ -40,7 +40,7 @@ class CN_Error {
 		
 		// Should log exceptions if site is live and if errors are not being displayed
 		if ( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) ) {
-			echo 'Exception Type: ' . $e->getCode(); . '<br />';
+			echo 'Exception Type: ' . $e->getCode() . '<br />';
 			echo $e->getMessage() . '<br />';
 			echo 'File: ' . $e->getFile() . '<br />';
 			echo 'Line: ' . $e->getLine() . '<br />';
