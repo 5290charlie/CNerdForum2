@@ -184,9 +184,9 @@ class CN_User {
 			$dbo =& CN::getDBO();
 			
 			// Redirect to given location, otherwise home
-			$redirect = ( empty( $redirect ) ) ? CN_WEBROOTPAGE : $redirect;
+			$redirect = ( !isset( $redirect ) ) ? CN_WEBROOTPAGE : $redirect;
 			
-			echo "Redirect: $redirect (ROOTPAGE = " . CN_WEBROOTPAGE . ")<br />";
+			echo "Redirect: $redirect";
 			
 			// Generate login id and update session vars
 			$_SESSION['login'] = CN::generateKey( CN_SESSION_KEYLENGTH_LOGINID );

@@ -5,15 +5,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
-
 if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['password'] ) ) {
 	
 	// Authenticate User
 	$response = CN_User::authenticate( $_POST['username'], $_POST['password'] );
 	
-	echo "Auth_Response: ";
 	print_r( $response );
-	echo "<br />";
 	
 	switch( $response ) {
 		// A error occurred with the database
@@ -35,19 +32,12 @@ if ( !empty( $_POST ) && !empty( $_POST['username'] ) && !empty( $_POST['passwor
 				$login_response = $user->login();
 			}
 			
-			echo "Login_Response: ";
 			print_r( $login_response );
-			echo "<br />";
 			
 			// Handle login response
 			switch( $login_response[0] ) {				
 				// Login successful
 				case CN_LOGIN_SUCCESS:
-					$cn->enqueueMessage(
-						'Login Successful'
-						CN_MSG_SUCCESS,
-						$_SESSION['sessionID']
-					);
 					CN::redirect( $login_response[1] );
 					break;
 				case CN_LOGIN_ERROR:
