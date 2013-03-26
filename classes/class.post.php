@@ -102,9 +102,10 @@ class CN_Post {
 		
 		if ( is_numeric( $tid ) ) {
 			$query = '
-				SELECT	post_id 
-				FROM	' . CN_POSTS_TABLE . ' 
-				WHERE 	topic_id = "' . $dbo->sqlsafe( $tid ) . '"
+				SELECT		post_id 
+				FROM		' . CN_POSTS_TABLE . ' 
+				WHERE 		topic_id = "' . $dbo->sqlsafe( $tid ) . '" 
+				ORDER BY	updated DESC
 			';
 			
 			$response = $dbo->query( $query );

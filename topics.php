@@ -30,13 +30,6 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<?php if ( count( $topics ) > 0 ) { ?>
 					<table id="topics">
-						<thead>
-							<tr>
-								<td>Topic title and details</td>
-								<td>Stats</td>
-								<td>Info</td>
-							</tr>
-						</thead>
 					<?php foreach( $topics as $t ) { ?>
 						<tr class="topic">
 							<td class="title">

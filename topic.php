@@ -34,13 +34,6 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	?>
 				<?php if ( count( $posts ) > 0 ) { ?>
 					<table id="posts">
-						<thead>
-							<tr>
-								<td>Post title and details</td>
-								<td>Stats</td>
-								<td>Info</td>
-							</tr>
-						</thead>
 					<?php foreach( $posts as $p ) { ?>
 						<tr class="post">
 							<td class="title">

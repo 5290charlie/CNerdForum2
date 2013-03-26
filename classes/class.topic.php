@@ -68,9 +68,10 @@ class CN_Topic {
 		$dbo =& CN::getDBO();
 		
 		$query = '
-			SELECT	topic_id 
-			FROM	' . CN_TOPICS_TABLE . ' 
-			WHERE 	1
+			SELECT		topic_id 
+			FROM		' . CN_TOPICS_TABLE . ' 
+			WHERE 		1
+			ORDER BY	updated DESC
 		';
 		
 		$response = $dbo->query( $query );
