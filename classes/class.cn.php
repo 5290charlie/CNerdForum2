@@ -70,9 +70,9 @@ final class CN {
 			echo '<br />script_filename===false<br />';
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
-					echo '<br />';
-			echo 'session[login] set';
-			echo '<br />';
+				echo '<br />';
+				echo 'session[login] set';
+				echo '<br />';
 
 				$query = '
 					SELECT 	user_id 
@@ -128,6 +128,8 @@ final class CN {
 		if ( isset( $_SESSION['login'] ) ) {
 			try {
 				$GLOBALS['user'] =& self::getUser();
+				
+				print( $GLOBALS['user'] );
 				
 				// If the session expired, log the user out and prompt for relogin
 				if ( ( time() - $GLOBALS['user']->lastAccessed() ) > CN_SESSION_EXPIRE && $_SERVER['REQUEST_URI'] != '/logout' ) {
