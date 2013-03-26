@@ -23,16 +23,15 @@ if ( !empty( $_POST ) && !empty( $_POST['user_id'] ) && !empty( $_POST['title'] 
 	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
 
+$topics = CN_Topic::getAll();
+
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<h1>Topics</h1>
 				<hr>
 				<ul>
-				<?php
-				$topics = CN_Topic::getAll();
-				
-				foreach( $topics as $t ) { ?>
+				<?php foreach( $topics as $t ) { ?>
 					<li>
 						<strong>Title:</strong> <a href="<?php echo CN_WEBROOTPAGE . 'topic?tid=' . $t->id; ?>"><?php echo $t->title; ?></a> 
 						(<a href="<?php echo CN_WEBROOTPAGE . 'touch?tid=' . $t->id; ?>">touch</a>)<br />

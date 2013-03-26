@@ -52,4 +52,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 				<div id="messages">
 					<?php require_once( CN_DIR_GLOBALS . 'getMessages.php' ); ?>
 				</div>
+				<div id="breadcrumbs">
+					<?php require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' ); ?>
+				</div>
 				<div id="main">
