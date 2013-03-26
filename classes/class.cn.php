@@ -33,10 +33,6 @@ final class CN {
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
 			CN::redirect( CN_WEBMAINTENANCE );
-		
-		echo '<br />';
-		echo 'before beginning session';
-		echo '<br />';
 
 		// Begin Session
 		session_name( CN_SESSION_NAME );
@@ -45,10 +41,6 @@ final class CN {
 		// Regenerate session ID (hinders session hijacking)
 		session_regenerate_id();
 
-		echo '<br />';
-		echo 'after session init';
-		echo '<br />';
-		
 		// Generate CNerdForum session ID
 		if ( !isset( $_SESSION['sessionID'] ) )
 			$_SESSION['sessionID'] = self::generateKey( CN_SESSION_KEYLENGTH_SESSID );
@@ -60,20 +52,11 @@ final class CN {
 			die( 'Could not connect to the database!' );
 		}
 		
-		echo '<br />';
-		echo 'SERVER[SCRIPT_FILENAME]=' . $_SERVER['SCRIPT_FILENAME'];
-		echo '<br />';
-		echo 'SERVER[REQUEST_URI]=' . $_SERVER['REQUEST_URI'] . '<br />';
-		
 		// Security layer
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
 			echo '<br />script_filename===false<br />';
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
-				echo '<br />';
-				echo 'session[login] set';
-				echo '<br />';
-				
 				
 				$query = '
 					SELECT 	user_id 
