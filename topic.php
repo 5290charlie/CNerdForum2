@@ -36,7 +36,7 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 					<table id="posts">
 						<thead>
 							<tr>
-								<td>Post Title and Details</td>
+								<td>Post title and details</td>
 								<td>Stats</td>
 								<td>Info</td>
 							</tr>
@@ -53,7 +53,7 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 							</td>
 							<td class="stats">
 								<div class="smallfont">
-									Posts: <?php echo count( $p->getComments() ); ?>
+									Comments: <?php echo count( $p->getComments() ); ?>
 								</div>
 								<div class="smallfont">
 									Views: <?php echo $p->views; ?>

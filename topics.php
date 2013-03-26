@@ -32,7 +32,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 					<table id="topics">
 						<thead>
 							<tr>
-								<td>Topic Title and Details</td>
+								<td>Topic title and details</td>
 								<td>Stats</td>
 								<td>Info</td>
 							</tr>

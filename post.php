@@ -32,19 +32,26 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
 	?>
-				<h1>Post: <?php echo $post->title; ?></h1>
-				<hr>
-				<h2>Comments:</h2>
 				<?php if ( count( $comments ) > 0 ) { ?>
-					<ul>
+					<table id="comments">
 					<?php foreach( $comments as $c ) { ?>
-						<li>
-							<strong>Body:</strong> <?php echo $c->body; ?><br />
-							<strong>Date:</strong> <?php echo date( CN_DATE_FORMAT, $c->date ); ?><br />
-							<strong>Author:</strong> <?php echo $c->author->username . ' (' . $c->author->firstname . ' ' . $c->author->lastname . ')'; ?>
-						</li>
+						<tr class="comment">
+							<td class="user">
+								<div class="username">
+									<?php echo $c->author->username; ?>
+								</div>
+							</td>
+							<td class="body">
+								<div class="date">
+									<?php echo date( CN_DATE_FORMAT, $c->date ); ?>
+								</div>
+								<p>
+									<?php echo $c->body; ?>
+								</p>
+							</td>
+						</tr>
 					<?php } ?>
-					</ul>
+					</table>
 				<?php } else { echo 'No Comments'; } ?>
 				<hr>
 				<form id="new_comment" method="post" action="<?php echo CN_WEBROOTPAGE . 'post'; ?>">
