@@ -11,7 +11,5 @@ if( !empty( $_POST ) && !empty( $_POST['topic_id'] ) && !empty( $_POST['user_id'
 	die( 'MUST provide tid' );
 }
 
-$topic = new CN_Topic( $_GET['tid'] );
 
-print_r( $topic );
 ?>
