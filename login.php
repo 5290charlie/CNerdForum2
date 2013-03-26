@@ -7,7 +7,7 @@ echo 'before CN::getINstance()';
 
 
 $cn =& CN::getInstance();
-//$cn->init();
+$cn->init();
 
 echo 'after init';
 	echo '<br />';
