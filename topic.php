@@ -30,7 +30,7 @@ if ( !empty( $_POST ) && !empty( $_POST['topic_id'] ) && !empty( $_POST['user_id
 	
 	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
-
+/*
 $topic = new CN_Topic( $_GET['tid'] );
 
 // Require header global
