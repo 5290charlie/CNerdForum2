@@ -63,6 +63,7 @@ echo 'after session init';
 	echo '<br />';
 		echo 'SERVER[SCRIPT_FILENAME]=' . $_SERVER['SCRIPT_FILENAME'];
 	echo '<br />';
+		echo 'SERVER[REQUEST_URI]=' . $_SERVER['REQUEST_URI'] . '<br />';
 		
 		// Security layer
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
