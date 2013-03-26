@@ -57,6 +57,7 @@ define( 'CN_DB_DBNAME', 'cnerd' );
 
 // Define DB Tables
 define( 'CN_USERS_TABLE', CN_DB_DBNAME . '.users' );
+define( 'CN_TOPICS_TABLE', CN_DB_DBNAME . '.topics' );
 define( 'CN_POSTS_TABLE', CN_DB_DBNAME . '.posts' );
 define( 'CN_COMMENTS_TABLE', CN_DB_DBNAME . '.comments' );
 define( 'CN_VOTES_TABLE', CN_DB_DBNAME . '.votes' );
