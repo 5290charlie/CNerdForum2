@@ -184,7 +184,7 @@ class CN_User {
 			$dbo =& CN::getDBO();
 			
 			// Redirect to given location, otherwise home
-			$redirect = ( empty( $redirect ) ) ? CN_WEBROOTPAGE : $redirect;
+			$redirect = ( !isset( $redirect ) ) ? CN_WEBROOTPAGE : $redirect;
 			
 			echo "Redirect: $redirect";
 			
