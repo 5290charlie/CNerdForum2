@@ -30,7 +30,6 @@ final class CN {
 	
 	// Initialize Site
 	public function init() {
-		echo "class.cn.php: Begin CN::init()<br />";
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
 			CN::redirect( CN_WEBMAINTENANCE );
@@ -54,7 +53,6 @@ final class CN {
 		}
 		
 		// Security layer
-		echo "class.cn.php: Security layer CN::init()<br />";
 		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
@@ -103,8 +101,6 @@ final class CN {
 			}
 		}
 		
-		echo "class.cn.php: CN::init() Init globals<br />";
-
 		// Initialize more global objects (specifically, the user object)
 		if ( isset( $_SESSION['login'] ) ) {
 			try {
@@ -137,8 +133,6 @@ final class CN {
 				$_SESSION['sessionID']
 			);
 		}
-		
-		echo "class.cn.php: End CN::init()<br />";
 	}
 
 	// Check if site is live
