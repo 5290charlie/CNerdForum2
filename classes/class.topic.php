@@ -22,6 +22,7 @@ class CN_Topic {
 	public $date;
 	public $updated;
 	public $author;
+	public $views;
 	
 	// Constructor to build new Topic Object
 	public function __construct( $id ) {
@@ -51,6 +52,7 @@ class CN_Topic {
 			$this->date		= $row->date;
 			$this->updated 	= $row->updated;
 			$this->author	= new CN_User( $row->user_id );
+			$this->views	= $row->views;
 		} else {
 			throw new Exception( 'Invalid topic ID!' );
 		}
@@ -162,6 +164,24 @@ class CN_Topic {
 		}
 		
 		return true;
+	}
+	
+	// Update view count for current topic
+	public function view() {
+		$dbo =& self::getDBO();
+		
+		$query = '
+			UPDATE	' . CN_TOPICS_TABLE . ' 
+			SET 	views = views+1 
+			WHERE	topic_id = "' . $dbo->sqlsafe( $this->id ) . '"
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::view()' );
+			throw new Exception( 'Could not update topic views' );
+		}
 	}
 	
 	// Get mana for current topic

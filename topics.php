@@ -52,6 +52,9 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 							<div class="smallfont">
 								Posts: <strong><?php echo count( $t->getPosts() ); ?></strong>
 							</div>
+							<div class="smallfont">
+								Views: <strong><?php echo $t->views; ?></strong>
+							</div>
 						</td>
 						<td class="details">
 							<div class="smallfont">

@@ -25,6 +25,7 @@ if( !empty( $_POST ) && !empty( $_POST['topic_id'] ) && !empty( $_POST['user_id'
 
 if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	$topic = new CN_Topic( $_GET['tid'] );
+	$topic->view();
 	
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
