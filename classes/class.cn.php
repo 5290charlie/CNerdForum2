@@ -109,16 +109,15 @@ final class CN {
 					);
 					
 					// Redirect
-									die ('death');
-		CN::redirect( CN_WEBLOGIN );
-				
-				// Reidrect the user to login page if not logged in and site is not offline
-				} else {
-					if ( CN_STATUS != CN_ST_OFFLINE )
-						CN::redirect( CN_WEBLOGIN . ( ( $_SERVER['REQUEST_URI'] != '/' ) ? '?r=' . base64_encode( $_SERVER['REQUEST_URI'] ) : '' ) );
+					CN::redirect( CN_WEBLOGIN );
 				}
+			// Reidrect the user to login page if not logged in and site is not offline
+			} else {
+				if ( CN_STATUS != CN_ST_OFFLINE )
+					CN::redirect( CN_WEBLOGIN . ( ( $_SERVER['REQUEST_URI'] != '/' ) ? '?r=' . base64_encode( $_SERVER['REQUEST_URI'] ) : '' ) );
 			}
 		}
+		
 		
 		// Initialize more global objects (specifically, the user object)
 		if ( isset( $_SESSION['login'] ) ) {
