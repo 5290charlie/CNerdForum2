@@ -39,7 +39,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 			<header id="header">
 				<div id="userdata">
 					<?php if ( isset( $user ) && $user->isOnline() ) {
-						echo 'Welcome, ' . $user->username . ' | '; ?>
+						echo 'Welcome, ' . $user->username; ?>
 						<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
 					<?php } else { ?>
 						<a href="<?php echo CN_WEBLOGIN; ?>" class="button">Login</a>
