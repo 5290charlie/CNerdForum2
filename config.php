@@ -75,7 +75,7 @@ define( 'CN_COMMENTS_PER_PAGE', 20 );
 define( 'CN_ALLOWED_TAGS', '<p><b><strong><ul><li><br><h1><h2><h3><span><div>' );
 
 // Define Date Format String
-define( 'CN_DATE_FORMAT', 'm-d-Y @h:i:s A' );
+define( 'CN_DATE_FORMAT', 'm-d-Y, h:i A' );
 
 // Session Settings
 define( 'CN_SESSION_NAME', 'cnerdforum_id' );
