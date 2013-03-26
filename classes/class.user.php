@@ -223,7 +223,7 @@ class CN_User {
 			return array( CN_LOGIN_SUCCESS, $redirect );
 		} else {
 			// If user just closed browser, restart session
-			if ( $_SESSION['sessionID'] != $this->session_id() ) {
+			if ( $_SESSION['sessionID'] != $this->_session_id() ) {
 				if ( $this->logout( true ) ) {
 					return $this->login( $redirect );
 				} else {
@@ -488,7 +488,27 @@ class CN_User {
 	
 	// Returns the session ID stored in the database for the current user (if online)
 	private function _session_id() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query		=	'
+			SELECT		session_id
+			FROM		' . CN_SESSION_TABLE . '
+			WHERE		user_id = "' . $dbo->sqlsafe( $this->id )  . '"'
+		;
+		$sessionquery = $dbo->query( $query );
+
+		if ( $dbo->hasError( $sessionquery ) ) {
+			$dbo->submitErrorLog( $sessionquery, 'CN_User::isOnline()' );
+			return false;
+		}
+		
+		if ( $dbo->num_rows() ) {
+			$sessionID = $dbo->field( 0, 'session_id', $sessionquery );
+			$dbo->free( $sessionquery );
+			return $sessionID;
+		} else {
+			return false;
+		}
 	}
 }
 
