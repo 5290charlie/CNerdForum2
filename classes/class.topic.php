@@ -130,7 +130,7 @@ class CN_Topic {
 			
 			return true;
 		} else {
-			throw new Exception( 'Required topic information not provided!' )
+			throw new Exception( 'Required topic information not provided!' );
 		}
 		
 		return false;
