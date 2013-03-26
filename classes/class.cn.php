@@ -73,7 +73,8 @@ final class CN {
 				echo '<br />';
 				echo 'session[login] set';
 				echo '<br />';
-				die ('death');
+				
+				
 				$query = '
 					SELECT 	user_id 
 					FROM 	' . CN_USERS_TABLE . ' 
@@ -98,6 +99,7 @@ final class CN {
 							$_SESSION['sessionID']
 						);
 						CN::redirect( CN_WEBLOGIN );
+						die ('death');
 					}	
 				} elseif ( $GLOBALS['dbo']->num_rows( $response ) == 0 ) {
 					// Throw away everything but sessionID & username
