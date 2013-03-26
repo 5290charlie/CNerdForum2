@@ -92,16 +92,8 @@ final class CN {
 						$_SESSION['sessionID']
 					);
 					
-					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false ) {
-						$this->enqueueMessage(
-							'redirected to login',
-							CN_MSG_WARNING,
-							$_SESSION['sessionID']
-						);
-						die ('death');
-						CN::redirect( CN_WEBLOGIN );
-						
-					}	
+					if ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false )
+						CN::redirect( CN_WEBLOGIN );	
 				} elseif ( $GLOBALS['dbo']->num_rows( $response ) == 0 ) {
 					// Throw away everything but sessionID & username
 					foreach( $_SESSION as $key => $value ) {
@@ -117,7 +109,8 @@ final class CN {
 					);
 					
 					// Redirect
-					CN::redirect( CN_WEBLOGIN );
+									die ('death');
+		CN::redirect( CN_WEBLOGIN );
 				
 				// Reidrect the user to login page if not logged in and site is not offline
 				} else {
