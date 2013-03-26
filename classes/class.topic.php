@@ -51,7 +51,10 @@ class CN_Topic {
 			throw new Exception( 'Could not load all topics!' );
 		}
 		
-		print_r( $dbo->getResultObject( $response )->fetch_object() );
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object() );
+			print_r($row);
+		}
 	}
 	
 	// Search all posts
