@@ -13,7 +13,8 @@ Homepage
 Topics Test:
 <br />
 <?php
-CN_Topic::getAll();
+$topics = CN_Topic::getAll();
+print_r( $topics );
 ?>
 <!--
 				<div id="tabs">
