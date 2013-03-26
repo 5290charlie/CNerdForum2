@@ -10,7 +10,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<h1>Homepage</h1>
 				<br />
-				<a href="<?php echo WEBROOTPAGE . 'topics'; ?>">View Topics</a>
+				<a href="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">View Topics</a>
 <!--
 				<div id="tabs">
 					<ul>
