@@ -9,6 +9,12 @@ $cn->init();
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 Homepage
+<br />
+Topics Test:
+<br />
+<?php
+CN_Topic::getAll();
+?>
 <!--
 				<div id="tabs">
 					<ul>

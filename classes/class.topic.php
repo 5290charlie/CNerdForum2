@@ -25,13 +25,33 @@ class CN_Topic {
 	public $posts;
 	
 	// Constructor to build new Post Object
-	public function __construct( /* constructor parameters */ ) {
+	public function __construct( $id ) {
 		// TODO
 	}
 	
 	// Returns a specific post
 	public static function get( $id ) {
 		// TODO
+	}
+	
+	// Returns all topics
+	public static function getAll() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	*
+			FROM	' . CN_TOPICS_TABLE . ' 
+			WHERE 	1
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::getAll()' );
+			throw new Exception( 'Could not load all topics!' );
+		}
+		
+		print_r( $dbo->getResultObject( $response )->fetch_object() );
 	}
 	
 	// Search all posts
