@@ -2,8 +2,6 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
-echo "index.php: After config include, before CN init<br />";
-
 $cn =& CN::getInstance();
 $cn->init();
 
