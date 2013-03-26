@@ -6,7 +6,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 final class CN {
 	
 	// Checks $data array for $required keys
-	private static function required( $required, $data )
+	public static function required( $required, $data )
 	{
 		foreach ( $required as $field ) {
 			if ( !isset( $data[$field] ) )
