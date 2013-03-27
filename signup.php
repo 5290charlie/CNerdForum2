@@ -3,8 +3,10 @@
 /*************************************************
 			Signup Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/24/2013
+	Author: Charlie McClung
+	Updated: 3/24/2013
+		Displays form for users to signup for
+		CNerdForum
 *************************************************/
 
 // Include configuration file

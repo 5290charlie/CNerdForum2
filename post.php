@@ -3,8 +3,10 @@
 /*************************************************
 			Post Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Displays single post specified by GET
+		parameter pid	
 *************************************************/
 
 // Include configuration file

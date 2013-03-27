@@ -3,8 +3,11 @@
 /*************************************************
 			CN_Error Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/25/2013
+	Author: Charlie McClung
+	Updated: 3/25/2013
+		Class designed to be the custom error
+		handler for CNerdForum (defined in 
+		config.php)
 *************************************************/
 
 // Prevent Direct Access

@@ -3,8 +3,9 @@
 /*************************************************
 			CN_User Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/24/2013
+	Author: Charlie McClung
+	Updated: 3/24/2013
+		Class designed to store a user object
 *************************************************/
 
 // Prevent Direct Access

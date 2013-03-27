@@ -3,8 +3,10 @@
 /*************************************************
 			Global Message Display
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/25/2013
+	Author: Charlie McClung
+	Updated: 3/25/2013
+		Retrieves messages for current session
+		from the database and display them
 *************************************************/
 
 // Prevent direct access

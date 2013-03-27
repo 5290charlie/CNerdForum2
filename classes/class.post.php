@@ -1,10 +1,12 @@
 <?php
 
 /*************************************************
-			CN_Post
+			CN_Post Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/24/2013
+	Author: Charlie McClung
+	Updated: 3/24/2013
+		Class designed to store a post of the
+		CNerdForum
 *************************************************/
 
 // Prevent Direct Access

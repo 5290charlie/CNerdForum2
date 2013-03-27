@@ -3,8 +3,9 @@
 /*************************************************
 			Global Footer
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/23/2013
+	Author: Charlie McClung
+	Updated: 3/23/2013
+		Included at the bottom of every page
 *************************************************/
 
 // Prevent Direct Access

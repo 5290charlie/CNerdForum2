@@ -3,8 +3,9 @@
 /*************************************************
 			Topics Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Displays All Topics
 *************************************************/
 
 // Include configuration file

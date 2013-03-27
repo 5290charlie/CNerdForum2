@@ -3,8 +3,10 @@
 /*************************************************
 			Login Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Displays form for a user to login to
+		CNerdForum
 *************************************************/
 
 // Include configuration file

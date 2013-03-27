@@ -1,10 +1,12 @@
 <?php
 
 /*************************************************
-			Breadcrumbs for page tracking
+			Global Breadcrumbs
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Builds page tracking links at the top of
+		content div
 *************************************************/
 
 // Prevent direct access

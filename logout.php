@@ -3,8 +3,10 @@
 /*************************************************
 			Logout Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/24/2013
+	Author: Charlie McClung
+	Updated: 3/24/2013
+		Logs current user/session out of the
+		CNerdForum
 *************************************************/
 
 // Include configuration file

@@ -1,10 +1,11 @@
 <?php
 
 /*************************************************
-			CNerdForum Index Page
+			Index Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		CNerdForum Homepage
 *************************************************/
 
 // Include configuration file

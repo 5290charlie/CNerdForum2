@@ -3,8 +3,18 @@
 /*************************************************
 			CN Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Class designed to handle all system-level
+		functionality:
+			- check array for required keys
+			- initialize site
+			- check status of site
+			- redirect browser
+			- store/get/cleanup site messages
+			- get database object instance
+			- get user object instance
+			
 *************************************************/
 
 // Prevent Direct Access

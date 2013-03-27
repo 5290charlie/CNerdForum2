@@ -3,8 +3,10 @@
 /*************************************************
 			CN_Comment Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/25/2013
+	Author: Charlie McClung
+	Updated: 3/25/2013
+		Class designed to store a comment made 
+		on a post
 *************************************************/
 
 // Prevent Direct Access

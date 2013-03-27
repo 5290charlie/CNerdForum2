@@ -3,8 +3,10 @@
 /*************************************************
 			CN_Vote Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/23/2013
+	Author: Charlie McClung
+	Updated: 3/23/2013
+		Class designed to track users "votes" on
+		posts & comments
 *************************************************/
 
 // Prevent Direct Access

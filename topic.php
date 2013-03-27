@@ -3,8 +3,10 @@
 /*************************************************
 			Topic Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Displays single topic specified by GET
+		parameter tid
 *************************************************/
 
 // Include configuration file

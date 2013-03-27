@@ -3,8 +3,12 @@
 /*************************************************
 			CN_Trophy Class
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/23/2013
+	Author: Charlie McClung
+	Updated: 3/23/2013
+		Class designed to store trophy objects
+		(trophies are obtained by earning mana
+		when other users "vote" on another users
+		posts/comments)
 *************************************************/
 
 // Prevent Direct Access

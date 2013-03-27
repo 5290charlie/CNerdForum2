@@ -3,8 +3,10 @@
 /*************************************************
 			CONFIGURATION FILE
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/26/2013
+	Author: Charlie McClung
+	Updated: 3/26/2013
+		Define all constants and prepare site
+		for use
 *************************************************/
 
 // Set error reporting

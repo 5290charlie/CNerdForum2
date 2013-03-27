@@ -1,10 +1,12 @@
 <?php
 
 /*************************************************
-			Test touch() method
+			Touch Page
 **************************************************
-			Author: Charlie McClung
-			Updated: 3/25/2013
+	Author: Charlie McClung
+	Updated: 3/25/2013
+		Tests Topic or Post touch() method with
+		either tid or pid as GET parameter
 *************************************************/
 
 // Include configuration file
