@@ -1,5 +1,12 @@
 <?php
 
+/*************************************************
+			Global Message Display
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/25/2013
+*************************************************/
+
 // Prevent direct access
 defined( '_CN_EXEC' ) or die( 'Restricted access' );
 

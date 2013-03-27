@@ -1,5 +1,12 @@
 <?php
 
+/*************************************************
+			CONFIGURATION FILE
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/26/2013
+*************************************************/
+
 // Set error reporting
 error_reporting(E_ALL);
 

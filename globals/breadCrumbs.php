@@ -1,4 +1,12 @@
 <?php
+
+/*************************************************
+			Breadcrumbs for page tracking
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/26/2013
+*************************************************/
+
 // Prevent direct access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 

@@ -1,5 +1,12 @@
 <?php
 
+/*************************************************
+			CN_User Class
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/24/2013
+*************************************************/
+
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 

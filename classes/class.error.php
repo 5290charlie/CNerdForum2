@@ -1,5 +1,12 @@
 <?php
 
+/*************************************************
+			CN_Error Class
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/25/2013
+*************************************************/
+
 // Prevent Direct Access
 defined( '_CN_EXEC' ) or die( 'Restricted access' );
 

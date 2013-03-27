@@ -1,4 +1,12 @@
 <?php
+
+/*************************************************
+			Test touch() method
+**************************************************
+			Author: Charlie McClung
+			Updated: 3/25/2013
+*************************************************/
+
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
