@@ -64,11 +64,14 @@ class CN_User {
 				
 		if ( $dbo->hasError( $response ) ) {
 			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
+			throw new Exception( 'Could not find user with given criteria!' );
 		}
 		if ( $dbo->num_rows( $response ) != 1 ) {
 			// User doesn't exist!
+			return false;
 		}
 				
+		// Build object based on data from the database
 		$row = $dbo->getResultObject( $response )->fetch_object();
 		$this->id			= $row->user_id;
 		$this->username		= $row->username;
@@ -102,7 +105,7 @@ class CN_User {
 		return $instance;
 	}
 	
-	// Private function that validates two passwords
+	// Private function that validates two passwords with salt & md5 hash
 	private static function validate_password( $stored_password, $password )
 	{
 		$salt = substr( $stored_password, 0, 64 );
@@ -144,13 +147,17 @@ class CN_User {
 		if( $sqlobj->hasStopFlag() ) 
 		{
 			$sqlobj->submitErrorLog( $response, 'User::authenticate() - Error authenticating user: ' . $username );
+			
+			// SQL Error looking user up in database
 			return CN_AUTH_ERROR_SQL;
 		} 
 		else if ( $numRows == 0 ) 
-		{
+		{	
+			// User doesn't exist
 			return CN_AUTH_ERROR_NOUSER;
 		}
 		
+		// Check given password with stored encrypted password
 		if ( self::validate_password($stored_password, $password) )
 		{
 			$query = ' 
@@ -162,15 +169,21 @@ class CN_User {
 			$sqlobj->createQuery( $query );
 			$sqlobj->bind( ':username', $username );
 			
-			if ( $response = $sqlobj->runQuery() )
+			if ( $response = $sqlobj->runQuery() ) {
+				// Authentication successful
 				return CN_AUTH_SUCCESS;
-			else
+			} else {
+				// Generic SQL authentication error
 				return CN_AUTH_ERROR_SQL;
+			}
 		}		
 		else
 		{
+			// Password does not match stored encrypted password
 			return CN_AUTH_ERROR_INVALID;
 		}
+		
+		// Unknown authentication error
 		return CN_AUTH_ERROR_UNKNOWN;
 	}
 	
@@ -229,22 +242,22 @@ class CN_User {
 			$response = $dbo->runQuery();
 			
 			// Logged in. Return with redirect location
-			echo "Redirect: $redirect";
 			return array( CN_LOGIN_SUCCESS, $redirect );
 		} else {
 			// If user just closed browser, restart session
 			if ( $_SESSION['sessionID'] != $this->_session_id() ) {
+				// Log user out and back in
 				if ( $this->logout( true ) ) {
 					return $this->login( $redirect );
 				} else {
+					// Error logging user out before trying to restart session
 					return array( CN_LOGIN_ERROR );
 				}
 			}
 		}
 		
 		// Otherwise this function was called twice, redirect
-				echo "Redirect: $redirect";
-	return array( CN_LOGIN_SUCCESS, $redirect );
+		return array( CN_LOGIN_SUCCESS, $redirect );
 	}
 	
 	// Logs the current user out
@@ -370,7 +383,7 @@ class CN_User {
 	}
 	
 	// Adds a new user
-	public static function add( array $parameters ) {
+	public static function add( $criteria ) {
 		$dbo =& CN::getDBO();
 		
 		$required = array(
@@ -381,14 +394,17 @@ class CN_User {
 			'email'
 		);
 		
-		if ( !CN::required( $required, $parameters ) )
+		// Check for required criteria
+		if ( !CN::required( $required, $criteria ) )
 			throw new Exception( 'Required information not provided!', 1 );
 			
-		if ( !isset( $parameters['permission'] ) || empty( $parameters['permission'] ) )
-			$parameters['permission'] = CN_PERM_USER;
-			
+		// If no permission level provided, default to CN_PERM_USER
+		if ( !isset( $criteria['permission'] ) || empty( $criteria['permission'] ) )
+			$criteria['permission'] = CN_PERM_USER;
+		
+		// Encrypt password to store in database	
 		$salt = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
-		$hash = hash('md5', $salt . $parameters['password']);
+		$hash = hash('md5', $salt . $criteria['password']);
 
 		$pass = $salt . $hash;
 			
@@ -400,12 +416,12 @@ class CN_User {
 		';
 		
 		$dbo->createQuery( $query );
-		$dbo->bind( ':user', $parameters['username'] );
+		$dbo->bind( ':user', $criteria['username'] );
 		$dbo->bind( ':pass', $pass );
-		$dbo->bind( ':fname', $parameters['firstname'] );
-		$dbo->bind( ':lname', $parameters['lastname'] );
-		$dbo->bind( ':email', $parameters['email'] );
-		$dbo->bind( ':perm', $parameters['permission'] );
+		$dbo->bind( ':fname', $criteria['firstname'] );
+		$dbo->bind( ':lname', $criteria['lastname'] );
+		$dbo->bind( ':email', $criteria['email'] );
+		$dbo->bind( ':perm', $criteria['permission'] );
 		
 		$response = $dbo->runQuery();
 		

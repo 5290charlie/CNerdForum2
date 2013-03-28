@@ -51,6 +51,7 @@ class CN_Comment {
 				throw new Exception( 'The specified comment does not exist!' );
 			}
 			
+			// Build object based on data from the database
 			$row = $dbo->getResultObject( $response )->fetch_object();
 			$this->id 		= $row->post_id;
 			$this->post		= new CN_Post( $row->post_id );
@@ -141,6 +142,7 @@ class CN_Comment {
 			'body'
 		);
 		
+		// Check for the required criteria
 		if ( CN::required( $required, $criteria ) ) {
 			$query = '
 				INSERT 

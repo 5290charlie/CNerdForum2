@@ -12,9 +12,11 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+// Get instance of CN class and initialize site
 $cn =& CN::getInstance();
 $cn->init();
 
+// If GET parameter "pid" specified, update the post
 if( isset( $_GET['pid'] ) ) {
 	$post = new CN_Post( $_GET['pid'] );
 	if ($post->touch() ) {
@@ -30,8 +32,12 @@ if( isset( $_GET['pid'] ) ) {
 			$_SESSION['sessionID']
 		);
 	}
+	
+	// Redirect back to topic page containing this post
+	CN::redirect( CN_WEBROOTPAGE . 'topic?tid=' . $post->topic->id );
 }
 
+// If GET parameter "tid" specified, update the topic
 if( isset( $_GET['tid'] ) ) {
 	$topic = new CN_Topic( $_GET['tid'] );
 	if ($topic->touch() ) {
@@ -47,8 +53,8 @@ if( isset( $_GET['tid'] ) ) {
 			$_SESSION['sessionID']
 		);
 	}
+
+	// Redirect back to topics page
+	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
-
-CN::redirect( CN_WEBROOTPAGE . 'topics' );
-
 ?>

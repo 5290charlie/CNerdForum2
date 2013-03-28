@@ -12,6 +12,7 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+// Get instance of CN class and initialize site
 $cn =& CN::getInstance();
 $cn->init();
 
@@ -30,13 +31,17 @@ if( !empty( $_POST ) && !empty( $_POST['post_id'] ) && !empty( $_POST['user_id']
 		);
 	}
 	
+	// Redirect back to post that was commented on
 	CN::redirect( CN_WEBROOTPAGE . 'post?pid=' . $_POST['post_id'] );
 } 
 
 if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
+	
+	// Initialize new post with specified pid (GET param)
 	$post = new CN_Post( $_GET['pid'] );
 	$post->view();
 	
+	// Get all comments for current post
 	$comments = $post->getComments();
 
 	// Require header global

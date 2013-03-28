@@ -54,6 +54,7 @@ class CN_Topic {
 				throw new Exception( 'The specified topic does not exist!' );
 			}
 			
+			// Build object based on data from the database
 			$row = $dbo->getResultObject( $response )->fetch_object();
 			$this->id 		= $row->topic_id;
 			$this->title	= $row->title;
@@ -117,6 +118,7 @@ class CN_Topic {
 			'details'
 		);
 		
+		// Check for required criteria
 		if ( CN::required( $required, $criteria ) ) {
 			$query = '
 				INSERT 

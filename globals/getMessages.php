@@ -12,8 +12,10 @@
 // Prevent direct access
 defined( '_CN_EXEC' ) or die( 'Restricted access' );
 
+// Get messages for current session
 $messages = $cn->getMessages();
 
+// If session contains messages, display them
 if ( !empty( $messages ) ) {
 	
 	foreach( $messages as $message_type => $message_cue ) {

@@ -11,6 +11,7 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+// Get instance of CN class and initialize site
 $cn =& CN::getInstance();
 $cn->init();
 
@@ -29,9 +30,11 @@ if ( !empty( $_POST ) && !empty( $_POST['user_id'] ) && !empty( $_POST['title'] 
 		);
 	}
 	
+	// Redirect back to topics page after creating topic
 	CN::redirect( CN_WEBROOTPAGE . 'topics' );
 }
 
+// Initialize topics object with all topics
 $topics = CN_Topic::getAll();
 
 // Require header global

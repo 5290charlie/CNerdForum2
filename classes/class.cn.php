@@ -12,9 +12,9 @@
 			- check status of site
 			- redirect browser
 			- store/get/cleanup site messages
-			- get database object instance
 			- get user object instance
-			
+			- get database object instance
+			- generate random keys			
 *************************************************/
 
 // Prevent Direct Access
@@ -381,6 +381,7 @@ final class CN {
 				unset( $_SESSION['messages'] );
 			}
 			
+			// Cycle through all messages for current session and add them to messages array
 			for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
 				switch( $dbo->field( $a, 'type', $response ) ) {
 					case CN_MSG_ERROR:

@@ -46,6 +46,8 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		
 			<?php // Begin HTML header tag ?>	
 			<header id="header">
+			
+				<?php // Begin HTML userdata div ?>	
 				<div id="userdata">
 					<?php if ( isset( $user ) && $user->isOnline() ) {
 						echo 'Welcome, ' . $user->username; ?>
@@ -57,13 +59,20 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 					<h2>[a place for nerds]</h2>
 				</hgroup>
 			</header>
+			<?php // Begin HTML content div ?>	
 			<div id="content">
+			
+				<?php // Begin HTML messages div ?>	
 				<div id="messages">
 					<?php require_once( CN_DIR_GLOBALS . 'getMessages.php' ); ?>
 				</div>
 				<?php if ( isset( $user ) && $user->isOnline() ) { ?>
-				<div id="breadcrumbs">
-					<?php require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' ); ?>
-				</div>
+				
+					<?php // Begin HTML breadcrumbs div ?>	
+					<div id="breadcrumbs">
+						<?php require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' ); ?>
+					</div>
 				<?php } ?>
+				
+				<?php // Begin HTML main div ?>	
 				<div id="main">

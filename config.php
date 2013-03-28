@@ -9,12 +9,7 @@
 		for use
 *************************************************/
 
-// Set error reporting
-error_reporting(E_ALL);
-
-/********************
-	Constants
-********************/
+/*** Constants ***/
 
 // Defined to ensure internal files have config.php file included
 define( '_CN_EXEC', 1 );
@@ -24,6 +19,10 @@ define( 'CN_ST_OFFLINE', 0 );
 define( 'CN_ST_DEBUG', 1 );
 define( 'CN_ST_LIVE', 2 );
 define( 'CN_STATUS', CN_ST_DEBUG );
+
+// Set error reporting depending on CN_STATUS
+if ( CN_STATUS == CN_ST_DEBUG )
+	error_reporting( E_ALL );
 
 // Global Messages
 define( 'CN_GLOBAL_ERROR', 'An unexpected error has occured. Please try again or contact the webmaster.' );
@@ -115,9 +114,7 @@ define( 'CN_MSG_WARNING', -1 );
 define( 'CN_MSG_ANNOUNCEMENT', 0 );
 define( 'CN_MSG_SUCCESS', 1 );
 
-/*******************************
-	Initialization & Setup
-*******************************/
+/*** Initialization & Setup ***/
 
 // Define the class and interface autoloader function
 function __autoload( $class_name ) {
@@ -128,6 +125,8 @@ function __autoload( $class_name ) {
 	
 	if( file_exists( CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php' ) ) {
 		require_once CN_DIR_CLASSES . 'class.' . strtolower( $class_name ) . '.php';
+		
+// No abstracts, handlers, or interfaces yet...
 /*	} elseif( file_exists( DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php' ) ) {
 		require_once DIR_ABSTRACTS . 'abstract.' . strtolower( $class_name ) . '.php';
 	} elseif( file_exists( DIR_INTERFACES . 'interface.' . str_replace( 'interface', '', strtolower( $class_name ) ) . '.php' ) ) {
@@ -145,24 +144,7 @@ function __autoload( $class_name ) {
 // Set the default timezone to GMT-7
 date_default_timezone_set( 'America/Denver' );
 
+// Initialize global objects as null
 $cn = $dbo = $user = null;
-/*
 
-// Begin Session
-session_name( CN_SESSION_NAME );
-session_start();
-
-// Regenerate session ID (hinders session hijacking)
-session_regenerate_id();
-
-// Generate CNerdForum session ID
-if ( !isset( $_SESSION['sessionID'] ) )
-	$_SESSION['sessionID'] = CN::generateKey( CN_SESSION_KEYLENGTH_SESSID );
-*/
-
-/*
-$cn =& CN::getInstance();
-$dbo =& CN::getDBO();
-$user =& User::getInstance();
-*/
 ?>

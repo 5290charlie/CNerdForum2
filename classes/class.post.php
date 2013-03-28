@@ -57,6 +57,7 @@ class CN_Post {
 				throw new Exception( 'The specified post does not exist!' );
 			}
 			
+			// Build object based on data from the database
 			$row = $dbo->getResultObject( $response )->fetch_object();
 			$this->id 		= $row->post_id;
 			$this->topic	= new CN_Topic( $row->topic_id );
@@ -157,6 +158,7 @@ class CN_Post {
 			'details'
 		);
 		
+		// Check for required criteria
 		if ( CN::required( $required, $criteria ) ) {
 			$query = '
 				INSERT 

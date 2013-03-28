@@ -12,6 +12,7 @@
 // Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+// Get instance of CN class and initialize site
 $cn =& CN::getInstance();
 $cn->init();
 
@@ -21,6 +22,8 @@ if ( isset( $user ) && $user->isOnline() ) {
 		CN_MSG_ANNOUNCEMENT,
 		$_SESSION['sessionID']
 	);
+	
+	// If user is logged in, redirect to homepage
 	CN::redirect( CN_WEBROOTPAGE );
 }
 
