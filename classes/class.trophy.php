@@ -147,6 +147,7 @@ class CN_Trophy {
 	public static function getTrophies( $mana ) {
 		$dbo =& CN::getDBO();
 		
+		// Make sure $mana provided is a number 
 		if ( is_numeric( $mana ) ) {
 			$query = '
 				SELECT 	* 
@@ -161,6 +162,7 @@ class CN_Trophy {
 				throw new Exception( 'Could not load trophy information' );
 			}
 			
+			// Get number of trophies earned with $mana
 			$numrows = $dbo->num_rows( $response );
 			
 			if ( $numrows == 0 ) {
@@ -184,12 +186,67 @@ class CN_Trophy {
 	
 	// Returns rank earned with given mana
 	public static function getRank( $mana ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		// Make sure $mana provided is a number 
+		if ( is_numeric( $mana ) ) {
+			$query = '
+				SELECT 	*
+				FROM	' . CN_TROPHIES_TABLE . ' 
+				WHERE	1
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Trophy::getRank($mana)' );
+				throw new Exception( 'Could not load trophy information' );
+			}
+			
+			// Get number of trophies earned with $mana
+			$numrows = $dbo->num_rows( $response );
+			
+			if ( $numrows == 0 ) {
+				throw new Exception( 'No trophies exist for given mana range!' );
+			}
+			
+			// Create empty array for trophies
+			$rank = '';
+			
+			for ( $a = 0; $a < $numrows; $a++ ) {
+				// Build object based on data from the database
+				$row = $dbo->getResultObject( $response )->fetch_object();
+				
+				if ( $mana >= $row->mana )
+					$rank = $row->rank;
+				else
+					return $rank;
+			}
+			
+			return $rank;
+		} else {
+			throw new Exception( 'No-numeric mana value' );
+		}
 	}
 	
 	// Deletes current trophy
 	public function delete() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			DELETE	
+			FROM	' . CN_TROPHIES_TABLE . ' 
+			WHERE	trophy_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+			
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Trophy::delete()' );
+			throw new Exception( 'Could not delete selected trophy!' );
+		} else {
+			return true;
+		}
 	}
 }
 
