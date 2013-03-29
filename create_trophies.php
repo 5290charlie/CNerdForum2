@@ -106,11 +106,11 @@ $trophies = array(
 $trophies = CN_Trophy::getTrophies( 1234 );
 
 foreach( $trophies as $trophy ) {
-	if ( CN_Trophy::add( $trophy ) )
+/*	if ( CN_Trophy::add( $trophy ) )
 		echo 'Trophy added!';
 	else
 		echo 'Failed to add trophy!!!';
-	
+*/	
 	echo 'Mana: ' . $trophy['mana'] . '<br />';
 	echo 'Rank: ' . $trophy['rank'] . '<br />';
 	echo 'Icon: <img src="' . $trophy['icon'] . '" /><br />';
