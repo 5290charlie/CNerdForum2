@@ -31,15 +31,58 @@ class CN_Trophy {
 	public $icon;
 	
 	// Constructor to build a new Trophy Object
-	public function __construct( $mana, $rank, $icon ) {
-		$this->mana = $mana;
-		$this->rank = $rank;
-		$this->icon = $icon;
+	public function __construct( $id ) {
+		
+	}
+	
+	// Add new trophy
+	public static function add( $criteria ) {
+		$dbo =& CN::getDBO();
+		
+		$required = array(
+			'mana',
+			'rank',
+			'icon'
+		);
+		
+		// Check for required criteria
+		if ( CN::required( $required, $criteria ) ) {
+			$query = '
+				INSERT 
+				INTO 	' . CN_TROPHIES_TABLE . ' 
+				( mana, rank, icon ) 
+				VALUES
+				( :mana, :rank, :icon )
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':mana', $criteria['mana'] );
+			$dbo->bind( ':rank', $criteria['rank'] );
+			$dbo->bind( ':icon', $criteria['icon'] );
+			
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Trophy::add()' );
+				throw new Exception( 'Could not add new trophy!' );
+			} else {
+				// No SQL error, trophy was added!
+				return true;
+			}
+		}
+		
+		// Return false by default
+		return false;
 	}
 	
 	// Returns a specific trophy
 	public static function get( $id ) {
 		// TODO
+	}
+	
+	// Returns array of all trophies
+	public static function getAll() {
+	
 	}
 	
 	// Returns all trophies earned with given mana
