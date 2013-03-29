@@ -69,7 +69,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 					<table>
 						<tr>
 							<td class="right">
-								<label for="firstname">Firstname:</label>
+								<label for="firstname">First Name:</label>
 							</td>
 							<td>
 								<input type="text" id="firstname" name="firstname" />
@@ -77,7 +77,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 						<tr>
 							<td class="right">
-								<label for="lastname">Lastname:</label>
+								<label for="lastname">Last Name:</label>
 							</td>
 							<td>
 								<input type="text" id="lastname" name="lastname" />
