@@ -101,18 +101,26 @@ $trophies = array(
 		'icon' => CN_WEBDIR_TROPHIES . 'evil genius.png'
 	)
 );
-*/
-
-$trophies = CN_Trophy::getTrophies( 1234 );
 
 foreach( $trophies as $trophy ) {
-/*	if ( CN_Trophy::add( $trophy ) )
+	if ( CN_Trophy::add( $trophy ) )
 		echo 'Trophy added!';
 	else
-		echo 'Failed to add trophy!!!';
-*/	
+		echo 'Failed to add trophy!!!';	
 	echo 'Mana: ' . $trophy['mana'] . '<br />';
 	echo 'Rank: ' . $trophy['rank'] . '<br />';
 	echo 'Icon: <img src="' . $trophy['icon'] . '" /><br />';
+}
+*/
+
+$mana = 1234;
+
+$trophies = CN_Trophy::getTrophies( $mana );
+echo 'Getting trophies for mana: ' . $mana . '<br />';
+
+foreach( $trophies as $trophy ) {
+	echo 'Mana: ' . $trophy->mana . '<br />';
+	echo 'Rank: ' . $trophy->rank . '<br />';
+	echo 'Icon: <img src="' . $trophy->icon . '" /><br /><br />';
 }
 ?>
