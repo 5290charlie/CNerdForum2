@@ -70,7 +70,7 @@ final class CN {
 		}
 		
 		// Security layer
-		if ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) {
+		if ( ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) && ( strpos( $_SERVER['SCRIPT_FILENAME'], 'signup' ) === false ) ) {
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
 				

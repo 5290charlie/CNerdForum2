@@ -20,7 +20,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<h1>Homepage</h1>
 				<br />
-				<a href="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">View Topics</a>
+				<a class="button" href="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">View Topics</a>
 				<br />
 				<p>More coming soon!</p>
 <?php

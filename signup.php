@@ -4,7 +4,7 @@
 			Signup Page
 **************************************************
 	Author: Charlie McClung
-	Updated: 3/24/2013
+	Updated: 3/29/2013
 		Displays form for users to signup for
 		CNerdForum
 *************************************************/
@@ -16,19 +16,50 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
+// If the user is already logged in, redirect to home
 if ( isset( $user ) && $user->isOnline() ) {
 	$cn->enqueueMessage(
 		'You are already logged in!',
 		CN_MSG_ANNOUNCEMENT,
 		$_SESSION['sessionID']
 	);
-	
-	// If user is logged in, redirect to homepage
 	CN::redirect( CN_WEBROOTPAGE );
 }
 
-if ( !empty( $_POST ) ) {
-	
+// Handle login POST request
+if ( !empty( $_POST ) && !empty( $_POST['firstname'] ) && !empty( $_POST['lastname'] ) 
+	&& !empty( $_POST['email'] ) && !empty( $_POST['username'] )
+	&& !empty( $_POST['password'] ) && !empty( $_POST['passconf'] ) 
+) {
+	if ( $_POST['password'] == $_POST['passconf'] ) {
+		if ( CN_User::add( $_POST ) ) {
+			$cn->enqueueMessage(
+				'User created!',
+				CN_MSG_SUCCESS,
+				$_SESSION['sessionID']
+			);
+			CN::redirect( CN_WEBLOGIN );
+		} else {
+			$cn->enqueueMessage(
+				'Error creating new user: ' . $_POST['username'],
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+		}
+	} else {
+		$cn->enqueueMessage(
+			'Passwords do not match',
+			CN_MSG_ERROR,
+			$_SESSION['sessionID']
+		);
+	}
+// Bad POST variable combination
+} elseif ( !empty( $_POST ) ) {
+	$cn->enqueueMessage(
+		'The signup information is incorrect or missing.',
+		CN_MSG_ERROR,
+		$_SESSION['sessionID']
+	);
 }
 
 // Require header global
@@ -93,6 +124,8 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 					</table>
 				</form>
+				<hr>
+				<a class="button" href="<?php echo CN_WEBLOGIN; ?>">Login</a>
 <?php
 // Require footer global
 require_once( CN_DIR_GLOBALS . 'footer.php' );

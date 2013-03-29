@@ -60,6 +60,21 @@ html {
 	body {
 		background: url('images/total.png');
 		font-family: 'Sintony', sans-serif;
+		
+		a.button {
+			text-decoration: none;
+			color: #fff;
+			background: #000;
+			padding: 6px;
+			margin-left: 10px;
+			font-size: 12px;
+			.border-radius-top();
+			.border-radius-bottom();
+			
+			&:hover {
+				background: #666;
+			}
+		}
 				
 		/*** Begin html>body>container ***/
 		div#container {
@@ -81,21 +96,6 @@ html {
 					font-size: 12px;
 					color: #000;
 					padding: 20px;
-					
-					a.button {
-						text-decoration: none;
-						color: #fff;
-						background: #000;
-						padding: 6px;
-						margin-left: 10px;
-						font-size: 12px;
-						.border-radius-top();
-						.border-radius-bottom();
-						
-						&:hover {
-							background: #666;
-						}
-					}
 				}
 				
 				hgroup {
