@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+/*
 // Define all trophies and ranks
 $trophies = array(
 	// n00b rank
@@ -100,6 +101,9 @@ $trophies = array(
 		'icon' => CN_WEBDIR_TROPHIES . 'evil genius.png'
 	)
 );
+*/
+
+$trophies = CN_Trophy::getTrophies( 1234 );
 
 foreach( $trophies as $trophy ) {
 	if ( CN_Trophy::add( $trophy ) )
@@ -107,8 +111,8 @@ foreach( $trophies as $trophy ) {
 	else
 		echo 'Failed to add trophy!!!';
 	
-	echo "\tMana: " . $trophy['mana'] . '<br />';
-	echo "\tRank: " . $trophy['rank'] . '<br />';
-	echo "\tIcon: " . $trophy['icon'] . '<br />';
+	echo 'Mana: ' . $trophy['mana'] . '<br />';
+	echo 'Rank: ' . $trophy['rank'] . '<br />';
+	echo 'Icon: <img src="' . $trophy['icon'] . '" /><br />';
 }
 ?>

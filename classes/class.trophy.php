@@ -32,7 +32,34 @@ class CN_Trophy {
 	
 	// Constructor to build a new Trophy Object
 	public function __construct( $id ) {
+		$dbo =& CN::getDBO();
 		
+		if ( is_numeric( $id ) ) {
+			$query = '
+				SELECT 	* 
+				FROM	' . CN_TROPHIES_TABLE . ' 
+				WHERE	trophy_id = "' . $dbo->sqlsafe( $id ) . '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Trophy::__construct()' );
+				throw new Exception( 'Could not load trophy information' );
+			}
+			if ( $dbo->num_rows( $response ) != 1 ) {
+				throw new Exception( 'The specified trophy does not exist!' );
+			}
+			
+			// Build object based on data from the database
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			$this->id = $row->trophy_id;
+			$this->mana = $row->mana;
+			$this->rank = $row->rank;
+			$this->icon = $row->icon;
+		} else {
+			throw new Exception( 'Invalid trophy ID!' );
+		}
 	}
 	
 	// Add new trophy
@@ -77,17 +104,82 @@ class CN_Trophy {
 	
 	// Returns a specific trophy
 	public static function get( $id ) {
-		// TODO
+		return new CN_Trophy( $id );
 	}
 	
 	// Returns array of all trophies
 	public static function getAll() {
-	
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT 	* 
+			FROM 	' . CN_TROPHIES_TABLE . ' 
+			WHERE	1
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Trophy::getAll()' );
+			throw new Exception( 'Could not load all trophy information' );
+		}
+		
+		$numrows = $dbo->num_rows( $response );
+		
+		if ( $numrows == 0 ) {
+			throw new Exception( 'No trophies exist!' );
+		}
+		
+		// Create empty array for trophies
+		$trophies = array();
+		
+		for ( $a = 0; $a < $numrows; $a++ ) {
+			// Build object based on data from the database
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			
+			$trophies[$a] = new CN_Trophy( $row->trophy_id );
+		}
+		
+		return $trophies;
 	}
 	
 	// Returns all trophies earned with given mana
 	public static function getTrophies( $mana ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		if ( is_numeric( $mana ) ) {
+			$query = '
+				SELECT 	* 
+				FROM 	' . CN_TROPHIES_TABLE . ' 
+				WHERE	mana <= "' . $dbo->sqlsafe( $mana ) . '" 
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Trophy::getTrophies($mana)' );
+				throw new Exception( 'Could not load trophy information' );
+			}
+			
+			$numrows = $dbo->num_rows( $response );
+			
+			if ( $numrows == 0 ) {
+				throw new Exception( 'No trophies exist for given mana range!' );
+			}
+			
+			// Create empty array for trophies
+			$trophies = array();
+			
+			for ( $a = 0; $a < $numrows; $a++ ) {
+				// Build object based on data from the database
+				$row = $dbo->getResultObject( $response )->fetch_object();
+				$trophies[$a] = new CN_Trophy( $row->trophy_id );
+			}
+			
+			return $trophies;
+		} else {
+			throw new Exception( 'No-numeric mana value' );
+		}
 	}
 	
 	// Returns rank earned with given mana
