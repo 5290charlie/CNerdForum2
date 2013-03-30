@@ -260,9 +260,8 @@ class CN_Post {
 		
 		if ( $total != null )
 			return $total;
-		} else {
+		else
 			return '0';
-		}
 	}
 	
 	// Delete current post
