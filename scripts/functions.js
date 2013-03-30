@@ -9,6 +9,7 @@ function voteComment( cid, val ) {
 	
 	$.post( $url, { comment_id: cid, value: val }, function( data ) {
 		$("#post").html( data );
+		updateUserData();
 	});
 }
 
@@ -17,5 +18,14 @@ function votePost( pid, val ) {
 	
 	$.post( $url, { post_id: pid, value: val }, function( data ) {
 		$("#topic").html( data );
+		updateUserData();
+	});
+}
+
+function updateUserData() {
+	$url = '/ajax/userdata';
+	
+	$.post( $url, function( data ) {
+		$("#userdata").html( data );
 	});
 }
