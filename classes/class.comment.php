@@ -53,7 +53,7 @@ class CN_Comment {
 			
 			// Build object based on data from the database
 			$row = $dbo->getResultObject( $response )->fetch_object();
-			$this->id 		= $row->post_id;
+			$this->id 		= $row->comment_id;
 			$this->post		= new CN_Post( $row->post_id );
 			$this->body		= $row->body;
 			$this->date		= $row->date;
