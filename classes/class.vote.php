@@ -51,17 +51,24 @@ class CN_Vote {
 			
 		// Make sure value is in valid range
 		if ( ( $criteria['value'] >= CN_VOTE_DOWN ) && ( $criteria['value'] <= CN_VOTE_UP ) ) {
-		
-			// Make sure criteria has either 'post_id' or 'comment_id'
-			if ( isset( $criteria['post_id'] ) || isset( $criteria['comment_id'] ) ) {
+
+			// Start building query		
+			$query = '
+				INSERT	
+				INTO	' . CN_VOTES_TABLE
+			;
 			
-				$query = '
-					INSERT	
-					INTO	' . CN_VOTES_TABLE . ' 
-					( user_id, post_id, comment_id, value ) 
-					VALUES
-					( :uid, :pid, :cid, :val )
-				';
+			// Handle post voting
+			if ( isset( $criteria['post_id'] ) ) {
+				$queryAdd = ' (user_id, post_id, value) ';
+			// Handle comment voting
+			} elseif ( isset( $criteria['comment_id'] ) ) {
+				$queryAdd = ' (user_id, comment_id, value) ';
+			}
+				
+			$query = $query . $queryAdd . '
+				VALUES
+				(:uid, :';
 				
 				$dbo->createQuery( $query );
 				$dbo->bind( ':uid', $criteria['user_id'] );
