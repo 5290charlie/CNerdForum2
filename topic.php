@@ -44,8 +44,24 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	?>
 				<?php if ( count( $posts ) > 0 ) { ?>
 					<table id="posts">
-					<?php foreach( $posts as $p ) { ?>
+					<?php foreach( $posts as $p ) { 
+						$upvoteInfo = array(
+							'user_id' 	=> $user->id,
+							'post_id' 	=> $p->id,
+							'value' 	=> CN_VOTE_UP
+						);
+						
+						$downvoteInfo = array(
+							'user_id' 	=> $user->id,
+							'post_id' 	=> $p->id,
+							'value' 	=> CN_VOTE_DOWN
+						);
+					?>
 						<tr class="post">
+							<td class="vote">
+								<img src="<?php CN_WEBDIR_ICONS; ?>upvote.png" />
+								<img src="<?php CN_WEBDIR_ICONS; ?>downvote.png" />
+							</td>
 							<td class="title">
 								<a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>">
 									<strong><?php echo $p->title; ?></strong>
