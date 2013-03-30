@@ -51,7 +51,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 				<div id="userdata">
 					<?php if ( isset( $user ) && $user->isOnline() ) {
 						echo 'Welcome, ' . $user->username; ?> 
-						[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="5" /> 
+						[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="15" /> 
 						<?php echo $user->getMana(); ?>]
 						<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
 					<?php } ?>
