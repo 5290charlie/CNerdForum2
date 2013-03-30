@@ -249,12 +249,17 @@ class CN_Post {
 			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '" 
 		';
 		
+		echo $query;
+		
 		$response = $dbo->query( $query );
 		
 		if ( $dbo->hasError( $response ) ) {
 			$dbo->submitErrorLog( $response, 'CN_Post::getMana()' );
 			throw new Exception( 'Could not get mana for current post' );
 		}
+		
+		print_r($response);
+		echo 'Num_rows: ' . $dbo->num_rows( $response );
 		
 		if ( $dbo->num_rows( $response ) > 0 ) {
 			$row = $dbo->getResultObject( $response )->fetch_object();			
