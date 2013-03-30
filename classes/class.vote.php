@@ -150,7 +150,22 @@ class CN_Vote {
 	
 	// Delete current vote
 	public function delete() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			DELETE	
+			FROM	' . CN_VOTES_TABLE . ' 
+			WHERE	vote_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Vote::delete()' );
+			throw new Exception( 'Could not delete current vote!' );
+		} else {
+			return true;
+		}
 	}
 }
 

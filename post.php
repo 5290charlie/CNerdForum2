@@ -51,6 +51,13 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 					<table id="comments">
 					<?php foreach( $comments as $c ) { ?>
 						<tr class="comment">
+							<td class="vote">
+								<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
+								<br />
+								<?php echo $c->getMana(); ?>
+								<br />
+								<img src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
+							</td>
 							<td class="user">
 								<div class="username">
 									<?php echo $c->author->username; ?>

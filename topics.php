@@ -59,6 +59,9 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 								<div class="smallfont">
 									Views: <?php echo $t->views; ?>
 								</div>
+								<div class="smallfont">
+									Mana: <?php echo $t->getMana(); ?>
+								</div>
 							</td>
 							<td class="details">
 								<div class="smallfont">

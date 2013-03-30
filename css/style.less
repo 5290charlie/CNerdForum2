@@ -218,6 +218,48 @@ html {
 							}
 						}
 						
+						tr.comment {
+							width: 100%;
+							
+							td.vote {
+								text-align: center;
+								
+								img {
+									opacity: .4;
+									cursor: pointer;
+									
+									&:hover {
+										opacity: 1;
+									}
+								}
+								
+								img.voted {
+									opacity: 1;
+								}
+							}
+							
+							td.body {
+								width: 60%;
+								
+								p {
+									padding: 25px;
+									font-size: 18px;
+									text-align: left;
+								}
+								
+								.date {
+									font-size: 10px;
+									text-align: right;
+								}
+							}
+							
+							td.user {
+								width: 25%;
+								font-size: 11px;
+								text-align: center;
+							}
+						}
+						
 						tr.topic, tr.post {
 							width: 100%;
 							
