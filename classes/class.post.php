@@ -241,11 +241,49 @@ class CN_Post {
 	
 	// Get mana for current post
 	public function getMana() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT 	SUM( value ) AS total 
+			FROM	' . CN_VOTES_TABLE . ' 
+			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Post::getMana()' );
+			throw new Exception( 'Could not get mana for current post' );
+		}
+		
+		if ( $dbo->num_rows( $response ) > 0 ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();			
+			return $row->total;
+		} else {
+			return 0;
+		}
 	}
 	
 	// Delete current post
 	public function delete() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			DELETE 
+			FROM	' . CN_POSTS_TABLE . ' 
+			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '"
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Post::delete()' );
+			throw new Exception( 'Could not get delete current post' );
+		} else {
+			return true;
+		}
+		
+		return false;
 	}
 }
 
