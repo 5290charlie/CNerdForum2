@@ -260,7 +260,7 @@ class CN_Post {
 			$row = $dbo->getResultObject( $response )->fetch_object();			
 			return $row->total;
 		} else {
-			return 0;
+			return '0';
 		}
 	}
 	
