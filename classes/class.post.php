@@ -244,7 +244,7 @@ class CN_Post {
 		$dbo =& CN::getDBO();
 		
 		$query = '
-			SELECT 	* SUM( value ) AS total 
+			SELECT 	SUM( value ) AS total 
 			FROM	' . CN_VOTES_TABLE . ' 
 			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '" 
 		';
