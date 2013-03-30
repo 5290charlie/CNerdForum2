@@ -201,7 +201,7 @@ class CN_Topic {
 		$total = 0;
 		
 		foreach( $this->getPosts() as $post ) {
-			foreach $this->getComments() as $comment ) {
+			foreach( $this->getComments() as $comment ) {
 				$total += $comment->getMana();
 			}
 			$total += $post->getMana();
