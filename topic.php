@@ -60,11 +60,11 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 					?>
 						<tr class="post">
 							<td class="vote">
-								<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
+								<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
 								<br />
 								<?php echo $p->getMana(); ?>
 								<br />
-								<img src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
+								<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_DOWN; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
 							</td>
 							<td class="title">
 								<a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>">
