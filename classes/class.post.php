@@ -245,7 +245,7 @@ class CN_Post {
 		
 		$query = '
 			SELECT 	* ' //SUM( value ) AS total 
-			'FROM	' . CN_VOTES_TABLE . ' 
+			.'FROM	' . CN_VOTES_TABLE . ' 
 			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '" 
 		';
 		
