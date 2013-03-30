@@ -13,7 +13,7 @@ if ( !empty( $_POST ) && !empty( $_POST['comment_id'] ) && !empty( $_POST['value
 		'value' 		=> $_POST['value']
 	);
 	
-	if (CN_Vote::votePost( $newVote )) {
+	if (CN_Vote::voteComment( $newVote )) {
 	
 		$comments = $comment->post->getComments();
 		
