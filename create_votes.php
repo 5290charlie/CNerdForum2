@@ -6,7 +6,7 @@ $cn->init();
 
 $pid = 1;
 
-$post = new CN_Post( $pid )
+$post = new CN_Post( $pid );
 
 $newVote = array(
 	'user_id' 	=> $user->id,
