@@ -47,6 +47,7 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
 	?>
+				<div id="post">
 				<?php if ( count( $comments ) > 0 ) { ?>
 					<table id="comments">
 					<?php foreach( $comments as $c ) { ?>
@@ -75,6 +76,7 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 					<?php } ?>
 					</table>
 				<?php } else { echo 'No Comments'; } ?>
+				</div>
 				<hr>
 				<form id="new_comment" method="post" action="<?php echo CN_WEBROOTPAGE . 'post'; ?>">
 					<input type="hidden" id="post_id" name="post_id" value="<?php echo $post->id; ?>" />

@@ -5,21 +5,17 @@ jQuery(document).ready(function() {
 });
 
 function voteComment( cid, val ) {
-/*	$url = '/ajax/votecomment';
+	$url = '/ajax/votecomment';
 	
-	$.post( $url, { comment_id: cid, value: val }, function() {
-	
+	$.post( $url, { comment_id: cid, value: val }, function( data ) {
+		$("#post").html( data );
 	});
-*/
-	alert('cid:'+cid+' val:'+val);
 }
 
 function votePost( pid, val ) {
-/*	$url = '/ajax/votepost';
+	$url = '/ajax/votepost';
 	
-	$.post( $url, { post_id: pid, value: val }, function() {
-	
+	$.post( $url, { post_id: pid, value: val }, function( data ) {
+		$("#topic").html( data );
 	});
-*/
-	alert('pid:'+pid+' val:'+val);
 }
