@@ -65,8 +65,8 @@ class CN_Vote {
 				
 				$dbo->createQuery( $query );
 				$dbo->bind( ':uid', $criteria['user_id'] );
-				$dbo->bind( ':pid', $criteria['post_id'] );
-				$dbo->bind( ':cid', $criteria['comment_id'] );
+				$dbo->bind( ':pid', isset( $criteria['post_id'] ) ? $criteria['post_id'] : null );
+				$dbo->bind( ':cid', isset( $criteria['comment_id'] ) ? $criteria['comment_id'] : null );
 				$dbo->bind( ':val', $criteria['value'] );
 				
 				$response = $dbo->runQuery();
