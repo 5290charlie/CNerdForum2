@@ -52,11 +52,11 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 					<?php foreach( $comments as $c ) { ?>
 						<tr class="comment">
 							<td class="vote">
-								<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
+								<img onclick="upvoteComment(<?php echo $c->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
 								<br />
 								<?php echo $c->getMana(); ?>
 								<br />
-								<img src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
+								<img onclick="downvoteComment(<?php echo $c->id . ', ' . CN_VOTE_DOWN; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
 							</td>
 							<td class="user">
 								<div class="username">
