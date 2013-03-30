@@ -57,7 +57,7 @@ class CN_Vote {
 			
 				$query = '
 					INSERT	
-					INTO	' . CN_TROPHIES_TABLE . ' 
+					INTO	' . CN_VOTES_TABLE . ' 
 					( user_id, post_id, comment_id, value ) 
 					VALUES
 					( :uid, :pid, :cid, :val )
