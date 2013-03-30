@@ -50,7 +50,7 @@ class CN_Vote {
 			throw new Exception( 'Missing required criteria to create new vote!' );
 			
 		// Make sure value is in valid range
-		if ( ( $value >= CN_VOTE_DOWN ) && ( $value <= CN_VOTE_UP ) ) {
+		if ( ( $criteria['value'] >= CN_VOTE_DOWN ) && ( $criteria['value'] <= CN_VOTE_UP ) ) {
 		
 			// Make sure criteria has either 'post_id' or 'comment_id'
 			if ( isset( $criteria['post_id'] ) || isset( $criteria['comment_id'] ) ) {
