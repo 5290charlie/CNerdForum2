@@ -189,9 +189,7 @@ class CN_Comment {
 			FROM	' . CN_VOTES_TABLE . ' 
 			WHERE	comment_id = "' . $dbo->sqlsafe( $this->id ) . '" 
 		';
-		
-		echo $query;
-				
+						
 		$response = $dbo->query( $query );
 		
 		if ( $dbo->hasError( $response ) ) {
@@ -200,9 +198,7 @@ class CN_Comment {
 		}
 		
 		$total = $dbo->field( 0, 'total', $response );
-		
-		echo 'Total Mana: ' . $total;
-		
+				
 		if ( $total != null )
 			return $total;
 		else

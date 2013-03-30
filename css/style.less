@@ -128,6 +128,10 @@ html {
 		
 			}
 			
+			div.smallfont {
+				font-size: 11px;
+			}
+			
 			/*******************************
 				Begin html>body>container>content styles
 			*******************************/
@@ -186,16 +190,12 @@ html {
 						border: 1px #ffcc00 solid;
 					}
 				}
-				
-				div#tabs {
-					.border-radius-bottom(10px);
-				}
-				
+
 				div#main {
 					margin: 25px;
 					color: #000;
 					
-					table#topics, table#posts {
+					table#topics, table#posts, table#comments {
 						list-style: none;
 						font-size: 18px;
 						width: 97%;
@@ -208,21 +208,10 @@ html {
 							padding: 5px;
 						}
 						
-						thead {
-							tr {
-								td {
-									text-align: center;
-									font-size: 20px;
-									font-weight: bold;
-								}
-							}
-						}
-						
 						tr.comment {
 							width: 100%;
 							
 							td.vote {
-								width: 15%
 								text-align: center;
 								
 								img {
@@ -240,7 +229,6 @@ html {
 							}
 							
 							td.body {
-								width: 60%;
 								
 								p {
 									padding: 25px;
@@ -255,7 +243,6 @@ html {
 							}
 							
 							td.user {
-								width: 25%;
 								font-size: 11px;
 								text-align: center;
 							}
@@ -265,7 +252,6 @@ html {
 							width: 100%;
 							
 							td.vote {
-								width: 15%;
 								text-align: center;
 								
 								img {
@@ -282,9 +268,7 @@ html {
 								}
 							}
 							
-							td.title {
-								width: 45%;
-								
+							td.title {								
 								a {
 									color: #0000FF;
 									font-weight: bold;
@@ -297,23 +281,15 @@ html {
 							}
 							
 							td.stats {
-								width: 15%;
 								text-align: right;
 							}
 							
 							td.details {
-								width: 25%;
 								font-size: 10px;
 								text-align: right;
 								
-								div.smallfont {
-									font-size: 11px;
-								}
+								
 							}
-						}
-						
-						div.smallfont {
-							font-size: 14px;
 						}
 					}
 				}
