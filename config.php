@@ -82,6 +82,11 @@ define( 'CN_SESSIONS_TABLE', CN_DB_DBNAME . '.sessions' );
 define( 'CN_POSTS_PER_PAGE', 20 );
 define( 'CN_COMMENTS_PER_PAGE', 20 );
 
+// Define Vote Types
+define( 'CN_VOTE_UP', 1 );
+define( 'CN_VOTE_NETURAL', 0 );
+define( 'CN_VOTE_DOWN', -1 );
+
 // Define Allowed Tags
 define( 'CN_ALLOWED_TAGS', '<p><b><strong><ul><li><br><h1><h2><h3><span><div>' );
 

@@ -1,6 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
+$cn =& CN::getInstance();
+$cn->init();
+
 /*
 // Define all trophies and ranks
 $trophies = array(
