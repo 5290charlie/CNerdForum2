@@ -244,8 +244,8 @@ class CN_Post {
 		$dbo =& CN::getDBO();
 		
 		$query = '
-			SELECT 	SUM( value ) AS total 
-			FROM	' . CN_VOTES_TABLE . ' 
+			SELECT 	* ' //SUM( value ) AS total 
+			'FROM	' . CN_VOTES_TABLE . ' 
 			WHERE	post_id = "' . $dbo->sqlsafe( $this->id ) . '" 
 		';
 		
@@ -258,7 +258,6 @@ class CN_Post {
 			throw new Exception( 'Could not get mana for current post' );
 		}
 		
-		print_r($response);
 		echo 'Num_rows: ' . $dbo->num_rows( $response );
 		
 		if ( $dbo->num_rows( $response ) > 0 ) {
