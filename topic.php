@@ -42,6 +42,7 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
 	?>
+			<div id="topic">
 				<?php if ( count( $posts ) > 0 ) { ?>
 					<table id="posts">
 					<?php foreach( $posts as $p ) { 
@@ -108,6 +109,7 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 					<br />
 					<input type="submit" value="Add Post" />
 				</form>
+			</div>
 	<?
 	// Require footer global
 	require_once( CN_DIR_GLOBALS . 'footer.php' );

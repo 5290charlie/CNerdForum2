@@ -198,7 +198,16 @@ class CN_Topic {
 	
 	// Get mana for current topic
 	public function getMana() {
-		// TODO
+		$total = 0;
+		
+		foreach( $this->getPosts() as $post ) {
+			foreach $this->getComments() as $comment ) {
+				$total += $comment->getMana();
+			}
+			$total += $post->getMana();
+		}
+		
+		return $total;
 	}
 	
 	// Get author of current topic
@@ -208,6 +217,33 @@ class CN_Topic {
 	
 	// Delete current topic
 	public function delete() {
+		$dbo =& CN::getDBO();
+		
+		foreach( $this->getPosts() as $post ) {
+			foreach( $post->getComments() as $comment ) {
+				if ( !$comment->delete() )
+					throw new Exception( 'Error deleting comment from within post!' );
+			}
+			if ( !$post->delete() )
+				throw new Exception( 'Error deleting post from topic!' );
+		}
+				
+		$query = '
+			DELETE 
+			FROM	' . CN_TOPICS_TABLE . ' 
+			WHERE	topic_id = "' . $dbo->sqlsafe( $this->id ) . '"
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::delete()' );
+			throw new Exception( 'Could not get delete current topic' );
+		} else {
+			return true;
+		}
+		
+		return false;
 	}
 }
 

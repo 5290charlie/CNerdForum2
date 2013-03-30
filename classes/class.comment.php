@@ -182,11 +182,49 @@ class CN_Comment {
 	
 	// Get mana for current comment
 	public function getMana() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT 	SUM( value ) AS total 
+			FROM	' . CN_VOTES_TABLE . ' 
+			WHERE	comment_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+				
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Comment::getMana()' );
+			throw new Exception( 'Could not get mana for current comment' );
+		}
+		
+		$total = $dbo->field( 0, 'total', $response );
+		
+		if ( $total != null )
+			return $total;
+		else
+			return '0';
 	}
 	
 	// Delete current comment
 	public function delete() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			DELETE	
+			FROM	' . CN_COMMENTS_TABLE . ' 
+			WHERE	comment_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+				
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Comment::delete()' );
+			throw new Exception( 'Could not delete current comment' );
+		} else {
+			return true;
+		}
+		
+		return false;
 	}
 }
 

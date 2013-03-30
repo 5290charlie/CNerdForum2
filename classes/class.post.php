@@ -268,6 +268,11 @@ class CN_Post {
 	public function delete() {
 		$dbo =& CN::getDBO();
 		
+		foreach( $this->getComments() as $comment ) {
+			if ( !$comment->delete() )
+				throw new Exception( 'Error deleting comment from within post!' );
+		}
+		
 		$query = '
 			DELETE 
 			FROM	' . CN_POSTS_TABLE . ' 

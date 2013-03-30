@@ -463,14 +463,26 @@ class CN_User {
 		// TODO
 	}
 	
-	// Changes and commits the current state of this object with the passed-in array of values
+	// Changes the current state of this object with the passed-in array of values
 	public function update( array $options ) {
 		// TODO
 	}
 	
 	// Get current users mana
 	public function getMana() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$total = 0;
+		
+		foreach( $this->getPosts() as $post ) {
+			$total += $post->getMana();
+		}
+		
+		foreach( $this->getComments() as $comment ) {
+			$total += $comment->getMana();
+		}
+		
+		return $total;
 	}
 	
 	// Get current users rank
@@ -480,37 +492,184 @@ class CN_User {
 	
 	// Get current users topics
 	public function getTopics() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	* 
+			FROM	' . CN_TOPICS_TABLE . ' 
+			WHERE	user_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::getTopics()' );
+			throw new Exception( 'Error while getting current users topics' );
+		}
+		
+		// Initialize empty topics array
+		$topics = array();
+		
+		for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			// Build object based on data from the database
+			$tid = $dbo->field( $a, 'topic_id', $response );
+			$topics[$a] = new CN_Topic( $tid );
+		}
+		
+		return $topics;
 	}
 	
 	// Get ALL current users posts
 	public function getPosts() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	* 
+			FROM	' . CN_POSTS_TABLE . ' 
+			WHERE	user_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::getPosts()' );
+			throw new Exception( 'Error while getting current users posts' );
+		}
+		
+		// Initialize empty posts array
+		$posts = array();
+		
+		for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			// Build object based on data from the database
+			$pid = $dbo->field( $a, 'post_id', $response );
+			$posts[$a] = new CN_Post( $pid );
+		}
+		
+		return $posts;
 	}
 	
 	// Get current users posts from given topic
 	public function getPostsFromTopic( $topic ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	* 
+			FROM	' . CN_POSTS_TABLE . ' 
+			WHERE	user_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+			AND		topic_id = "' . $dbo->sqlsafe( $topic->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::getPostsFromTopic()' );
+			throw new Exception( 'Error while getting current users posts from given topic' );
+		}
+		
+		// Initialize empty posts array
+		$posts = array();
+		
+		for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			// Build object based on data from the database
+			$pid = $dbo->field( $a, 'post_id', $response );
+			$posts[$a] = new CN_Post( $pid );
+		}
+		
+		return $posts;
 	}
 	
 	// Get ALL current users comments
 	public function getComments() {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	* 
+			FROM	' . CN_COMMENTS_TABLE . ' 
+			WHERE	user_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::getComments()' );
+			throw new Exception( 'Error while getting current users comments' );
+		}
+		
+		// Initialize empty posts array
+		$comments = array();
+		
+		for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			// Build object based on data from the database
+			$cid = $dbo->field( $a, 'comment_id', $response );
+			$comments[$a] = new CN_Comment( $cid );
+		}
+		
+		return $comments;
 	}
 	
 	// Get current users comments from given post
 	public function getCommentsFromPost( $post ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT	* 
+			FROM	' . CN_COMMENTS_TABLE . ' 
+			WHERE	user_id = "' . $dbo->sqlsafe( $this->id ) . '" 
+			AND		post_id = "' . $dbo->sqlsafe( $post->id ) . '" 
+		';
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::getCommentsFromPost()' );
+			throw new Exception( 'Error while getting current users comments from given post' );
+		}
+		
+		// Initialize empty posts array
+		$comments = array();
+		
+		for ( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			// Build object based on data from the database
+			$cid = $dbo->field( $a, 'comment_id', $response );
+			$comments[$a] = new CN_Comment( $cid );
+		}
+		
+		return $comments;
 	}
 	
 	// Gets user according to the specified user id
 	public static function getUser( $id ) {
-		// TODO
+		return new CN_User( $id );
 	}
 	
 	// Checks to see if a user exists using a specified user id or username
 	public static function exists( $criteria ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		
+		// Build query depending on criteria
+		if ( is_numeric( $criteria ) ) {
+			$query = '
+				SELECT 	* 
+				FROM 	' . CN_USERS_TABLE . ' 
+				WHERE 	user_id = ' . $dbo->sqlsafe( $criteria )
+			;
+		} else {
+			$query = '
+				SELECT 	* 
+				FROM 	' . CN_USERS_TABLE . '
+				WHERE 	username = "' . $dbo->sqlsafe( $criteria ) . '" 
+				OR 		login_id = "' . $dbo->sqlsafe( $criteria ) . '"
+			';
+				
+		}
+				
+		$response = $dbo->query( $query );
+				
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $userquery, 'CN_User::__construct()' );
+			throw new Exception( 'Could not find user with given criteria!' );
+		}
+		return $dbo->num_rows( $response ) == 1;
 	}
 	
 	// Returns the session ID stored in the database for the current user (if online)
