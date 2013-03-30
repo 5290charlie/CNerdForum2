@@ -60,7 +60,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 									Views: <?php echo $t->views; ?>
 								</div>
 								<div class="smallfont">
-									Mana: <?php echo $t->getMana(); ?>
+									Total Mana: <?php echo $t->getMana(); ?>
 								</div>
 							</td>
 							<td class="details">
