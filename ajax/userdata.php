@@ -7,6 +7,7 @@ $cn->init();
 if ( isset( $user ) && $user->isOnline() ) {
 	echo 'Welcome, ' . $user->username; ?> 
 	[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
-	<?php echo $user->getMana(); ?>]
+	<?php echo $user->getMana(); ?> 
+	<span class="rank"><?php echo $user->getRank(); ?></span>]
 	<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
 <?php } ?>

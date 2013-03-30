@@ -482,12 +482,16 @@ class CN_User {
 			$total += $comment->getMana();
 		}
 		
+		foreach( $this->getTopics() as $topic ) {
+			$total += $topic->getMana();
+		}
+		
 		return $total;
 	}
 	
 	// Get current users rank
 	public function getRank() {
-		// TODO
+		return CN_Trophy::getRank( $this->getMana() );
 	}
 	
 	// Get current users topics
