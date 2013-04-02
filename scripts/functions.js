@@ -5,37 +5,37 @@ jQuery(document).ready(function() {
 });
 
 function voteComment( cid, val ) {
-	$url = '/ajax/vote';
+/*	$url = '/ajax/vote';
 	$type = 'comment';
 	
 	$.post( $url, { object_type: $type, object_id: cid, value: val }, function( data ) {
 		$("#post").html( data );
 		updateUserData();
 	});
-/*	$url = '/ajax/votecomment';
+*/
+	$url = '/ajax/votecomment';
 	
 	$.post( $url, { comment_id: cid, value: val }, function( data ) {
 		$("#post").html( data );
 		updateUserData();
 	});
-*/
 }
 
 function votePost( pid, val ) {
-	$url = '/ajax/vote';
+/*	$url = '/ajax/vote';
 	$type = 'post';
 	
 	$.post( $url, { object_type: $type, object_id: pid, value: val }, function( data ) {
 		$("#post").html( data );
 		updateUserData();
 	});
-/*	$url = '/ajax/votepost';
+*/
+	$url = '/ajax/votepost';
 	
 	$.post( $url, { post_id: pid, value: val }, function( data ) {
 		$("#topic").html( data );
 		updateUserData();
 	});
-*/
 }
 
 function updateUserData() {
