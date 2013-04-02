@@ -26,7 +26,7 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 		// Reload comments section for comment voting
 		if ( $type == 'comment' ) {
 		
-			$comments = $comment->post->getComments();
+			$comments = $object->post->getComments();
 			
 			if ( count( $comments ) > 0 ) { ?>
 							<table id="comments">
@@ -60,7 +60,7 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 		
 		
 		if ( $type == 'post' ) {
-			$posts = $post->topic->getPosts();
+			$posts = $object->topic->getPosts();
 		
 			if ( count( $posts ) > 0 ) { ?>
 						<table id="posts">
