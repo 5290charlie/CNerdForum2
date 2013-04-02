@@ -10,7 +10,7 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 	if ( $type == 'post' )
 		$object = new CN_Post( $_POST['object_id'] );
 	elseif ( $type == 'comment' )
-		$object = new CN_Comment( $_POST['comment_id'] );
+		$object = new CN_Comment( $_POST['object_id'] );
 	else
 		throw new Exception( 'Invalid voting object type!' );
 	
@@ -64,19 +64,7 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 		
 			if ( count( $posts ) > 0 ) { ?>
 						<table id="posts">
-						<?php foreach( $posts as $p ) { 
-							$upvoteInfo = array(
-								'user_id' 	=> $user->id,
-								'post_id' 	=> $p->id,
-								'value' 	=> CN_VOTE_UP
-							);
-							
-							$downvoteInfo = array(
-								'user_id' 	=> $user->id,
-								'post_id' 	=> $p->id,
-								'value' 	=> CN_VOTE_DOWN
-							);
-						?>
+						<?php foreach( $posts as $p ) { ?>
 							<tr class="post">
 								<td class="vote">
 									<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
@@ -118,4 +106,6 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 		<?php } else { echo 'No Posts'; }
 		}
 	} else { echo 'Error voting!'; }
+	
+	unset($object);
 } ?>
