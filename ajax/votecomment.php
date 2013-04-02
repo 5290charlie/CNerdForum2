@@ -1,7 +1,18 @@
 <?php
+
+/*************************************************
+			Comment Voting AJAX Page
+**************************************************
+	Author: Charlie McClung
+	Updated: 4/2/2013
+		Create new comment vote and reload data
+*************************************************/
+
+// Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
-$cn = CN::getInstance();
+// Get instance of CN class and initialize site
+$cn =& CN::getInstance();
 $cn->init();
 
 if ( !empty( $_POST ) && !empty( $_POST['comment_id'] ) && !empty( $_POST['value'] ) ) {

@@ -1,7 +1,18 @@
 <?php
+
+/*************************************************
+			Voting Post AJAX Page
+**************************************************
+	Author: Charlie McClung
+	Updated: 4/2/2013
+		Create new post vote and reload data
+*************************************************/
+
+// Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
-$cn = CN::getInstance();
+// Get instance of CN class and initialize site
+$cn =& CN::getInstance();
 $cn->init();
 
 if ( !empty( $_POST ) && !empty( $_POST['post_id'] ) && !empty( $_POST['value'] ) ) {	
@@ -19,19 +30,7 @@ if ( !empty( $_POST ) && !empty( $_POST['post_id'] ) && !empty( $_POST['value'] 
 		
 		if ( count( $posts ) > 0 ) { ?>
 						<table id="posts">
-						<?php foreach( $posts as $p ) { 
-							$upvoteInfo = array(
-								'user_id' 	=> $user->id,
-								'post_id' 	=> $p->id,
-								'value' 	=> CN_VOTE_UP
-							);
-							
-							$downvoteInfo = array(
-								'user_id' 	=> $user->id,
-								'post_id' 	=> $p->id,
-								'value' 	=> CN_VOTE_DOWN
-							);
-						?>
+						<?php foreach( $posts as $p ) { ?>
 							<tr class="post">
 								<td class="vote">
 									<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />

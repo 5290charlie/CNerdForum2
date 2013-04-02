@@ -1,7 +1,18 @@
 <?php
+
+/*************************************************
+			Voting AJAX Page
+**************************************************
+	Author: Charlie McClung
+	Updated: 4/2/2013
+		CNerdForum Homepage
+*************************************************/
+
+// Include configuration file
 require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 
-$cn = CN::getInstance();
+// Get instance of CN class and initialize site
+$cn =& CN::getInstance();
 $cn->init();
 
 if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object_type'] ) && !empty( $_POST['value'] ) ) {

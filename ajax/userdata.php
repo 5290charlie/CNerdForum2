@@ -9,5 +9,6 @@ if ( isset( $user ) && $user->isOnline() ) {
 	[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
 	<?php echo $user->getMana(); ?> 
 	<span class="rank"><?php echo $user->getRank(); ?></span>]
+	<a href="<?php echo CN_WEBACCOUNT; ?>" class="button">Account</a>
 	<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
 <?php } ?>

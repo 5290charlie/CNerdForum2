@@ -49,6 +49,7 @@ define( 'CN_DIR_HANDLERS', CN_DIR_CLASSES . 'handlers/' );
 // Web Paths
 define( 'CN_WEBROOTPAGE', 'http://dev.cnerdforum.com/' );
 define( 'CN_WEBLOGIN', CN_WEBROOTPAGE . 'login' );
+define( 'CN_WEBACCOUNT', CN_WEBROOTPAGE . 'account' );
 define( 'CN_WEBLOGOUT', CN_WEBROOTPAGE . 'logout' );
 define( 'CN_WEBSIGNUP', CN_WEBROOTPAGE . 'signup' );
 define( 'CN_WEBMAINTENANCE', CN_WEBROOTPAGE . 'maintenance' );
