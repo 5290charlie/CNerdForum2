@@ -20,7 +20,7 @@ if ( !empty( $_POST ) && !empty( $_POST['object_id'] ) && !empty( $_POST['object
 		'value' 	=> $_POST['value']
 	);
 	
-	// Add the new vote
+	// Add the new vote - DOESN'T WORK!!!
 	if ( CN_Vote::add( $newVote ) ) {
 	
 		// Reload comments section for comment voting
