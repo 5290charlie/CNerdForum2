@@ -35,6 +35,64 @@ class CN_Vote {
 		// TODO
 	}
 	
+	// New vote on object with given criteria
+	public static function add( $criteria ) {
+		$dbo =& CN::getDBO();
+		
+		// Define required criteria
+		$required = array(
+			'user',
+			'object',
+			'value'
+		);
+		
+		// Check criteria for required items
+		if ( !CN::required( $required, $criteria ) )
+			throw new Exception( 'Missing required criteria to create new comment vote!' );
+		
+		$class = get_class( $criteria['object'] );
+		
+		// Make sure object is CN_Post or CN_Comment
+		if ( $class == 'CN_Post' ) {
+			$db_id = 'post_id';
+		} elseif ( $class == 'CN_Comment' )  {
+			$db_id = 'comment_id';
+		} else {
+			throw new Exception( 'Vote object invalid class type!' );
+		}
+			
+		// Make sure value is in valid range
+		if ( ( $criteria['value'] >= CN_VOTE_DOWN ) && ( $criteria['value'] <= CN_VOTE_UP ) ) {
+			
+			// Build query
+			$query = '
+				INSERT 	
+				INTO	' . CN_VOTES_TABLE . ' 
+				( user_id, ' . $db_id . ', value )
+				VALUES
+				( :uid, :oid, :val )
+			';
+			
+			$dbo->createQuery( $query );
+			$dbo->bind( ':uid', $criteria['user']->id );
+			$dbo->bind( ':oid', $criteria['object']->id );
+			$dbo->bind( ':val', $criteria['value'] );
+			
+			$response = $dbo->runQuery();
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_Vote::voteComment()' );
+				throw new Exception( 'Could not create new comment vote!' );
+			} else {
+				return true;
+			}
+		} else {
+			throw new Exception( 'Vote value out of valid range!' );
+		}
+		
+		return false;
+	}
+	
 	// New vote on comment with given criteria
 	public static function voteComment( $criteria ) {
 		$dbo =& CN::getDBO();
