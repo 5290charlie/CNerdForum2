@@ -20,15 +20,16 @@ require_once CN_DIR_GLOBALS . 'header.php';
 ?>
 
 <div id="account">
-	<p><?php echo $user->username; ?>
-		[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
+	<p>Username: <?php echo $user->username; ?></p>
+	<p>
+		Rank: [<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
 		<?php echo $user->getMana(); ?> 
 		<span class="rank"><?php echo $user->getRank(); ?></span>]
 	</p>
-	<p><?php echo $user->fullname; ?></p>
-	<p><?php echo $user->email; ?></p>
-	<p><?php echo $user->permission; ?></p>
-	<p>TROPHIES:</p>
+	<p>Fullname: <?php echo $user->fullname; ?></p>
+	<p>Email: <?php echo $user->email; ?></p>
+	<p>Permission: <?php echo $user->permission; ?></p>
+	<p>Trophy Case:</p>
 	<?php
 	$trophies = CN_Trophy::getTrophies( $user->getMana() );
 	foreach ( $trophies as $trophy ) {
