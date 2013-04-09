@@ -63,9 +63,15 @@ define( 'CN_WEBDIR_AJAX', CN_WEBROOTPAGE . 'ajax/' );
 
 // Database Connection Settings
 define( 'CN_DB_HOST', 'localhost' );
-define( 'CN_DB_USER', 'www' );
-define( 'CN_DB_PASS', 'a9NJBHYnWdcSZLTM' );
-define( 'CN_DB_DBNAME', 'cnerd' );
+define( 'CN_DB_DBNAME', 'dev_cnerd' );
+
+// Firefly Server DB Credentials
+define( 'CN_DB_USER', 'web' );
+define( 'CN_DB_PASS', 'FWJBN2Bayewf7sve' );
+
+// Boolal Server DB Credentials
+//define( 'CN_DB_USER', 'www' );
+//define( 'CN_DB_PASS', 'a9NJBHYnWdcSZLTM' );
 
 // Define DB Tables
 define( 'CN_USERS_TABLE', CN_DB_DBNAME . '.users' );
