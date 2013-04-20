@@ -30,7 +30,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		
 		<?php // Link all CSS, LESS, and/or JS files needed ?>
 		<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
-		<link href="<?php echo CN_WEBDIR_CSS; ?>updated.less" rel="stylesheet/less" type="text/css" />
+		<link href="<?php echo CN_WEBDIR_CSS; ?>style.less" rel="stylesheet/less" type="text/css" />
 		<link href="<?php echo CN_WEBDIR_CSS; ?>jquery-ui-1.10.2.css" rel="stylesheet" type="text/css" />
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>jquery-1.9.1.js" type="text/javascript"></script>
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>jquery-ui-1.10.2.js" type="text/javascript"></script>
@@ -44,21 +44,24 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		<?php // Begin DIV #container ?>	
 		<div id="container">
 		
-			<div id="userstatus">
-				<?php if ( isset( $user ) && $user->isOnline() ) {
-				echo 'Welcome, ' . $user->fullname; ?> 
-				<span class="mana">
-					[<img src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" /> <?php echo $user->getMana(); ?>  <span class="rank"><?php echo $user->getRank(); ?></span>] 
-				</span>
-				| <a href="/account">account</a> | <a href="<?php echo CN_WEBLOGOUT; ?>">logout</a>
-			</div>
-		    <div id="header">
-		        <hgroup>
+			<?php // Begin HTML header tag ?>	
+			<header id="header">
+			
+				<?php // Begin HTML userdata div ?>	
+				<div id="userdata">
+					<?php if ( isset( $user ) && $user->isOnline() ) {
+						echo 'Welcome, ' . $user->username; ?> 
+						[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
+						<?php echo $user->getMana(); ?> 
+						<span class="rank"><?php echo $user->getRank(); ?></span>]
+						<a href="<?php echo CN_WEBLOGOUT; ?>" class="button">Logout</a>
+					<?php } ?>
+				</div>
+				<hgroup>
 					<h1><a href="<?php echo CN_WEBROOTPAGE; ?>">CNerdForum</a></h1>
 					<h2>[a place for nerds]</h2>
 				</hgroup>
-		    </div>
-
+			</header>
 			<?php // Begin HTML content div ?>	
 			<div id="content">
 			
@@ -74,4 +77,5 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 					</div>
 				<?php } ?>
 				
-				
+				<?php // Begin HTML main div ?>	
+				<div id="main">
