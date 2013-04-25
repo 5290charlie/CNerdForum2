@@ -369,6 +369,21 @@ class CN_User {
 		return false;
 	}
 	
+	// Returns boolean (true) if user has at least mod permissions
+	public function isMod() {
+		return ( $this->permission >= CN_PERM_MOD );
+	}
+	
+	// Returns boolean (true) if user has at admin permissions
+	public function isAdmin() {
+		return ( $this->permission == CN_PERM_ADMIN );
+	}
+	
+	// Returns boolean (true) if user is disabled
+	public function isDisabled() {
+		return ( $this->permission == CN_PERM_DISABLED )
+	}
+	
 	// Returns the last accessed timestamp of the current user
 	public function lastAccessed() {
 		$dbo =& CN::getDBO();
