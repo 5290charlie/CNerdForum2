@@ -46,30 +46,42 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
-	?>	
-				<div id="post-info">
-					<div class="info">
-						Author: <a href="<?php echo CN_WEBACCOUNT . '?user=' . $post->author->username; ?>"><?php echo $post->author->username; ?></a><br />
-						Started: <?php echo date( CN_DATE_FORMAT, $post->date ); ?><br />
-						Updated: <?php echo date( CN_DATE_FORMAT, $post->updated ); ?><br />
-						Comments: <?php echo count( $post->getComments() ); ?><br />
-						Views: <?php echo $post->views; ?><br />
-					</div>
-					<div class="main">
-						<div class="title"><?php echo $post->title; ?></div>
-						<div class="desc"><?php echo $post->details; ?></div>
-					</div>
-					<div class="clear"></div>
-				</div>
+	?>
 				<div id="post">
-					<?php require_once CN_DIR_AJAX . 'post.php'; ?>
+				<?php if ( count( $comments ) > 0 ) { ?>
+					<table id="comments">
+					<?php foreach( $comments as $c ) { ?>
+						<tr class="comment">
+							<td class="vote">
+								<img onclick="voteComment(<?php echo $c->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
+								<br />
+								<?php echo $c->getMana(); ?>
+								<br />
+								<img onclick="voteComment(<?php echo $c->id . ', ' . CN_VOTE_DOWN; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
+							</td>
+							<td class="user">
+								<div class="username">
+									<?php echo $c->author->username; ?>
+								</div>
+							</td>
+							<td class="body">
+								<div class="date">
+									<?php echo date( CN_DATE_FORMAT, $c->date ); ?>
+								</div>
+								<p>
+									<?php echo $c->body; ?>
+								</p>
+							</td>
+						</tr>
+					<?php } ?>
+					</table>
+				<?php } else { echo 'No Comments'; } ?>
 				</div>
 				<hr>
 				<form id="new_comment" method="post" action="<?php echo CN_WEBROOTPAGE . 'post'; ?>">
 					<input type="hidden" id="post_id" name="post_id" value="<?php echo $post->id; ?>" />
 					<input type="hidden" id="user_id" name="user_id" value="<?php echo $user->id; ?>" />
 					<label for="body">Comment:</label>
-					<br />
 					<textarea id="body" name="body"></textarea>
 					<br />
 					<input type="submit" value="Comment" />

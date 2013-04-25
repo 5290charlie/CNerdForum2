@@ -18,7 +18,7 @@ define( '_CN_EXEC', 1 );
 define( 'CN_ST_OFFLINE', 0 );
 define( 'CN_ST_DEBUG', 1 );
 define( 'CN_ST_LIVE', 2 );
-define( 'CN_STATUS', CN_ST_DEBUG );
+define( 'CN_STATUS', CN_ST_LIVE );
 
 // Set error reporting depending on CN_STATUS
 if ( CN_STATUS == CN_ST_DEBUG )
@@ -47,7 +47,7 @@ define( 'CN_DIR_INTERFACES', CN_DIR_CLASSES . 'interfaces/' );
 define( 'CN_DIR_HANDLERS', CN_DIR_CLASSES . 'handlers/' );
 
 // Web Paths
-define( 'CN_WEBROOTPAGE', 'http://dev.cnerdforum.com/' );
+define( 'CN_WEBROOTPAGE', 'http://' . $_SERVER['HTTP_HOST'] . '/' );
 define( 'CN_WEBLOGIN', CN_WEBROOTPAGE . 'login' );
 define( 'CN_WEBACCOUNT', CN_WEBROOTPAGE . 'account' );
 define( 'CN_WEBLOGOUT', CN_WEBROOTPAGE . 'logout' );
@@ -84,6 +84,9 @@ define( 'CN_ERROR_LOG_TABLE', CN_DB_DBNAME . '.error_log' );
 define( 'CN_MESSAGES_TABLE', CN_DB_DBNAME . '.messages' );
 define( 'CN_SESSIONS_TABLE', CN_DB_DBNAME . '.sessions' );
 //define( 'CN_PREV_LOCATION_TABLE', CN_DB_DBNAME . '.previous_location' );
+
+define( 'CN_NUM_RECENT_TOPICS', 10); 
+define( 'CN_NUM_RECENT_POSTS', 15); 
 
 // Set Default Posts & Comments Per Page
 define( 'CN_POSTS_PER_PAGE', 20 );

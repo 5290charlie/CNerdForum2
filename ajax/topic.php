@@ -7,85 +7,40 @@
 		AJAX Page to build ONLY the topic content
 		specified by POST parameter tid
 *************************************************/
-
-// Include configuration file
-require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
-
-$cn =& CN::getInstance();
-$cn->init();
-
-if( !empty( $_POST ) && !empty( $_POST['tid'] ) ) {
-	$topic = new CN_Topic( $_POST['tid'] );
-	$topic->view();
-
-	$posts = $topic->getPosts();
-	
-	if ( count( $posts ) > 0 ) { ?>
-		<table id="posts">
-		<?php foreach( $posts as $p ) { 
-			$upvoteInfo = array(
-				'user_id' 	=> $user->id,
-				'post_id' 	=> $p->id,
-				'value' 	=> CN_VOTE_UP
-			);
-			
-			$downvoteInfo = array(
-				'user_id' 	=> $user->id,
-				'post_id' 	=> $p->id,
-				'value' 	=> CN_VOTE_DOWN
-			);
-		?>
-			<tr class="post">
-				<td class="vote">
-					<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" />
-					<br />
-					<?php echo $p->getMana(); ?>
-					<br />
-					<img src="<?php echo CN_WEBDIR_ICONS; ?>downvote.png" />
-				</td>
-				<td class="title">
-					<a href="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>">
-						<strong><?php echo $p->title; ?></strong>
-					</a>
-					<div class="smallfont">
-						<?php echo $p->details; ?>
-					</div>
-				</td>
-				<td class="stats">
-					<div class="smallfont">
-						Comments: <?php echo count( $p->getComments() ); ?>
-					</div>
-					<div class="smallfont">
-						Views: <?php echo $p->views; ?>
-					</div>
-				</td>
-				<td class="details">
-					<div class="smallfont">
-						Created: <?php echo date( CN_DATE_FORMAT, $p->date ); ?>
-					</div>
-					<div class="smallfont">
-						Updated: <?php echo date( CN_DATE_FORMAT, $p->updated ); ?>
-					</div>
-					<div class="smallfont">
-						Author: <?php echo $p->author->username; ?>
-					</div>
-				</td>
-			</tr>
-		<?php } ?>
-		</table>
-		<?php } else { echo 'No Posts'; } ?>
-		<hr>
-		<form id="new_post" method="post" action="<?php echo CN_WEBROOTPAGE . 'topic'; ?>">
-		<input type="hidden" id="topic_id" name="topic_id" value="<?php echo $topic->id; ?>" />
-		<input type="hidden" id="user_id" name="user_id" value="<?php echo $user->id; ?>" />
-		<label for="title">Title:</label>
-		<input type="text" id="title" name="title" />
-		<br />
-		<label for="details">Details:</label>
-		<textarea id="details" name="details"></textarea>
-		<br />
-		<input type="submit" value="Add Post" />
-		</form>
-<?
-}
-?>
+if ( count( $posts ) > 0 ) { 
+	foreach( $posts as $p ) { 
+		$upvoteInfo = array(
+			'user_id' 	=> $user->id,
+			'post_id' 	=> $p->id,
+			'value' 	=> CN_VOTE_UP
+		);
+		
+		$downvoteInfo = array(
+			'user_id' 	=> $user->id,
+			'post_id' 	=> $p->id,
+			'value' 	=> CN_VOTE_DOWN
+		);
+	?>
+		<div class="post">
+			<div class="info">
+				Author: <a href="<?php echo CN_WEBACCOUNT . '?user=' . $p->author->username; ?>"><?php echo $p->author->username; ?></a><br />
+				Started: <?php echo date( CN_DATE_FORMAT, $p->date ); ?><br />
+				Updated: <?php echo date( CN_DATE_FORMAT, $p->updated ); ?><br />
+				Comments: <?php echo count( $p->getComments() ); ?><br />
+				Views: <?php echo $p->views; ?><br />
+			</div>
+			<div class="vote">
+    			<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_UP; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" />
+				<br />
+				<?php echo $p->getMana(); ?>
+				<br />
+				<img onclick="votePost(<?php echo $p->id . ', ' . CN_VOTE_DOWN; ?>)" src="<?php echo CN_WEBDIR_ICONS; ?>bana.png" />
+    		</div>
+			<div class="main" onclick="window.location='<?php echo CN_WEBROOTPAGE . 'post?pid=' . $p->id; ?>';">
+				<div class="title"><?php echo $p->title; ?></div>
+				<div class="desc"><?php echo $p->details; ?></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<?php }
+} else { echo '<p>No Posts</p>'; } ?>

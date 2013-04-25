@@ -482,10 +482,10 @@ class CN_User {
 			$total += $comment->getMana();
 		}
 		
-		foreach( $this->getTopics() as $topic ) {
+/*		foreach( $this->getTopics() as $topic ) {
 			$total += $topic->getMana();
 		}
-		
+*/		
 		return $total;
 	}
 	

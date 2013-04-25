@@ -106,6 +106,37 @@ class CN_Post {
 		return $posts;
 	}
 	
+	// Returns recently updated Posts
+	public static function getRecent() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT		post_id 
+			FROM		' . CN_POSTS_TABLE . ' 
+			WHERE		1 
+			ORDER BY	updated DESC
+			LIMIT		' . CN_NUM_RECENT_POSTS
+		;
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Post::getRecent()' );
+			throw new Exception( 'Could not load recent posts!' );
+		}
+		
+		// Create empty array to store post objects
+		$posts = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			
+			$posts[$a] = new CN_Post( $row->post_id );
+		}
+		
+		return $posts;
+	}
+	
 	// Returns posts for a specific topic
 	public static function getFromTopic( $tid ) {
 		$dbo =& CN::getDBO();

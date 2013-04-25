@@ -45,12 +45,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		<div id="container">
 		
 			<div id="userstatus">
-				<?php if ( isset( $user ) && $user->isOnline() ) {
-				echo 'Welcome, ' . $user->fullname; ?> 
-				<span class="mana">
-					[<img src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" /> <?php echo $user->getMana(); ?>  <span class="rank"><?php echo $user->getRank(); ?></span>] 
-				</span>
-				| <a href="/account">account</a> | <a href="<?php echo CN_WEBLOGOUT; ?>">logout</a>
+				<?php require_once CN_DIR_AJAX . 'userstatus.php'; ?>
 			</div>
 		    <div id="header">
 		        <hgroup>

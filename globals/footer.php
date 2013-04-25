@@ -12,6 +12,7 @@
 defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 ?>
 			<?php // Make sure to close #content! ?>
+				<div class="clear"></div>
             </div>
             <div id="footer">
                 Copyright &copy; 2013 CNerdForum.com

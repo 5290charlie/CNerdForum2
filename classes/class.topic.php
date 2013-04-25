@@ -103,6 +103,37 @@ class CN_Topic {
 		return $topics;
 	}
 	
+	// Returns recently updated Topics
+	public static function getRecent() {
+		$dbo =& CN::getDBO();
+		
+		$query = '
+			SELECT		topic_id 
+			FROM		' . CN_TOPICS_TABLE . ' 
+			WHERE		1 
+			ORDER BY	updated DESC
+			LIMIT		' . CN_NUM_RECENT_TOPICS
+		;
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::getRecent()' );
+			throw new Exception( 'Could not load recent topics!' );
+		}
+		
+		// Create empty array to store topic objects
+		$topics = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			
+			$topics[$a] = new CN_Topic( $row->topic_id );
+		}
+		
+		return $topics;
+	}
+	
 	// Search all topics
 	public static function search( $search ) {
 		// TODO

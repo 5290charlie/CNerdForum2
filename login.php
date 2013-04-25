@@ -135,8 +135,9 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</tr>
 					</table>
 				</form>	
-				<hr>
-				<a class="button" href="<?php echo CN_WEBSIGNUP; ?>">Sign Up!</a>			
+				<p>Don't have an account yet, <a class="button" href="<?php echo CN_WEBSIGNUP; ?>"> Click Here to Sign Up!</a></p>
+				<p>It's free and easy!</p>
+						
 <?php
 // Require footer global
 require_once( CN_DIR_GLOBALS . 'footer.php' );

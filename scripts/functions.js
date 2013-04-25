@@ -39,9 +39,9 @@ function votePost( pid, val ) {
 }
 
 function updateUserData() {
-	$url = '/ajax/userdata';
+	$url = '/ajax/userstatus';
 	
-	$.post( $url, function( data ) {
-		$("#userdata").html( data );
+	$.post( $url, { ajax: 'ajax' }, function( data ) {
+		$("#userstatus").html( data );
 	});
 }
