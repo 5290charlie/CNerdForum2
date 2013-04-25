@@ -18,11 +18,11 @@ $cn->init();
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
-				
+				<h2>Users</h2>
 				<?php require_once CN_DIR_AJAX . 'users.php'; ?>
 
-<input type="hidden" id="page" name="page" value="users" />
-<input type="hidden" id="page-title" name="page-title" value="Users" />
+<input type="hidden" id="page" name="page" value="admin" />
+<input type="hidden" id="page-title" name="page-title" value="Admin Panel" />
 
 <?php
 // Require footer global

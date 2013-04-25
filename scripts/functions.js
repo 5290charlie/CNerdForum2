@@ -5,8 +5,8 @@ $(document).ready(function() {
 		case 'account':
 		    $("#tabs li#tab-account").attr("id","current"); // Activate account tab
 			break;		
-		case 'users':
-		    $("#tabs li#tab-users").attr("id","current"); // Activate users tab
+		case 'admin':
+		    $("#tabs li#tab-admin").attr("id","current"); // Activate admin tab
 			break;
 		case 'topics':
 		case 'topic':

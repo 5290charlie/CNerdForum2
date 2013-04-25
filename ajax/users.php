@@ -39,7 +39,7 @@ $usergroups = array(
 
 foreach ( $usergroups as $group => $info ) {
 ?>
-	<h2><?php echo $info['title']; ?></h2>
+	<h4><?php echo $info['title']; ?></h4>
 	<div id="<?php echo $group; ?>-users">
 	<?php if ( count( $info['users'] ) > 0 ) {
 		foreach( $info['users'] as $user ) { ?>
