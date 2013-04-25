@@ -49,4 +49,5 @@ foreach ( $usergroups as $group => $info ) {
 		<?php } 
 	} else { echo '<p>' . $info['empty'] . '</p>'; } ?>
 	</div>
+<?php } ?>
 	
