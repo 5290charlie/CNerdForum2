@@ -189,10 +189,8 @@ body
 		    </div>
 		    
 			<ul id="tabs">
-			    <li><a href="#" name="tab1">Home</a></li>
-			    <li><a href="#" name="tab2">Topics</a></li>
-			    <li><a href="#" name="tab3">Three</a></li>
-			    <li><a href="#" name="tab4">Four</a></li>    
+			    <li><a href="#" name="tab-home">Home</a></li>
+			    <li><a href="#" name="tab-topics">Topics</a></li>  
 			</ul>
 
 			<?php // Begin HTML content div ?>	
@@ -210,7 +208,7 @@ body
 					</div>
 				<?php } ?>
 				
-				    <div id="tab1">
+				    <div id="tab-home" class="tab-content">
 				        <h2>Lorem ipsum sit amet</h2>
 				        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus id, dapibus non quam.</p>
 				        <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. Mauris turpis tortor, mollis non vulputate sit amet, rhoncus vitae purus.</p>
@@ -218,28 +216,12 @@ body
 				        <h3>Pellentesque habitant</h3>
 				        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>    
 				    </div>
-				    <div id="tab2">
+				    <div id="tab-topics" class="tab-content">
 				        <h2>Vivamus fringilla suscipit justo</h2>
 				        <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>
 				        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula</p>
 				
 				        <p>Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.</p>    
-				    </div>
-				    <div id="tab3">
-				        <h2>Phasellus non nibh</h2>
-				        <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
-				        <h3>Duis pulvinar nibh vel urna</h3>
-				        <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
-				
-				        <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
-				    </div>
-				    <div id="tab4">
-				        <h2>Cum sociis natoque penatibus</h2>
-				        <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
-				        <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
-				        <h3>Imperdiet sem interdum nec</h3>
-				
-				        <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
 				    </div>
 				</div>
 								
