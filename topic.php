@@ -41,7 +41,9 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 	
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
+	require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' );
 	?>
+			
 				<div id="topic-info">
 					<div class="info">
 						Author: <a href="<?php echo CN_WEBACCOUNT . '?user=' . $topic->author->username; ?>"><?php echo $topic->author->username; ?></a><br />
@@ -72,6 +74,11 @@ if( !empty( $_GET ) && !empty( $_GET['tid'] ) ) {
 					<br />
 					<input type="submit" value="Add Post" />
 				</form>
+				
+<input type="hidden" id="page" name="page" value="topic" />
+<input type="hidden" id="page-title" name="page-title" value="<?php echo $topic->title; ?>" />
+
+
 	<?
 	// Require footer global
 	require_once( CN_DIR_GLOBALS . 'footer.php' );

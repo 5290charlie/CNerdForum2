@@ -1,9 +1,25 @@
 $(document).ready(function() {
-    $("#content div.tab-content").hide(); // Initially hide all content
-    $("#tabs li:first").attr("id","current"); // Activate first tab
-    $("#tab-home").fadeIn(); // Show first tab content
+ //   $("#content div.tab-content").hide(); // Initially hide all content
+	$page = $("#page").val();
+	$pageTitle = $("#page-title").val();
+	
+	switch($page) {
+		case 'topics':
+		case 'topic':
+		case 'post':
+		    $("#tabs li#tab-topics").attr("id","current"); // Activate topics tab
+		    break;
+	    case 'home':
+	    default:
+		    $("#tabs li#tab-home").attr("id","current"); // Activate home tab
+		    break;	
+	}
+	
+	$("#tab-topics a").html($pageTitle)
+    //$("#tabs li:first").attr("id","current"); // Activate first tab
+    $("#content").fadeIn(); // Show first tab content
     
-    $('#tabs a').click(function(e) {
+  /*  $('#tabs a').click(function(e) {
         e.preventDefault();
         if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
          return       
@@ -15,6 +31,7 @@ $(document).ready(function() {
 	        $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
         }
     });
+    */
 });
 
 //jQuery(document).ready(function() {

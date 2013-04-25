@@ -39,7 +39,9 @@ $topics = CN_Topic::getAll();
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
+require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' );
 ?>
+				
 				<?php require_once CN_DIR_AJAX . 'topics.php'; ?>
 				<hr>
 				<form id="new_topic" method="post" action="<?php echo CN_WEBROOTPAGE . 'topics'; ?>">
@@ -53,6 +55,9 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 					<br />
 					<input type="submit" value="Add Topic" />
 				</form>
+
+<input type="hidden" id="page" name="page" value="topics" />
+<input type="hidden" id="page-title" name="page-title" value="Topics" />
 
 <?php
 // Require footer global

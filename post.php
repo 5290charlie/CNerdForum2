@@ -46,6 +46,7 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 
 	// Require header global
 	require_once( CN_DIR_GLOBALS . 'header.php' );
+	require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' );
 	?>	
 				<div id="post-info">
 					<div class="info">
@@ -74,6 +75,10 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 					<br />
 					<input type="submit" value="Comment" />
 				</form>
+				
+<input type="hidden" id="page" name="page" value="post" />
+<input type="hidden" id="page-title" name="page-title" value="<?php echo $post->title; ?>" />
+
 	<?
 	// Require footer global
 	require_once( CN_DIR_GLOBALS . 'footer.php' );
