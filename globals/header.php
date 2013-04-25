@@ -60,7 +60,7 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 			    <li id="tab-home"><a href="<?php echo CN_WEBROOTPAGE; ?>" name="tab-home">Home</a></li>
 			    <li id="tab-topics"><a href="<?php echo CN_WEBROOTPAGE . 'topics'; ?>" name="tab-topics">Topics</a></li>  
 			    <li id="tab-account"><a href="<?php echo CN_WEBACCOUNT; ?>" name="tab-account">Account</a></li>  
-			<?php if ( $user->isAdmin() ) { ?>
+			<?php if ( isset( $user ) && $user->isAdmin() ) { ?>
 			    <li id="tab-users"><a href="<?php echo CN_WEBROOTPAGE . 'users'; ?>" name="tab-users">USERS</a></li>  
 			<?php } ?>
 			</ul>
