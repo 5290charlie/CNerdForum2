@@ -41,6 +41,11 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 						</ul>
 					</div>
 					<div class="left">
+						<h3>Allowed Tags</h3>
+						<p>
+							<?php echo CN_ALLOWED_TAGS; ?>
+						</p>
+						<hr>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida posuere purus ut lacinia. Nam tincidunt sapien augue. Vestibulum vulputate tellus et dui varius sed hendrerit quam fermentum. Aenean adipiscing, purus id tincidunt feugiat, est felis elementum enim, non condimentum felis massa nec felis. Phasellus non lorem metus. Integer ac orci nisl. Phasellus sagittis lectus tempor justo tincidunt suscipit. Praesent iaculis ultrices felis, vitae faucibus sem mollis vel. Donec elementum nisi vel purus ultrices consectetur. Nam tincidunt nunc eget nibh tempor non rhoncus eros aliquam. Aliquam erat volutpat.</p>
 
 <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer ornare mollis aliquam. Donec hendrerit, orci non posuere vehicula, enim dui volutpat neque, sit amet pellentesque odio arcu egestas orci. Donec malesuada pharetra justo quis sollicitudin. Etiam vulputate, purus vitae tincidunt tempus, diam lectus iaculis tellus, eget egestas risus orci non magna. Proin sagittis urna nec nisi elementum ullamcorper porta metus malesuada. In sodales purus a lacus ornare gravida fermentum sem elementum. Fusce interdum velit eu felis sodales et facilisis nisi sollicitudin. Proin facilisis ultrices odio non sollicitudin. Cras blandit dictum justo ut sagittis. Curabitur porttitor consectetur tristique. Pellentesque ultricies placerat turpis, quis accumsan tortor malesuada vel. Curabitur a ipsum vel nunc facilisis viverra. Proin vel leo sed est mollis commodo.</p>
