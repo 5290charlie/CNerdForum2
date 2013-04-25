@@ -72,7 +72,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 								<label for="firstname">First Name:</label>
 							</td>
 							<td>
-								<input type="text" id="firstname" name="firstname" />
+								<input autofocus type="text" id="firstname" name="firstname" />
 							</td>
 						</tr>
 						<tr>
