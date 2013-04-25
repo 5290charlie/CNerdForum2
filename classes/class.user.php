@@ -139,7 +139,7 @@ class CN_User {
 			$query = '
 				SELECT	user_id 
 				FROM	' . CN_USERS_TABLE . ' 
-				WHERE	permission="' . $dbo->sqlsafe( $perm ) '"
+				WHERE	permission="' . $dbo->sqlsafe( $perm ) . '"
 			';
 			
 			$response = $dbo->query( $query );
