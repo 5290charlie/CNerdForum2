@@ -18,7 +18,7 @@ define( '_CN_EXEC', 1 );
 define( 'CN_ST_OFFLINE', 0 );
 define( 'CN_ST_DEBUG', 1 );
 define( 'CN_ST_LIVE', 2 );
-define( 'CN_STATUS', CN_ST_LIVE );
+define( 'CN_STATUS', CN_ST_DEBUG );
 
 // Set error reporting depending on CN_STATUS
 if ( CN_STATUS == CN_ST_DEBUG )
