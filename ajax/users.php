@@ -9,7 +9,7 @@
 *************************************************/
 
 // Initialize users object with all users
-$disabled = CN_User::getPermission( CN_PERM_DISABLED )
+$disabled = CN_User::getPermission( CN_PERM_DISABLED );
 $users = CN_User::getPermission( CN_PERM_USER );
 $mods = CN_User::getPermission( CN_PERM_MOD );
 $admins = CN_User::getPermission( CN_PERM_ADMIN );
