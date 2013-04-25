@@ -52,6 +52,9 @@ $showuser = new CN_User( $showusername );
 	<div class="clear"></div>
 </div>
 
+<input type="hidden" id="page" name="page" value="account" />
+<input type="hidden" id="page-title" name="page-title" value="Account" />
+
 <?php
 // Require footer global
 require_once CN_DIR_GLOBALS . 'footer.php';
