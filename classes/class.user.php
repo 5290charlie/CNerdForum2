@@ -381,7 +381,7 @@ class CN_User {
 	
 	// Returns boolean (true) if user is disabled
 	public function isDisabled() {
-		return ( $this->permission == CN_PERM_DISABLED )
+		return ( $this->permission == CN_PERM_DISABLED );
 	}
 	
 	// Returns the last accessed timestamp of the current user
