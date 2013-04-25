@@ -130,7 +130,6 @@ body
 {
     background: #fff;
     padding: 2em;
-	height: 220px;
 	position: relative;
 	z-index: 2;	
     -moz-border-radius: 0 5px 5px 5px;
@@ -207,22 +206,5 @@ body
 						<?php require_once( CN_DIR_GLOBALS . 'breadCrumbs.php' ); ?>
 					</div>
 				<?php } ?>
-				
-				    <div id="tab-home" class="tab-content">
-				        <h2>Lorem ipsum sit amet</h2>
-				        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus id, dapibus non quam.</p>
-				        <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. Mauris turpis tortor, mollis non vulputate sit amet, rhoncus vitae purus.</p>
-				
-				        <h3>Pellentesque habitant</h3>
-				        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>    
-				    </div>
-				    <div id="tab-topics" class="tab-content">
-				        <h2>Vivamus fringilla suscipit justo</h2>
-				        <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>
-				        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula</p>
-				
-				        <p>Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.</p>    
-				    </div>
-				</div>
 								
 				
