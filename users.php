@@ -15,9 +15,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
-// Initialize users object with all users
-$users = CN_User::getAll();
-
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>

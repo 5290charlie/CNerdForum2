@@ -132,6 +132,38 @@ class CN_User {
 		return $users;
 	}
 	
+	public static function getPermission($perm) {
+		if ( is_numeric( $perm ) && ( $perm >= CN_PERM_DISABLED && $perm <= CN_PERM_ADMIN ) ) {
+			$dbo =& CN::getDBO();
+			
+			$query = '
+				SELECT	user_id 
+				FROM	' . CN_USERS_TABLE . ' 
+				WHERE	permission="' . $dbo->sqlsafe( $perm ) '"
+			';
+			
+			$response = $dbo->query( $query );
+			
+			if ( $dbo->hasError( $response ) ) {
+				$dbo->submitErrorLog( $response, 'CN_User::getAll()' );
+				throw new Exception( 'Could not load all users!' );
+			}
+			
+			// Create empty array to store user objects
+			$users = array();
+			
+			for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+				$row = $dbo->getResultObject( $response )->fetch_object();
+				
+				$users[$a] = new CN_User( $row->user_id );
+			}
+			
+			return $users;
+		} else {
+			throw new Exception( 'Invalid permission value!' );
+		}
+	}
+	
 	// Private function that validates two passwords with salt & md5 hash
 	private static function validate_password( $stored_password, $password )
 	{

@@ -122,6 +122,7 @@ define( 'CN_LOGIN_ERROR', -1 );
 define( 'CN_LOGIN_SUCCESS', 0 );
 
 // Permission Levels (MUST be in ascending order!)
+define( 'CN_PERM_DISABLED', 0);
 define( 'CN_PERM_USER', 1 );
 define( 'CN_PERM_MOD', 2 );
 define( 'CN_PERM_ADMIN', 3 );

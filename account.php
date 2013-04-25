@@ -53,7 +53,7 @@ $showuser = new CN_User( $showusername );
 </div>
 
 <input type="hidden" id="page" name="page" value="account" />
-<input type="hidden" id="page-title" name="page-title" value="Account" />
+<input type="hidden" id="page-title" name="page-title" value="<?php echo $showuser->username; ?>'s Account" />
 
 <?php
 // Require footer global
