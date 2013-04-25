@@ -129,15 +129,8 @@ body
 #content
 {
     background: #fff;
-    padding: 2em;
 	position: relative;
 	z-index: 2;	
-    -moz-border-radius: 0 5px 5px 5px;
-    -webkit-border-radius: 0 5px 5px 5px;
-    border-radius: 0 5px 5px 5px;
-    -moz-box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
-    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
 }
 
 #content h2, #content h3, #content p

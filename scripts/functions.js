@@ -9,10 +9,10 @@ $(document).ready(function() {
          return       
         }
         else{             
-        $("#content div.tab-content").hide(); //Hide all content
-        $("#tabs li").attr("id",""); //Reset id's
-        $(this).parent().attr("id","current"); // Activate this
-        $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
+	        $("#content div.tab-content").hide(); //Hide all content
+	        $("#tabs li").attr("id",""); //Reset id's
+	        $(this).parent().attr("id","current"); // Activate this
+	        $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
         }
     });
 });
