@@ -17,6 +17,8 @@ $cn->init();
 
 // Require header global
 require_once( CN_DIR_GLOBALS . 'header.php' );
+// Initialize topics object with all topics
+$topics = CN_Topic::getAll();
 ?>
   					<div id="tab-home" class="tab-content">
 				        <?php require_once CN_DIR_AJAX . 'index.php'; ?>
