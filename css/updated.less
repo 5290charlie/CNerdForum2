@@ -64,7 +64,7 @@ div#messages {
 }
 
 body {
-	font-family: serif;
+    font-family: Arial, Helvetica;
 	font-size: 14pt;
 	background-image: url('images/low_contrast_linen.png');
 	color: #FFFFFF;
@@ -82,6 +82,91 @@ body {
 	div#container {
 		width: 960px;
 		margin: 0 auto;
+		
+		#tabs {
+			overflow: hidden;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			
+			li {
+				float: left;
+				margin: 0 .5em 0 0;
+			}
+			
+			a {
+				position: relative;
+				background: #ddd;
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+				background-image: -webkit-linear-gradient(top, #fff, #ddd);
+				background-image: -moz-linear-gradient(top, #fff, #ddd);
+				background-image: -ms-linear-gradient(top, #fff, #ddd);
+				background-image: -o-linear-gradient(top, #fff, #ddd);
+				background-image: linear-gradient(to bottom, #fff, #ddd);  
+				padding: .7em 3.5em;
+				float: left;
+				text-decoration: none;
+				color: #444;
+				text-shadow: 0 1px 0 rgba(255,255,255,.8);
+				-webkit-border-radius: 5px 0 0 0;
+				-moz-border-radius: 5px 0 0 0;
+				border-radius: 5px 0 0 0;
+				-moz-box-shadow: 0 2px 2px rgba(0,0,0,.4);
+				-webkit-box-shadow: 0 2px 2px rgba(0,0,0,.4);
+				box-shadow: 0 2px 2px rgba(0,0,0,.4);
+			}
+			
+			a:hover,
+			a:hover::after,
+			a:focus,
+			a:focus::after {
+				background: #fff;
+			}
+			
+			a:focus {
+				outline: 0;
+			}
+		
+			a::after {
+				content:'';
+				position:absolute;
+				z-index: 1;
+				top: 0;
+				right: -.5em;  
+				bottom: 0;
+				width: 1em;
+				background: #ddd;
+				background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+				background-image: -webkit-linear-gradient(top, #fff, #ddd);
+				background-image: -moz-linear-gradient(top, #fff, #ddd);
+				background-image: -ms-linear-gradient(top, #fff, #ddd);
+				background-image: -o-linear-gradient(top, #fff, #ddd);
+				background-image: linear-gradient(to bottom, #fff, #ddd);  
+				-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+				-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+				box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+				-webkit-transform: skew(10deg);
+				-moz-transform: skew(10deg);
+				-ms-transform: skew(10deg);
+				-o-transform: skew(10deg);
+				transform: skew(10deg);
+				-webkit-border-radius: 0 5px 0 0;
+				-moz-border-radius: 0 5px 0 0;
+				border-radius: 0 5px 0 0;  
+			}
+		
+			#current a {
+				background: #fff;
+				z-index: 3;
+			}
+			
+			#current a::after {
+				background: #fff;
+				z-index: 3;
+			}
+
+		}
 		
 		div#userstatus {
 			text-align: right;

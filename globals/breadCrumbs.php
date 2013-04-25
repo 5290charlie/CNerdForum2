@@ -23,7 +23,7 @@ if( strpos( $_SERVER['REQUEST_URI'], 'post' ) !== false ) {
 
 // Breadcrumbs string for topics page
 } elseif( strpos( $_SERVER['REQUEST_URI'], 'topics' ) !== false ) {
-	$str = $str . ' -> Topics';
+	$str = $str . 'Topics';
 
 // Breadcrumbs string for single topic page
 } elseif( strpos( $_SERVER['REQUEST_URI'], 'topic' ) !== false ) {
@@ -31,7 +31,7 @@ if( strpos( $_SERVER['REQUEST_URI'], 'post' ) !== false ) {
 
 // Breadcrumbs string for account page
 } elseif( strpos( $_SERVER['REQUEST_URI'], 'account' ) !== false ) {
-	$str = $str . ' -> Account';
+	$str = $str . 'Account';
 }
 ?>
 <div id="breadcrumbs">
