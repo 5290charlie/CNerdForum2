@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
-
+/*
 // Define all trophies and ranks
 $trophies = array(
 	// n00b rank
@@ -114,7 +114,7 @@ foreach( $trophies as $trophy ) {
 	echo 'Rank: ' . $trophy['rank'] . '<br />';
 	echo 'Icon: <img src="' . $trophy['icon'] . '" /><br />';
 }
-
+*/
 $mana = 1234;
 
 $trophies = CN_Trophy::getTrophies( $mana );
