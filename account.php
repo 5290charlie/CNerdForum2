@@ -31,7 +31,7 @@ $showuser = new CN_User( $showusername );
 <div id="useraccount">
 	<div id="userinfo">
 		<div class="mana">
-			[<img src="<?php echo CN_WEBDIR_ICONS; ?>upvote.png" width="10" /> 
+			[<img src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" /> 
 			<?php echo $showuser->getMana(); ?> 
 			<span class="rank"><?php echo $showuser->getRank(); ?></span>]
 		</div>
@@ -45,7 +45,7 @@ $showuser = new CN_User( $showusername );
 		<?php
 		$trophies = CN_Trophy::getTrophies( $showuser->getMana() );
 		foreach ( $trophies as $trophy ) {
-			echo '<img src="' . $trophy->icon . '" />';	
+			echo '<img src="' . CN_WEBDIR_TROPHIES . $trophy->icon . '" />';	
 		}
 		?>
 	</div>

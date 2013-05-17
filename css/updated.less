@@ -68,7 +68,8 @@ body {
 	font-size: 14pt;
 	background-image: url('images/low_contrast_linen.png');
 	color: #FFFFFF;
-	
+	padding: 0;
+	margin: 0;
 		
 	a {
 		color: #cc0000;
@@ -78,7 +79,45 @@ body {
 			text-decoration: underline;
 		}
 	}
+	
+	div#status_container {
+		position: fixed;
+		width: 100%;			
+		background: #333333;
+		margin: 0;
+		padding: 5px;
+		z-index: 100;
+					
+		div#userstatus {
+			text-align: right;
+			font-size: 12px;
+			line-height: 12px;
+			padding: 5px;
+			width: 960px;
+			margin: 0 auto;
 
+			.mana {
+				img {
+					vertical-align: middle;
+					width: 11px;
+				}
+				
+				.rank {
+					color: #999999;
+				}
+			}
+							
+			a {
+				color: #ffcc00;
+				text-decoration: none;
+				
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+		
 	div#container {
 		width: 960px;
 		margin: 0 auto;
@@ -166,32 +205,6 @@ body {
 				z-index: 3;
 			}
 
-		}
-		
-		div#userstatus {
-			text-align: right;
-			font-size: 12px;
-			line-height: 12px;
-			
-			.mana {
-				img {
-					vertical-align: middle;
-					width: 11px;
-				}
-				
-				.rank {
-					color: #999999;
-				}
-			}
-							
-			a {
-				color: #ffcc00;
-				text-decoration: none;
-				
-				&:hover {
-					text-decoration: underline;
-				}
-			}
 		}
 		
 		div#header {
@@ -287,7 +300,8 @@ body {
 				}
 				
 				div.left {
-					width: 700px;
+					width: 680px;
+					padding: 0 10px;
 					border-right: 1px solid #CCCCCC;
 					
 					p {
@@ -363,7 +377,7 @@ body {
 						line-height: 11pt;
 						
 						img {
-							width: 11px;
+							width: 15px;
 							vertical-align: middle;
 						}
 						

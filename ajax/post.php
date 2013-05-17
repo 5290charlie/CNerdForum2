@@ -22,7 +22,7 @@ if ( count( $comments ) > 0 ) {
         		<hr>
         		<div class="userdata">
         			<a href="<?php echo CN_WEBACCOUNT . '?user=' . $c->author->username; ?>"><?php echo $c->author->username; ?></a><br />
-        			[<img width="10" src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" /> <?php echo $user->getMana(); ?>  <span class="rank"><?php echo $user->getRank(); ?></span>] 
+        			[<img width="10" src="<?php echo CN_WEBDIR_ICONS; ?>mana.png" /> <?php echo $c->author->getMana(); ?>  <span class="rank"><?php echo $c->author->getRank(); ?></span>] 
         			<img width="75" src="<?php echo CN_WEBDIR_IMAGES; ?>avatar.gif" /><br />
         			<?php echo $c->author->fullname; ?>
         		</div>

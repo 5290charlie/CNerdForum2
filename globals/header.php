@@ -42,13 +42,14 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 	
 	<?php // Begin HTML body tag ?>	
 	<body>
-
-		<?php // Begin DIV #container ?>	
-		<div id="container">
-		
+		<div id="status_container">
 			<div id="userstatus">
 				<?php require_once CN_DIR_AJAX . 'userstatus.php'; ?>
 			</div>
+		</div>
+		
+		<?php // Begin DIV #container ?>	
+		<div id="container">
 		    <div id="header">
 		        <hgroup>
 					<h1><a href="<?php echo CN_WEBROOTPAGE; ?>">CNerdForum</a></h1>

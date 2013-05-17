@@ -11,97 +11,97 @@ $trophies = array(
 	array(
 		'mana' => 0,
 		'rank' => 'n00b',
-		'icon' => CN_WEBDIR_TROPHIES . 'n00b.png'
+		'icon' => 'n00b.png'
 	),
 	// punk rank
 	array(
 		'mana' => 50,
 		'rank' => 'punk',
-		'icon' => CN_WEBDIR_TROPHIES . 'punk.png'
+		'icon' => 'punk.png'
 	),
 	// greenhorn rank
 	array(
 		'mana' => 100,
 		'rank' => 'greenhorn',
-		'icon' => CN_WEBDIR_TROPHIES . 'greenhorn.png'
+		'icon' => 'greenhorn.png'
 	),
 	// apprentice rank
 	array(
 		'mana' => 200,
 		'rank' => 'apprentice',
-		'icon' => CN_WEBDIR_TROPHIES . 'apprentice.png'
+		'icon' => 'apprentice.png'
 	),
 	// pro rank
 	array(
 		'mana' => 300,
 		'rank' => 'pro',
-		'icon' => CN_WEBDIR_TROPHIES . 'pro.png'
+		'icon' => 'pro.png'
 	),
 	// engineer rank
 	array(
 		'mana' => 400,
 		'rank' => 'engineer',
-		'icon' => CN_WEBDIR_TROPHIES . 'engineer.png'
+		'icon' => 'engineer.png'
 	),
 	// master rank
 	array(
 		'mana' => 500,
 		'rank' => 'master',
-		'icon' => CN_WEBDIR_TROPHIES . 'master.png'
+		'icon' => 'master.png'
 	),
 	// elder rank
 	array(
 		'mana' => 600,
 		'rank' => 'elder',
-		'icon' => CN_WEBDIR_TROPHIES . 'elder.png'
+		'icon' => 'elder.png'
 	),
 	// wiseman rank
 	array(
 		'mana' => 700,
 		'rank' => 'wiseman',
-		'icon' => CN_WEBDIR_TROPHIES . 'wiseman.png'
+		'icon' => 'wiseman.png'
 	),
 	// prince rank
 	array(
 		'mana' => 800,
 		'rank' => 'prince',
-		'icon' => CN_WEBDIR_TROPHIES . 'prince.png'
+		'icon' => 'prince.png'
 	),
 	// king rank
 	array(
 		'mana' => 900,
 		'rank' => 'king',
-		'icon' => CN_WEBDIR_TROPHIES . 'king.png'
+		'icon' => 'king.png'
 	),
 	// lord rank
 	array(
 		'mana' => 1000,
 		'rank' => 'lord',
-		'icon' => CN_WEBDIR_TROPHIES . 'lord.png'
+		'icon' => 'lord.png'
 	),
 	// geek rank
 	array(
 		'mana' => 1500,
 		'rank' => 'geek',
-		'icon' => CN_WEBDIR_TROPHIES . 'geek.png'
+		'icon' => 'geek.png'
 	),
 	// computer nerd rank
 	array(
 		'mana' => 2000,
 		'rank' => 'computer nerd',
-		'icon' => CN_WEBDIR_TROPHIES . 'computer nerd.png'
+		'icon' => 'computer nerd.png'
 	),
 	// genius rank
 	array(
 		'mana' => 2500,
 		'rank' => 'genius',
-		'icon' => CN_WEBDIR_TROPHIES . 'genius.png'
+		'icon' => 'genius.png'
 	),
 	// evil genius rank
 	array(
 		'mana' => 5000,
 		'rank' => 'evil genius',
-		'icon' => CN_WEBDIR_TROPHIES . 'evil genius.png'
+		'icon' => 'evil genius.png'
 	)
 );
 
@@ -115,7 +115,6 @@ foreach( $trophies as $trophy ) {
 	echo 'Icon: <img src="' . $trophy['icon'] . '" /><br />';
 }
 */
-
 $mana = 1234;
 
 $trophies = CN_Trophy::getTrophies( $mana );

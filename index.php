@@ -20,7 +20,7 @@ require_once( CN_DIR_GLOBALS . 'header.php' );
 ?>
 				<div class="home">
 					<div class="right">
-						<button class="button" onclick="window.location='<?php echo CN_WEBROOTPAGE . 'topics'; ?>'">View All Topics</button>
+<!-- 						<button class="button" onclick="window.location='<?php echo CN_WEBROOTPAGE . 'topics'; ?>'">View All Topics</button> -->
 						<h4>Recent Topics</h4>
 						<ul>
 						<?php
