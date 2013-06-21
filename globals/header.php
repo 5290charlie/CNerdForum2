@@ -32,29 +32,39 @@ defined( '_CN_EXEC' ) or die( 'Restricted Access' );
 		<link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
 		<link href="<?php echo CN_WEBDIR_CSS; ?>updated.less" rel="stylesheet/less" type="text/css" />
 		<link href="<?php echo CN_WEBDIR_CSS; ?>jquery-ui-1.10.2.css" rel="stylesheet" type="text/css" />
+		<link href="<?php echo CN_WEBDIR_CSS; ?>selectize.css" rel="stylesheet" type="text/css" />
+		
+		<!--[if IE 8]><script src="<?php echo CN_WEBDIR_SCRIPTS; ?>_es5.js"></script><![endif]-->
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>jquery-1.9.1.js" type="text/javascript"></script>
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>jquery-ui-1.10.2.js" type="text/javascript"></script>
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>functions.js" type="text/javascript"></script>
 		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>less-1.3.3.js" type="text/javascript"></script>
-		
+		<script src="<?php echo CN_WEBDIR_SCRIPTS; ?>selectize.js" type="text/javascript"></script>
 		
 	</head>
 	
 	<?php // Begin HTML body tag ?>	
 	<body>
-		<div id="status_container">
-			<div id="userstatus">
-				<?php require_once CN_DIR_AJAX . 'userstatus.php'; ?>
+		<div id="status_bar">
+			<div id="status_container">
+				<div id="userstatus">
+					<?php require_once CN_DIR_AJAX . 'userstatus.php'; ?>
+				</div>
+				<div class="control-group">
+					<select id="select-search" placeholder="Search CNerdForum..."></select>
+				</div>
 			</div>
 		</div>
 		
 		<?php // Begin DIV #container ?>	
 		<div id="container">
 		    <div id="header">
-		        <hgroup>
+		        
+		        <div class="hgroup">
 					<h1><a href="<?php echo CN_WEBROOTPAGE; ?>">CNerdForum</a></h1>
 					<h2>[a place for nerds]</h2>
-				</hgroup>
+				</div>
+				
 		    </div>
 		    
 			<ul id="tabs">

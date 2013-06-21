@@ -16,20 +16,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . 'config.php';
 $cn =& CN::getInstance();
 $cn->init();
 
-if( !empty( $_POST ) && !empty( $_POST['post_id'] ) && !empty( $_POST['user_id'] ) && !empty( $_POST['body'] ) ) {
-	if ( CN_Comment::add( $_POST ) ) {
-		$cn->enqueueMessage(
-			'Successfully commented on post.',
-			CN_MSG_SUCCESS,
-			$_SESSION['sessionID']
-		);
+if( !empty( $_POST ) && !empty( $_POST['post_id'] ) && !empty( $_POST['user_id'] ) && isset( $_POST['body'] ) ) {
+	if (!empty( $_POST['body'] )) {
+		if ( CN_Comment::add( $_POST ) ) {
+			$cn->enqueueMessage(
+				'Successfully commented on post.',
+				CN_MSG_SUCCESS,
+				$_SESSION['sessionID']
+			);
+		} else {
+			$cn->enqueueMessage(
+				'Error commenting on post.',
+				CN_MSG_ERROR,
+				$_SESSION['sessionID']
+			);
+		}
 	} else {
 		$cn->enqueueMessage(
-			'Error commenting on post.',
+			'Please provide a comment.',
 			CN_MSG_ERROR,
 			$_SESSION['sessionID']
 		);
-	}
+	}	
 	
 	// Redirect back to post that was commented on
 	CN::redirect( CN_WEBROOTPAGE . 'post?pid=' . $_POST['post_id'] );
@@ -66,7 +74,7 @@ if( !empty( $_GET ) && !empty( $_GET['pid'] ) ) {
 					<?php require_once CN_DIR_AJAX . 'post.php'; ?>
 				</div>
 				<hr>
-				<form id="new_comment" method="post" action="<?php echo CN_WEBROOTPAGE . 'post'; ?>">
+				<form id="new_comment" method="post" action="<?php echo CN_WEBROOTPAGE . 'post?pid=' . $_GET['pid']; ?>">
 					<input type="hidden" id="post_id" name="post_id" value="<?php echo $post->id; ?>" />
 					<input type="hidden" id="user_id" name="user_id" value="<?php echo $user->id; ?>" />
 					<label for="body">Comment:</label>

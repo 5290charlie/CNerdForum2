@@ -132,6 +132,38 @@ class CN_User {
 		return $users;
 	}
 	
+	public static function search( $search ) {
+		$dbo =& CN::getDBO();
+		$str = $dbo->sqlsafe( $search );
+		$str = strtoupper( $dbo->sqlsafe( $search ) );
+				
+		$query = "
+			SELECT	user_id
+			FROM	" . CN_USERS_TABLE . " u  			
+			WHERE	upper(u.username) 	LIKE ('%$str%')  
+			OR		upper(u.firstname) 	LIKE ('%$str%') 
+			OR		upper(u.lastname)  	LIKE ('%$str%') 
+		";
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_User::search()' );
+			throw new Exception( 'Could not search users!' );
+		}
+		
+		// Create empty array to store user objects
+		$users = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			$users[$a] = new CN_User( $row->user_id );
+		}
+		
+		return $users;
+
+	}
+	
 	public static function getPermission($perm) {
 		if ( is_numeric( $perm ) && ( $perm >= CN_PERM_DISABLED && $perm <= CN_PERM_ADMIN ) ) {
 			$dbo =& CN::getDBO();

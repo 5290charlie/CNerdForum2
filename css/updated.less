@@ -80,39 +80,60 @@ body {
 		}
 	}
 	
-	div#status_container {
+	div#status_bar {
 		position: fixed;
 		width: 100%;			
 		background: #333333;
 		margin: 0;
 		padding: 5px;
 		z-index: 100;
-					
-		div#userstatus {
-			text-align: right;
-			font-size: 12px;
-			line-height: 12px;
-			padding: 5px;
+		
+		
+		div#status_container {
 			width: 960px;
+			height: 36px;
+			vertical-align: middle;
 			margin: 0 auto;
-
-			.mana {
-				img {
-					vertical-align: middle;
-					width: 11px;
-				}
+									
+			.control-group {
+				width: 500px;
 				
-				.rank {
-					color: #999999;
+				.selectize-control {
+					width: 100%;
+					
+					.selectize-input {
+						padding: 5px;
+					}
 				}
 			}
-							
-			a {
-				color: #ffcc00;
-				text-decoration: none;
-				
-				&:hover {
-					text-decoration: underline;
+						
+			div#userstatus {
+				text-align: right;
+				font-size: 12px;
+				line-height: 30px;
+				padding: 5px;
+				width: 400px;
+				float: right;
+				margin: 0 auto;
+	
+				.mana {
+					img {
+						vertical-align: middle;
+						width: 11px;
+					}
+					
+					.rank {
+						color: #999999;
+					}
+				}
+								
+				a {
+					color: #ffcc00;
+					text-decoration: none;
+					
+					&:hover {
+						text-decoration: underline;
+					}
 				}
 			}
 		}
@@ -211,7 +232,7 @@ body {
 			font-size: 40pt;
 			padding: 15px;
 			
-			hgroup {
+			.hgroup {
 				display: block;
 				width: 400px;
 				margin: 25px;
@@ -343,55 +364,74 @@ body {
 			}
 			
 			#useraccount {
-				#userinfo {
-					background: #CCCCCC;
-					width: 300px;
+				div div {
 					margin: 20px;
-					padding: 15px;
-					float: left;
-					font-size: 12pt;
 					border: 1px solid #000000;
 					.border-radius-top(10px);
 					.border-radius-bottom(10px);
 					.box-shadow;
-					
-					.username {
-						
-					}
-					
-					img.avatar {
-						max-width: 100px;
-					}
-					
-					.fullname {
-						
-					}
-					
-					.email {
-						
-					}
-					
-					.mana {
-						float: right;
-						font-size: 11pt;
-						line-height: 11pt;
-						
-						img {
-							width: 15px;
-							vertical-align: middle;
-						}
-						
-						.rank {
-							color: #666666;
-						}
-					}
 				}
 				
+				div div div {
+					margin: 0;
+					border: none;
+					
+				}
+				
+				#left-panel {
+					float: left;
+		
+					#userinfo {
+						background: #CCCCCC;
+						width: 300px;
+						padding: 15px;
+						font-size: 12pt;
+											
+						.username {
+							
+						}
+						
+						img.avatar {
+							max-width: 100px;
+						}
+						
+						.fullname {
+							
+						}
+						
+						.email {
+							
+						}
+						
+						.mana {
+							float: right;
+							font-size: 11pt;
+							line-height: 11pt;
+							
+							img {
+								width: 15px;
+								vertical-align: middle;
+							}
+							
+							.rank {
+								color: #666666;
+							}
+						}
+					}
+					
+					#usertopics, #userposts, #usercomments {
+						width: 300px;
+						padding: 10px;
+						font-size: 15px;
+					}
+				}
+						
+						
 				#trophycase {
 					width: 520px;
-					margin: 20px;
 					float: right;
 					text-align: center;
+					margin: 20px;
 					border: 1px solid #000000;
 					.border-radius-top(10px);
 					.border-radius-bottom(10px);

@@ -175,7 +175,40 @@ class CN_Post {
 	
 	// Search all posts
 	public static function search( $search ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		$str = $dbo->sqlsafe( $search );
+		$str = strtoupper( $dbo->sqlsafe( $search ) );
+				
+		$query = "
+			SELECT	post_id
+			FROM	" . CN_POSTS_TABLE . " p 
+			
+			JOIN	" . CN_USERS_TABLE . " u  
+			ON 		u.user_id = p.user_id 
+			
+			WHERE	upper(p.title) 		LIKE ('%$str%')  
+			OR		upper(p.details) 	LIKE ('%$str%') 
+			OR		upper(u.username) 	LIKE ('%$str%')  
+			OR		upper(u.firstname) 	LIKE ('%$str%') 
+			OR		upper(u.lastname)  	LIKE ('%$str%') 
+		";
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Post::search()' );
+			throw new Exception( 'Could not search posts!' );
+		}
+		
+		// Create empty array to store post objects
+		$posts = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();			
+			$posts[$a] = new CN_Post( $row->post_id );
+		}
+		
+		return $posts;
 	}
 	
 	// Add new post to database

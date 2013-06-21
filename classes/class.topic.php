@@ -136,7 +136,45 @@ class CN_Topic {
 	
 	// Search all topics
 	public static function search( $search ) {
-		// TODO
+		$dbo =& CN::getDBO();
+		$str = $dbo->sqlsafe( $search );
+		$str = strtoupper( $dbo->sqlsafe( $search ) );
+		
+/* 		print "searching for: $str"; */
+		
+		$query = "
+			SELECT	topic_id
+			FROM	" . CN_TOPICS_TABLE . " t 
+			
+			JOIN	" . CN_USERS_TABLE . " u  
+			ON 		u.user_id = t.user_id 
+			
+			WHERE	upper(t.title) 		LIKE ('%$str%')  
+			OR		upper(t.details) 	LIKE ('%$str%') 
+			OR		upper(u.username) 	LIKE ('%$str%')  
+			OR		upper(u.firstname) 	LIKE ('%$str%') 
+			OR		upper(u.lastname)  	LIKE ('%$str%') 
+		";
+		
+		$response = $dbo->query( $query );
+		
+		if ( $dbo->hasError( $response ) ) {
+			$dbo->submitErrorLog( $response, 'CN_Topic::search()' );
+			throw new Exception( 'Could not search topics!' );
+		}
+		
+		// Create empty array to store topic objects
+		$topics = array();
+		
+		for( $a = 0; $a < $dbo->num_rows( $response ); $a++ ) {
+			$row = $dbo->getResultObject( $response )->fetch_object();
+			
+/* 			var_dump($row); */
+			
+			$topics[$a] = new CN_Topic( $row->topic_id );
+		}
+		
+		return $topics;
 	}
 	
 	// Add new topic to database

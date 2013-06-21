@@ -23,7 +23,7 @@ class CN_Error {
 		if ( isset( $_SESSION['login'] ) )
 			$user =& CN::getUser();
 		
-		if( in_array( $err_type, array( E_WARNING, E_NOTICE, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_USER_NOTICE, E_STRICT, E_DEPRECATED, E_USER_DEPRECATED ) ) ) {
+		if( in_array( $err_type, array( E_WARNING, E_NOTICE, E_CORE_WARNING, E_COMPILE_WARNING, E_USER_WARNING, E_USER_NOTICE, E_STRICT ) ) ) {
 				
 			// Should log errors if the site is live and if errors are not being displayed
 			if( CN_STATUS != CN_ST_LIVE && isset( $_SESSION['login'] ) && $user->permission > CN_PERM_USER ) {
@@ -55,7 +55,7 @@ class CN_Error {
 			echo 'File: ' . $e->getFile() . '<br />';
 			echo 'Line: ' . $e->getLine() . '<br />';
 		} else {
-			error_log( 'Exception: "' . $e->getMessage() . '" on line ' . $e->getLine() . ' in ' . $e->getFile );
+			error_log( 'Exception: "' . $e->getMessage() . '" on line ' . $e->getLine() . ' in ' . $e->getFile() );
 			die( CN_GLOBAL_ERROR );
 		}
 	}

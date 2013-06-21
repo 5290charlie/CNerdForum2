@@ -46,7 +46,18 @@ final class CN {
 	}
 	
 	// Initialize Site
-	public function init() {
+	public function init($api = false) {
+		// Initialize global objects
+		try {
+			$GLOBALS['dbo'] =& self::getDBO();
+		} catch ( Exception $e ) {
+			die( 'Could not connect to the database!' );
+		}
+	
+		if ($api) {
+			return;
+		}
+	
 		// Redirect if site offline
 		if ( CN_STATUS == CN_ST_OFFLINE )
 			CN::redirect( CN_WEBMAINTENANCE );
@@ -61,13 +72,6 @@ final class CN {
 		// Generate CNerdForum session ID
 		if ( !isset( $_SESSION['sessionID'] ) )
 			$_SESSION['sessionID'] = self::generateKey( CN_SESSION_KEYLENGTH_SESSID );
-		
-		// Initialize global objects
-		try {
-			$GLOBALS['dbo'] =& self::getDBO();
-		} catch ( Exception $e ) {
-			die( 'Could not connect to the database!' );
-		}
 		
 		// Security layer
 		if ( ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) && ( strpos( $_SERVER['SCRIPT_FILENAME'], 'signup' ) === false ) ) {

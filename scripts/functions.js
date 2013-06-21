@@ -21,6 +21,50 @@ $(document).ready(function() {
 	
 	$pageTitle = $("#page-title").val();
 	$("html head title").html($pageTitle);
+	
+	$('#select-search').selectize({
+		theme: 'repositories',
+		persist: true,
+		maxItems: 1,
+		valueField: 'link',
+		labelField: 'title',
+		searchField: ['title', 'details', 'authorStr'],
+		options: [],
+		render: {
+			option: function(item) {
+				return '<div>' +
+					'<span class="title">' +
+						'<span class="name">' + item.title + '</span>' +
+						'<span class="by">' + item.authorStr + '</span>' +
+					'</span>' +
+					'<span class="description">' + item.details + '</span>' +
+				'</div>';
+			}
+		},
+		create: false,
+		load: function(query, callback) {
+			if (!query.length) return callback();
+			$.ajax({
+				url: 'http://cnerdforum.local.devserver/ajax/api.php',
+				type: 'GET',
+				dataType: 'jsonp',
+				data: {
+					q: query,
+				},
+				error: function() {
+					callback();
+				},
+				success: function(res) {
+					callback(res);
+				}
+			});
+		},
+		onChange: function() {
+			if ($('#select-search').val() != '') {
+				window.location = $('#select-search').val();
+			}
+		}
+	});
 });
 
 function voteComment( cid, val ) {
