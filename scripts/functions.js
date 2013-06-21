@@ -45,7 +45,7 @@ $(document).ready(function() {
 		load: function(query, callback) {
 			if (!query.length) return callback();
 			$.ajax({
-				url: 'http://cnerdforum.local.devserver/ajax/api.php',
+				url: '/ajax/api.php',
 				type: 'GET',
 				dataType: 'jsonp',
 				data: {
