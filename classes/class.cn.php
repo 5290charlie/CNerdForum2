@@ -74,7 +74,7 @@ final class CN {
 			$_SESSION['sessionID'] = self::generateKey( CN_SESSION_KEYLENGTH_SESSID );
 		
 		// Security layer
-		if ( ( strpos( $_SERVER['SCRIPT_FILENAME'], 'login' ) === false ) && ( strpos( $_SERVER['SCRIPT_FILENAME'], 'signup' ) === false ) ) {
+		if ( ( strpos( $_SERVER['REQUEST_URI'], 'login' ) === false ) && ( strpos( $_SERVER['REQUEST_URI'], 'signup' ) === false ) ) {
 			// Prevent simultaneous sessions if the user is logged in
 			if ( isset( $_SESSION['login'] ) ) {
 				

@@ -24,7 +24,7 @@ $(document).ready(function() {
 	
 	$('#select-search').selectize({
 		theme: 'repositories',
-		persist: true,
+		persist: false,
 		maxItems: 1,
 		valueField: 'link',
 		labelField: 'title',
@@ -32,6 +32,7 @@ $(document).ready(function() {
 		options: [],
 		render: {
 			option: function(item) {
+				console.log(item);
 				return '<div>' +
 					'<span class="title">' +
 						'<span class="name">' + item.title + '</span>' +
@@ -42,6 +43,12 @@ $(document).ready(function() {
 			}
 		},
 		create: false,
+		score: function(search) {
+			var score = this.getScoreFunction(search);
+			return function(item) {
+				return score(item) * (1 + Math.min(item.views / 10, 1));
+			};
+		},
 		load: function(query, callback) {
 			if (!query.length) return callback();
 			$.ajax({

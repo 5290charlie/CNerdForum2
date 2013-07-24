@@ -40,6 +40,14 @@ foreach($response as $row) {
 	$row->authorStr = $row->author->username . ' [' . $row->author->fullname . ']';
 }
 
+if (empty($response) && isset($_GET['q'])) {
+	$empty->title = 'No Results';
+	$empty->authorStr = 'Admin';
+	$empty->details = "Can't find anything containing: " . $_GET['q'];
+	$empty->views = 1;
+	$response[] = $empty;	
+}
+
 if (isset($_GET['callback'])) {
 	print $_GET['callback'] . '(' . json_encode($response) . ');';
 } else {
